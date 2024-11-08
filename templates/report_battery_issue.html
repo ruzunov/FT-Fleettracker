@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Report Battery Issue</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Report Battery Issue for {{ model }} {{ number }}</h1>
+        <br>
+        <form action="{{ url_for('confirm_battery') }}" method="get">
+            <input type="hidden" name="model" value="{{ model }}">
+            <input type="hidden" name="number" value="{{ number }}">
+            <input type="hidden" id="issueType" name="issue" value="">
+            <br /><br />
+            <div class="button-container">
+                <button type="button" class="issue-button" onclick="selectIssue('Leak')">Leak</button>
+                <button type="button" class="issue-button" onclick="selectIssue('Cables')">Cables</button>
+                <button type="button" class="issue-button" onclick="selectIssue('Cells')">Cells</button>
+                <button type="button" class="issue-button" onclick="selectIssue('Connector')">Connector</button>
+                <button type="button" class="issue-button" onclick="selectIssue('Damage')">Damage</button>
+                <button type="button" class="issue-button" onclick="selectIssue('Other')">Other</button>
+            </div>
+            <br />
+            <label for="description"></label>
+            <textarea id="description" name="description" rows="4" placeholder="Describe the issue..."></textarea>
+            <br /><br />
+            <button type="submit" class="large-button">Confirm</button>
+        </form>
+        <br><br>
+        <button class="back-button" onclick="history.back()" class="large-button">Go Back</button>
+    </div>
+
+    <script>
+        function selectIssue(issueType) {
+            document.getElementById("issueType").value = issueType;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Current Battery Issues</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Battery Issues</h1>
+		<br>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Number</th>
+                        <th>Issue</th>
+                        <th>Description</th>
+                        <th>Date Reported</th>
+                        <th>Comments</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if issues %}
+                        {% for issue in issues %}
+                        <tr>
+                            <td>{{ issue['Model'] }}</td>
+                            <td>{{ issue['Number'] }}</td>
+                            <td>{{ issue['Issue'] }}</td>
+                            <td>{{ issue['Description'] }}</td>
+                            <td>{{ issue['DateTime'] }}</td>
+                            <td>{{ issue['Comments'] }}</td>
+                            <td>
+                                <!-- Link to comment page for this battery issue -->
+                                <a href="{{ url_for('comment_battery_issue', index=loop.index0) }}" class="small-button">Comment</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No current battery issues reported.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+		<br><br>
+        <a href="{{ url_for('landing_page') }}" class="back-button">Home</a>
+    </div>
+</body>
+</html>

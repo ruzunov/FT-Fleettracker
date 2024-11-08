@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Forklift Tracker - Select Model</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Forklift Model</h1>
+		<br>
+		<br>
+        <div class="button-container">
+            <a href="{{ url_for('select_number_page', model='Toyota') }}" class="large-button">Toyota</a>
+            <a href="{{ url_for('select_number_page', model='Still') }}" class="large-button">Still</a>
+		</div>
+		<br><br>
+		<button class="back-button" onclick="history.back()" class="large-button">Go Back</button>
+    </div>
+	</body>
+</html>

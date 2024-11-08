@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - sSelect Resolved Issue</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Resolved Issue</h1>
+        <br /><br />
+        <!-- Forklift Resolved Issues -->
+        <h2>Select Forklift Model:</h2>
+
+        <form action="{{ url_for('view_resolved_issues') }}" method="get">
+            <label for="model">Forklift Model:</label>
+            <select id="model" name="model" onchange="updateForkliftNumbers()">
+                <option value="Toyota">Toyota</option>
+                <option value="Still">Still</option>
+            </select>
+
+            <label for="number">Forklift Number:</label>
+            <select id="number" name="number"></select>
+            <button type="submit" class="back-button">View Forklift Resolved Issues</button>
+        </form>
+        <br />
+        <!-- Battery Resolved Issues -->
+        <h2>Select Battery Model:</h2>
+
+        <form action="{{ url_for('view_resolved_battery_issues') }}" method="get">
+            <label for="battery_model">Battery Model:</label>
+            <select id="battery_model" name="battery_model" onchange="updateBatteryNumbers()">
+                <option value="Toyota">Toyota</option>
+                <option value="Still">Still</option>
+            </select>
+
+            <label for="battery_number">Battery Number:</label>
+            <select id="battery_number" name="battery_number"></select>
+            <button type="submit" class="back-button">View Battery Resolved Issues</button>
+        </form>
+        <br /><br />
+        <!-- Export Buttons -->
+        <h2>Export Resolved Issues</h2>
+        <br />
+        <a href="{{ url_for('download_resolved_csv') }}" class="back-button">Export Forklift CSV</a>
+        <a href="{{ url_for('download_resolved_battery_csv') }}" class="back-button">Export Battery CSV</a>
+        <br /><br /><br /><br />
+        <a href="{{ url_for('landing_page') }}" class="back-button">Go Back</a>
+
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-message">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        // Populate forklift numbers based on selected model
+        function updateForkliftNumbers() {
+            const model = document.getElementById("model").value;
+            const numberDropdown = document.getElementById("number");
+            numberDropdown.innerHTML = ""; // Clear existing options
+
+            for (let i = 1; i <= 30; i++) {
+                const option = document.createElement("option");
+                option.value = model.charAt(0) + i;
+                option.text = model.charAt(0) + i;
+                numberDropdown.appendChild(option);
+            }
+        }
+
+        // Populate battery numbers based on selected model, formatted as TB1, TB2... or SB1, SB2...
+        function updateBatteryNumbers() {
+            const model = document.getElementById("battery_model").value;
+            const numberDropdown = document.getElementById("battery_number");
+            numberDropdown.innerHTML = ""; // Clear existing options
+
+            for (let i = 1; i <= 30; i++) {
+                const option = document.createElement("option");
+                option.value = model.charAt(0) + 'B' + i; // Format as TB1, SB1, etc.
+                option.text = model.charAt(0) + 'B' + i;
+                numberDropdown.appendChild(option);
+            }
+        }
+
+        // Initialize the dropdown with default Toyota numbers
+        document.addEventListener("DOMContentLoaded", function () {
+            updateForkliftNumbers();
+            updateBatteryNumbers();
+        });
+    </script>
+</body>
+</html>

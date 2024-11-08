@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Forklift Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Forklift Service Tracker</h1>
+		<br>
+        <div class="button-container">
+            <!-- Link to Report New Issue (Model Selection Page) -->
+            <a href="{{ url_for('issue_type_selection') }}" class="large-button">Report an Issue</a>
+            <!-- Link to Current Issues Page -->
+            <a href="{{ url_for('current_issue_type_selection') }}" class="large-button">Current Issues</a>
+            <a href="{{ url_for('select_resolved') }}" class="large-button">View Resolved Issues</a>
+            <a href="{{ url_for('service_page') }}" class="large-button">Service</a>
+        </div>
+    </div>
+</body>
+</html>

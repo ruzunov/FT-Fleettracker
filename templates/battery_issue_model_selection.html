@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Select Battery Issue Model</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Battery Issue Model</h1>
+		<br>
+        <div class="button-container">
+            <!-- Button for Toyota battery issues -->
+            <a href="{{ url_for('battery_select_number', model='Toyota') }}" class="large-button">Toyota</a>
+
+            <!-- Button for Still battery issues -->
+            <a href="{{ url_for('battery_select_number', model='Still') }}" class="large-button">Still</a>
+        </div>
+		<br><br>
+		<button class="back-button" onclick="history.back()" class="large-button">Go Back</button>
+    </div>
+</body>
+</html>

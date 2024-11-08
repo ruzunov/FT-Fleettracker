@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Comment on Forklift Issue</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Forklift Issue Details</h1>
+        <br />
+        <div class="issue-details">
+            <p><strong>Model:</strong> {{ issue['Model'] }}</p>
+            <p><strong>Number:</strong> {{ issue['Number'] }}</p>
+            <p><strong>Issue:</strong> {{ issue['Issue'] }}</p>
+            <p><strong>Description:</strong> {{ issue['Description'] }}</p>
+            <p><strong>Reported At:</strong> {{ issue['DateTime'] }}</p>
+        </div>
+        <br />
+        <h2>Comments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if issue['Comments'] %}
+                {% for comment in issue['Comments'].split('|') %}
+                <tr>
+                    <td>{{ comment.strip() }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>No comments available.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <br />
+        <!-- Add Comment Form -->
+        <form action="{{ url_for('add_comment', index=index) }}" method="post">
+            <label for="comment"></label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Enter your comment..."></textarea>
+            <br />
+            <button type="submit" class="large-button">Add Comment</button>
+        </form>
+        <br />
+        <!-- Resolve Issue Form with Work Hours Prompt -->
+        <form id="resolveForm" action="{{ url_for('resolve_issue', index=index) }}" method="post" onsubmit="return promptWorkHours()">
+            <label for="comment"></label>
+            <textarea id="final_comment" name="comment" rows="3" placeholder="Enter a final comment..."></textarea>
+            <input type="hidden" id="work_hours" name="work_hours"> <!-- Hidden input for work hours -->
+            <br />
+            <button type="submit" class="large-button resolve-button">Resolve Issue</button>
+        </form>
+        <br /><br />
+        <a href="{{ url_for('current_issues') }}" class="back-button">Back</a>
+    </div>
+
+    <script>
+        // Prompt for work hours and set the hidden input field with the value
+        function promptWorkHours() {
+            const hours = prompt("Enter current forklift work hours:");
+            if (hours) {
+                document.getElementById("work_hours").value = hours;
+                return true; // Submit the form
+            } else {
+                alert("Work hours are required to resolve the issue.");
+                return false; // Prevent form submission if no hours entered
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Resolved Forklift Issues</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Resolved Issues for Forklift: {{ model }} {{ number }}</h1>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Number</th>
+                        <th>Issue</th>
+                        <th>Description</th>
+                        <th>Resolved At</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for issue in resolved_issues %}
+                        <tr>
+                            <td>{{ issue['Model'] }}</td>
+                            <td>{{ issue['Number'] }}</td>
+                            <td>{{ issue['Issue'] }}</td>
+                            <td>{{ issue['Description'] }}</td>
+                            <td>{{ issue['DateTime'] }}</td>
+                            <td class="comments-cell">{{ issue['Comments'] }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No resolved issues found for this forklift.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/" class="large-button">Go Back</a>
+    </div>
+</body>
+</html>

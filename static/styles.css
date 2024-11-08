@@ -1,0 +1,255 @@
+/* styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #333;
+}
+
+select {
+    height: 35px;                /* Set height for compact appearance */
+    padding: 5px 10px;           /* Reduce padding inside the dropdown */
+    font-size: 1em;            /* Slightly smaller font size */
+    border: 1px solid #ddd;      /* Light border */
+    border-radius: 5px;          /* Rounded corners for modern look */
+    background-color: #fff;      /* Background color */
+    color: #333;                 /* Font color */
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+/* Dropdown focus and hover styles */
+select:focus, select:hover {
+    border-color: #007bff;       /* Highlight border color on hover/focus */
+    outline: none;               /* Remove outline on focus */
+}
+
+textarea {
+	width: 75%;
+	height: 100px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	font-size: 16px;
+	resize: none;
+}
+
+.confirmation-details {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.confirmation-details p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Highlight the selected issue button */
+.issue-button.selected {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+/* Update button hover and active states for better visibility */
+.issue-button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.issue-button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.issue-button:active {
+    background-color: #003f7f;
+}
+/* Additional styling for landing page buttons */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.large-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+	transition: background-color 0.3s, color 0.3s;
+}
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.container-maintenance {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1800px;
+    text-align: center;
+}
+
+.container-resolved {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 1920px;
+    width: 75%;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.issue-button, .large-button {
+    padding: 15px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.small-button {
+    padding: 10px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.issue-button:hover, .large-button:hover, .small-button:hover {
+    background-color: #0056b3;
+}
+
+.issue-button.selected {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.description-cell, .comments-cell {
+    max-width: 300px; /* Set the maximum width for the description and comments cells */
+    white-space: nowrap; /* Prevent overflowing text */
+    overflow: hidden; /* Hide any text that overflows */
+    text-overflow: ellipsis; /* Show "..." for overflowing text */
+}
+
+.description-cell:hover, .comments-cell:hover {
+    white-space: normal; /* Show the full text when hovering */
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px;
+    }
+
+
+
+    .large-button, .small-button, .issue-button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+/* Same CSS styles from before for table and button design */
+
+.table-wrapper {
+    max-width: 100%;
+    max-height: 800px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.comments-cell {
+    max-width: 500px; /* Limit the width of comments */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comments-cell:hover {
+    white-space: normal; /* Expand text on hover */
+}

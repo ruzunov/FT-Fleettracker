@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Confirm Forklift Issue</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Forklift Issue</h1>
+        <br />
+        <p><strong>Model:</strong> {{ model }}</p>
+        <p><strong>Number:</strong> {{ number }}</p>
+        <p><strong>Issue:</strong> {{ issue }}</p>
+        <p><strong>Description:</strong> {{ description }}</p>
+
+        <form action="{{ url_for('submit_issue') }}" method="post" onsubmit="showForkliftConfirmation()">
+            <input type="hidden" name="model" value="{{ model }}">
+            <input type="hidden" name="number" value="{{ number }}">
+            <input type="hidden" name="issue" value="{{ issue }}">
+            <input type="hidden" name="description" value="{{ description }}">
+            <br />
+            <button type="submit" class="large-button">Submit Issue</button>
+        </form>
+        <br><br>
+        <button class="back-button" onclick="history.back()" >Go Back</button>
+    </div>
+
+    <script>
+        // Function to show confirmation alert on form submission
+        function showForkliftConfirmation() {
+            alert("Forklift issue submitted successfully!");
+        }
+    </script>
+</body>
+</html>

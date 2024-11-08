@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Service</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Service</h1>
+        <br />
+        <div class="button-container">
+            <!-- Button to view work hours -->
+            <a href="{{ url_for('view_work_hours') }}" class="large-button">Work Hours</a>
+            <a href="{{ url_for('maintenance') }}" class="large-button">Maintenance</a>
+        </div>
+        <br /><br />
+        <a href="{{ url_for('landing_page') }}" class="back-button">Go Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Select Resolved Forklift</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Resolved Forklift</h1>
+        <form action="{{ url_for('view_resolved_issues') }}" method="get">
+            <label for="model">Select Forklift Model:</label>
+            <select id="model" name="model" onchange="updateForkliftNumbers()">
+                <option value="Toyota">Toyota</option>
+                <option value="Still">Still</option>
+            </select>
+
+            <label for="number">Select Forklift Number:</label>
+            <select id="number" name="number">
+                <!-- Forklift numbers will be dynamically populated using JavaScript -->
+            </select>
+
+            <button type="submit" class="large-button">View Resolved Issues</button>
+        </form>
+    </div>
+
+    <script>
+        function updateForkliftNumbers() {
+            const model = document.getElementById("model").value;
+            const numberDropdown = document.getElementById("number");
+            numberDropdown.innerHTML = ""; // Clear existing options
+
+            if (model === "Toyota") {
+                for (let i = 1; i <= 30; i++) {
+                    const option = document.createElement("option");
+                    option.value = `T${i}`;
+                    option.text = `T${i}`;
+                    numberDropdown.appendChild(option);
+                }
+            } else if (model === "Still") {
+                for (let i = 1; i <= 30; i++) {
+                    const option = document.createElement("option");
+                    option.value = `S${i}`;
+                    option.text = `S${i}`;
+                    numberDropdown.appendChild(option);
+                }
+            }
+        }
+
+        // Initialize the dropdown with default Toyota numbers
+        document.addEventListener("DOMContentLoaded", updateForkliftNumbers);
+    </script>
+</body>
+</html>

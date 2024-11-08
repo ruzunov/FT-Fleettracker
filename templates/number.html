@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Forklift Tracker - Select Number</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Forklift Number</h1>
+		<br>
+        <form action="{{ url_for('select_issue_page') }}" method="get">
+            <input type="hidden" name="model" value="{{ model }}">
+            <label for="number">Choose Number:</label>
+            <select id="number" name="number">
+                <!-- Options populated by JavaScript -->
+            </select>
+			<br><br>
+			<button type="submit" class="large-button">Next</button>
+        </form>
+		<br><br>
+		<button class="back-button" onclick="history.back()" class="large-button">Go Back</button>
+    </div>
+
+    <script>
+        // Retrieve model from URL parameters and set forklift numbers
+        const model = "{{ model }}";
+        const numberDropdown = document.getElementById("number");
+
+        if (model === "Toyota") {
+            for (let i = 1; i <= 30; i++) {
+                const option = document.createElement("option");
+                option.value = `T${i}`;
+                option.text = `T${i}`;
+                numberDropdown.appendChild(option);
+            }
+        } else if (model === "Still") {
+            for (let i = 1; i <= 30; i++) {
+                const option = document.createElement("option");
+                option.value = `S${i}`;
+                option.text = `S${i}`;
+                numberDropdown.appendChild(option);
+            }
+        }
+    </script>
+</body>
+</html>

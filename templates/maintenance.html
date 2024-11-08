@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Maintenance</title>
+    <style>
+        .toggle-btn {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+            .toggle-btn.changed {
+                background-color: #777;
+            }
+
+            .toggle-btn.yes {
+                background-color: #4CAF50;
+            }
+
+            .toggle-btn.no {
+                background-color: #f44336;
+            }
+
+        /* Blinking red style */
+        .blink-red {
+            animation: blink 1s infinite;
+            background-color: red;
+            color: white;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+
+            25%, 75% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-maintenance">
+        <h1>Maintenance</h1>
+        <br />
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Number</th>
+                        <th>Last Reported Hours</th>
+                        <th>Greasing</th>
+                        <th>Greasing Work Hours</th>
+                        <th>Greasing Interval</th>
+                        <th>Oil Change</th>
+                        <th>Oil Change Work Hours</th>
+                        <th>Oil Change Interval</th>
+                        <th>Hydraulic Change</th>
+                        <th>Hydraulic Change Work Hours</th>
+                        <th>Hydraulic Change Interval</th>
+                        <th>Filter Change</th>
+                        <th>Filter Change Work Hours</th>
+                        <th>Filter Change Interval</th>
+                        <th>Work Hours</th>
+                        <th>Submit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in work_hours %}
+                    <tr>
+                        <td>{{ entry['Model'] }}</td>
+                        <td>{{ entry['Number'] }}</td>
+                        <td>{{ entry.get('WorkHours', 'N/A') }}</td>
+
+                        <form action="{{ url_for('maintenance') }}" method="post">
+                            <!-- Greasing Columns -->
+                        <td>
+                            <button type="button" class="toggle-btn changed"
+                                    onclick="toggle(this, 'greasing_{{ entry['Number'] }}')">
+                                Changed
+                            </button>
+                            <input type="hidden" id="greasing_{{ entry['Number'] }}" name="greasing" value="No">
+                        </td>
+                        <td class="{% if entry['GreasingDue'] %}blink-red{% endif %}">{{ entry.get('GreasingWorkHours', 'N/A') }}</td>
+                        <td>{{ entry.get('GreasingInterval', '1000') }}</td>
+
+                        <!-- Oil Change Columns -->
+                        <td>
+                            <button type="button" class="toggle-btn changed"
+                                    onclick="toggle(this, 'oil_change_{{ entry['Number'] }}')">
+                                Changed
+                            </button>
+                            <input type="hidden" id="oil_change_{{ entry['Number'] }}" name="oil_change" value="No">
+                        </td>
+                        <td class="{% if entry['OilChangeDue'] %}blink-red{% endif %}">{{ entry.get('OilChangeWorkHours', 'N/A') }}</td>
+                        <td>{{ entry.get('OilChangeInterval', '1000') }}</td>
+
+                        <!-- Hydraulic Change Columns -->
+                        <td>
+                            <button type="button" class="toggle-btn changed"
+                                    onclick="toggle(this, 'hydraulic_change_{{ entry['Number'] }}')">
+                                Changed
+                            </button>
+                            <input type="hidden" id="hydraulic_change_{{ entry['Number'] }}" name="hydraulic_change" value="No">
+                        </td>
+                        <td class="{% if entry['HydraulicChangeDue'] %}blink-red{% endif %}">{{ entry.get('HydraulicChangeWorkHours', 'N/A') }}</td>
+                        <td>{{ entry.get('HydraulicChangeInterval', '1000') }}</td>
+
+                        <!-- Filter Change Columns -->
+                        <td>
+                            <button type="button" class="toggle-btn changed"
+                                    onclick="toggle(this, 'filter_change_{{ entry['Number'] }}')">
+                                Changed
+                            </button>
+                            <input type="hidden" id="filter_change_{{ entry['Number'] }}" name="filter_change" value="No">
+                        </td>
+                        <td class="{% if entry['FilterChangeDue'] %}blink-red{% endif %}">{{ entry.get('FilterChangeWorkHours', 'N/A') }}</td>
+                        <td>{{ entry.get('FilterChangeInterval', '1000') }}</td>
+
+                        <!-- Work Hours Input and Submit -->
+                        <td><input type="text" name="current_hours" placeholder="Enter hours" required></td>
+                        <td>
+                            <input type="hidden" name="model" value="{{ entry['Model'] }}">
+                            <input type="hidden" name="number" value="{{ entry['Number'] }}">
+                            <button type="submit"class="back-button">>Submit</button>
+                        </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br /><br />
+        <a href="{{ url_for('service_page') }}" class="back-button">Go Back</a>
+    </div>
+
+    <script>
+        function toggle(button, inputId) {
+            const input = document.getElementById(inputId);
+
+            if (button.classList.contains('changed')) {
+                button.classList.remove('changed');
+                button.classList.add('yes');
+                button.innerText = 'Yes';
+                input.value = 'Yes';
+            } else if (button.classList.contains('yes')) {
+                button.classList.remove('yes');
+                button.classList.add('no');
+                button.innerText = 'No';
+                input.value = 'No';
+            } else {
+                button.classList.remove('no');
+                button.classList.add('yes');
+                button.innerText = 'Yes';
+                input.value = 'Yes';
+            }
+        }
+    </script>
+</body>
+</html>

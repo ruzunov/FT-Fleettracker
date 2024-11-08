@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Forklift Work Hours</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Forklift Work Hours</h1>
+        <br />
+        <!-- Filter Form with Model and Number dropdowns -->
+        <form action="{{ url_for('view_work_hours') }}" method="post">
+
+            <!-- Model Dropdown -->
+            <label for="model">Select Model:</label>
+            <select id="model" name="model" onchange="this.form.submit()">
+                <option value="">-- All Models --</option>
+                {% for model in models %}
+                <option value="{{ model }}" {% if model==selected_model %} selected {% endif %}>{{ model }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Number Dropdown -->
+            <label for="number">Select Number:</label>
+            <select id="number" name="number" onchange="this.form.submit()">
+                <option value="">-- All Numbers --</option>
+                {% for number in numbers %}
+                <option value="{{ number }}" {% if number==selected_number %} selected {% endif %}>{{ number }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <br />
+        <!-- Table displaying filtered work hours data -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Number</th>
+                        <th>Work Hours</th>
+                        <th>Date Entered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if work_hours %}
+                    {% for entry in work_hours %}
+                    <tr>
+                        <td>{{ entry['Model'] }}</td>
+                        <td>{{ entry['Number'] }}</td>
+                        <td>{{ entry['WorkHours'] }}</td>
+                        <td>{{ entry['DateEntered'] }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">No work hours data available for the selected criteria.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <br /><br />
+        </div>
+        <a href="{{ url_for('service_page') }}" class="back-button">Go Back</a>
+    </div>
+</body>
+</html>

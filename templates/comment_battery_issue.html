@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Comment on Battery Issue</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Battery Issue Details</h1>
+		<br>
+        <div class="issue-details">
+            <p><strong>Model:</strong> {{ issue['Model'] }}</p>
+            <p><strong>Number:</strong> {{ issue['Number'] }}</p>
+            <p><strong>Issue:</strong> {{ issue['Issue'] }}</p>
+            <p><strong>Description:</strong> {{ issue['Description'] }}</p>
+            <p><strong>Reported At:</strong> {{ issue['DateTime'] }}</p>
+        </div>
+		<br>
+        <h2>Comments</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if issue['Comments'] %}
+                    {% for comment in issue['Comments'].split('|') %}
+                        <tr>
+                            <td>{{ comment.strip() }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No comments available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+		<br>
+        <!-- Add Comment Form -->
+        <form action="{{ url_for('add_battery_comment', index=index) }}" method="post">
+            <label for="comment"></label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Enter your comment..."></textarea>
+			<br>
+            <button type="submit" class="large-button">Add Comment</button>
+        </form>
+		<br>
+        <!-- Resolve Issue Form -->
+        <form action="{{ url_for('resolve_battery_issue', index=index) }}" method="post">
+            <label for="comment"></label>
+            <textarea id="final_comment" name="comment" rows="3" placeholder="Enter a final comment..."></textarea>
+			<br>
+            <button type="submit" class="large-button resolve-button">Resolve Issue</button>
+        </form>
+		<br><br>
+        <a href="{{ url_for('current_battery_issues') }}" class="back-button">Back</a>
+</body>
+</html>

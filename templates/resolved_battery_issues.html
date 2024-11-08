@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Resolved Battery Issues for {{ model }} {{ number }}</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Resolved Battery Issues for {{ model }} {{ number }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Description</th>
+                    <th>Reported At</th>
+                    <th>Comments</th>
+                    <th>Resolved At</th>
+                </tr>
+                <br />
+            </thead>
+            <tbody>
+                {% if resolved_issues %}
+                    {% for issue in resolved_issues %}
+                    <tr>
+                        <td>{{ issue.Issue }}</td>
+                        <td>{{ issue.Description }}</td>
+                        <td>{{ issue.DateTime }}</td>
+                        <td>{{ issue.Comments }}</td>
+                        <td>{{ issue.ResolutionDateTime }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">No resolved battery issues found for this model and number.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <br /><br />
+        <a href="{{ url_for('select_resolved') }}" class="back-button">Go Back</a>
+    </div>
+</body>
+</html>

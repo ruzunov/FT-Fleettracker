@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>FT - Current Forklift Issues</title>
+</head>
+<body>
+    <div class="container-resolved">
+        <h1>Current Forklift Issues</h1>
+		<br>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Number</th>
+                        <th>Issue</th>
+                        <th>Description</th>
+                        <th>Reported At</th>
+                        <th>Comments</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for issue in issues %}
+                        <tr>
+                            <td>{{ issue['Model'] }}</td>
+                            <td>{{ issue['Number'] }}</td>
+                            <td>{{ issue['Issue'] }}</td>
+                            <td class="description-cell">{{ issue['Description'] }}</td>
+                            <td>{{ issue['DateTime'] }}</td>
+                            <td class="comments-cell">{{ issue['Comments'] }}</td>
+                            <td>
+                                <a href="{{ url_for('comment_issue_page', index=loop.index0) }}" class="small-button">Comment</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">No current issues reported.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+		<br><br>
+        <a href="{{ url_for('landing_page') }}" class="back-button">Home</a>
+    </div>
+</body>
+</html>
