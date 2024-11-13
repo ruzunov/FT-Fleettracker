@@ -1,2 +1,3 @@
 Model,Number,Issue,Description,DateTime,Comments
-Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2
+Toyota,T3,Forklift Error,,2024-11-12 10:31:45,
+Toyota,T30,Scanner,falls,2024-11-12 10:57:50,2024-11-12 10:57:54: test | 2024-11-12 10:57:56: test2 | 2024-11-12 10:57:57: test3

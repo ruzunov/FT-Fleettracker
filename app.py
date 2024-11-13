@@ -1,3 +1,4 @@
+from re import L
 from flask import Flask, render_template, request, redirect, url_for, send_file, flash
 import csv
 import os
@@ -217,7 +218,7 @@ def resolve_battery_issue(index):
             writer.writeheader()
             writer.writerows(battery_issues)
 
-    return redirect(url_for('current_battery_issues'))
+    return redirect(url_for('landing_page'))
 
 # Route to render the current issues page (current_issues.html)
 @app.route('/current_issues')
@@ -269,48 +270,58 @@ def add_comment(index):
 
     return redirect(url_for('comment_issue_page', index=index))
 
-# Route to resolve a specific issue and save work hours
-@app.route('/resolve/<int:index>', methods=['POST'])
+@app.route('/resolve_issue/<int:index>', methods=['POST'])
 def resolve_issue(index):
-    issues = read_issues()
+    issues = read_issues()  # Fetch unresolved issues
     if index < len(issues):
+        # Remove the issue being resolved
         resolved_issue = issues.pop(index)
+        
+        # Set the new WorkHours and DateEntered based on form input
+        new_work_hours = request.form.get('work_hours')
+        new_date_entered = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Save the final comment and work hours
-        final_comment = request.form.get('comment')
-        work_hours = request.form.get('work_hours')
-        resolution_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        # Find the last entry for this Model and Number in forklift_work_hours.csv
+        last_entry = None
+        csv_path = 'forklift_work_hours.csv'
+        with open(csv_path, 'r') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row['Model'] == resolved_issue['Model'] and row['Number'] == resolved_issue['Number']:
+                    last_entry = row  # Keep updating to get the last occurrence
 
-        # Update comments and resolution timestamp
-        if final_comment:
-            resolved_issue['Comments'] = resolved_issue.get('Comments', '') + f" | Resolved at {resolution_timestamp}: {final_comment}"
-        resolved_issue['ResolutionDateTime'] = resolution_timestamp
+        # Define all required fields for the CSV
+        fields = [
+            'Model', 'Number', 'WorkHours', 'DateEntered',
+            'Greasing', 'GreasingDate', 'GreasingWorkHours', 'GreasingInterval',
+            'OilChange', 'OilChangeDate', 'OilChangeWorkHours', 'OilChangeInterval',
+            'HydraulicChange', 'HydraulicChangeDate', 'HydraulicChangeWorkHours', 'HydraulicChangeInterval',
+            'FilterChange', 'FilterChangeDate', 'FilterChangeWorkHours', 'FilterChangeInterval'
+        ]
 
-        # Append the resolved issue to resolved_issues.csv
-        with open('resolved_issues.csv', 'a', newline='') as csvfile:
-            fieldnames = ['Model', 'Number', 'Issue', 'Description', 'DateTime', 'Comments', 'ResolutionDateTime']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            if not os.path.isfile('resolved_issues.csv'):
+        # Create a new entry with updated WorkHours and DateEntered, retaining all other fields from last_entry
+        new_entry = {field: last_entry.get(field, "No" if "Change" in field else "0") for field in fields}
+        new_entry.update({
+            'Model': resolved_issue['Model'],
+            'Number': resolved_issue['Number'],
+            'WorkHours': new_work_hours,
+            'DateEntered': new_date_entered
+        })
+
+        # Remove any None keys if they exist (to prevent CSV writer errors)
+        new_entry = {k: v for k, v in new_entry.items() if k is not None}
+
+        # Write the updated row to forklift_work_hours.csv
+        with open(csv_path, 'a', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fields)
+            if os.stat(csv_path).st_size == 0:
                 writer.writeheader()
-            writer.writerow(resolved_issue)
+            writer.writerow(new_entry)
 
-        # Save work hours in forklift_work_hours.csv, including the date of entry
-        with open('forklift_work_hours.csv', 'a', newline='') as csvfile:
-            fieldnames = ['Model', 'Number', 'WorkHours', 'DateEntered']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            if not os.path.isfile('forklift_work_hours.csv'):
-                writer.writeheader()
-            writer.writerow({
-                'Model': resolved_issue['Model'],
-                'Number': resolved_issue['Number'],
-                'WorkHours': work_hours,
-                'DateEntered': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            })
-
-        # Update the current issues CSV by removing the resolved issue
+        # Write remaining unresolved issues back to forklift_work_hours.csv
         write_issues(issues)
 
-    return redirect(url_for('current_issues'))
+    return redirect(url_for('landing_page'))
 
 # Route to display work hours from forklift_work_hours.csv, filtered by model and number
 @app.route('/view_work_hours', methods=['GET', 'POST'])

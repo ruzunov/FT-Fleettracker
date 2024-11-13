@@ -1,2 +1,4 @@
 Model,Number,Issue,Description,DateTime,Comments,ResolutionDateTime
 Toyota,TB1,Connector,test tb1,2024-11-06 17:30:28,2024-11-06 17:31:02:  | 2024-11-06 17:31:04: test2 | 2024-11-06 17:31:06: te2asda | Resolved at 2024-11-06 17:31:15: resolved,2024-11-06 17:31:15
+Toyota,T1,Cells,Test,2024-11-06 15:45:22,,2024-11-11 15:49:46
+Still,SB1,,test2,2024-11-07 12:18:36,,2024-11-12 10:18:36
