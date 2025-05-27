@@ -63,7 +63,7 @@
             const numberDropdown = document.getElementById("number");
             numberDropdown.innerHTML = ""; // Clear existing options
 
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 119; i++) {
                 const option = document.createElement("option");
                 option.value = model.charAt(0) + i;
                 option.text = model.charAt(0) + i;
@@ -77,7 +77,7 @@
             const numberDropdown = document.getElementById("battery_number");
             numberDropdown.innerHTML = ""; // Clear existing options
 
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 119; i++) {
                 const option = document.createElement("option");
                 option.value = model.charAt(0) + 'B' + i; // Format as TB1, SB1, etc.
                 option.text = model.charAt(0) + 'B' + i;

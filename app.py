@@ -1,4 +1,4 @@
-from re import L
+﻿from re import L
 from flask import Flask, render_template, request, redirect, url_for, send_file, flash
 import csv
 import os
@@ -317,6 +317,23 @@ def resolve_issue(index):
             if os.stat(csv_path).st_size == 0:
                 writer.writeheader()
             writer.writerow(new_entry)
+
+        # ➕ NEW: Add resolution time and write to resolved_issues.csv
+        resolved_issue['ResolutionDateTime'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if resolved_issue.get('DateTime'):
+            dt1 = datetime.strptime(resolved_issue['DateTime'], "%Y-%m-%d %H:%M:%S")
+            dt2 = datetime.strptime(resolved_issue['ResolutionDateTime'], "%Y-%m-%d %H:%M:%S")
+            delta = dt2 - dt1
+            resolved_issue['ResolutionTime'] = f"{delta.days} days" if delta.days else f"{delta.seconds // 3600} hours"
+        else:
+            resolved_issue['ResolutionTime'] = "N/A"
+
+        resolved_fields = list(resolved_issue.keys())
+        with open('resolved_issues.csv', 'a', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=resolved_fields)
+            if os.stat('resolved_issues.csv').st_size == 0:
+                writer.writeheader()
+            writer.writerow(resolved_issue)
 
         # Write remaining unresolved issues back to forklift_work_hours.csv
         write_issues(issues)
