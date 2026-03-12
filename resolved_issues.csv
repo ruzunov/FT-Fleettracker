@@ -1,28 +1,28 @@
-Model,Number,Issue,Description,DateTime,Comments,Resolved,ResolutionTime
-Toyota,T15,Scanner,пада,Тествано
-Toyota,T17,,,,2024-10-29 15:20:51: Тестов коментар | 2024-10-29 15:20:55: Тестов коментар | 2024-10-29 15:20:56: Тестов коментар | 2024-10-29 15:20:59: Тестов коментар2 | 2024-10-29 15:21:06: Тестов коментар3 | 2024-10-29 15:21:29: последен коментар
-Toyota,T18,Damage,тесттест,2024-10-29 15:21:41,2024-10-29 15:21:51: тест1 | 2024-10-29 15:21:53: тест2 | 2024-10-29 15:21:57: тест3 | 2024-10-29 15:22:24: разрешен проблем
-Toyota,T17,Lights,не работи лампата,2024-10-29 15:37:35,"2024-10-29 15:37:51: Проверен ток
- | 2024-10-29 15:37:57: Няма проблем в тока | 2024-10-29 15:38:28: Разрешен проблем"
+п»їModel,Number,Issue,Description,DateTime,Comments,Resolved,ResolutionTime
+Toyota,T15,Scanner,РїР°РґР°,РўРµСЃС‚РІР°РЅРѕ
+Toyota,T17,,,,2024-10-29 15:20:51: РўРµСЃС‚РѕРІ РєРѕРјРµРЅС‚Р°СЂ | 2024-10-29 15:20:55: РўРµСЃС‚РѕРІ РєРѕРјРµРЅС‚Р°СЂ | 2024-10-29 15:20:56: РўРµСЃС‚РѕРІ РєРѕРјРµРЅС‚Р°СЂ | 2024-10-29 15:20:59: РўРµСЃС‚РѕРІ РєРѕРјРµРЅС‚Р°СЂ2 | 2024-10-29 15:21:06: РўРµСЃС‚РѕРІ РєРѕРјРµРЅС‚Р°СЂ3 | 2024-10-29 15:21:29: РїРѕСЃР»РµРґРµРЅ РєРѕРјРµРЅС‚Р°СЂ
+Toyota,T18,Damage,С‚РµСЃС‚С‚РµСЃС‚,2024-10-29 15:21:41,2024-10-29 15:21:51: С‚РµСЃС‚1 | 2024-10-29 15:21:53: С‚РµСЃС‚2 | 2024-10-29 15:21:57: С‚РµСЃС‚3 | 2024-10-29 15:22:24: СЂР°Р·СЂРµС€РµРЅ РїСЂРѕР±Р»РµРј
+Toyota,T17,Lights,РЅРµ СЂР°Р±РѕС‚Рё Р»Р°РјРїР°С‚Р°,2024-10-29 15:37:35,"2024-10-29 15:37:51: РџСЂРѕРІРµСЂРµРЅ С‚РѕРє
+ | 2024-10-29 15:37:57: РќСЏРјР° РїСЂРѕР±Р»РµРј РІ С‚РѕРєР° | 2024-10-29 15:38:28: Р Р°Р·СЂРµС€РµРЅ РїСЂРѕР±Р»РµРј"
 Still,S18,Other,,,2024-10-29 15:48:48:  | 2024-10-29 15:48:49: sd | 2024-10-29 16:01:10: doine
-Toyota,T30,Printer,не баца,2024-10-29 16:01:34,2024-10-29 16:01:40: тествано | 2024-10-29 16:01:47: ремонтирано | 2024-10-29 16:01:52: Готово
-Toyota,T30,Scanner,пак не баца,2024-10-29 16:02:39,2024-10-29 16:02:46: готово е
+Toyota,T30,Printer,РЅРµ Р±Р°С†Р°,2024-10-29 16:01:34,2024-10-29 16:01:40: С‚РµСЃС‚РІР°РЅРѕ | 2024-10-29 16:01:47: СЂРµРјРѕРЅС‚РёСЂР°РЅРѕ | 2024-10-29 16:01:52: Р“РѕС‚РѕРІРѕ
+Toyota,T30,Scanner,РїР°Рє РЅРµ Р±Р°С†Р°,2024-10-29 16:02:39,2024-10-29 16:02:46: РіРѕС‚РѕРІРѕ Рµ
 Toyota,T30,Forklift Error,greshka,2024-10-29 16:11:20,2024-10-29 16:11:28: nqma greshka,
 Toyota,T1,Lights,ssss,2024-10-29 16:13:35," | Resolved at 2024-10-29 16:14:44: gotowo
 ",2024-10-29 16:14:44
-Toyota,T25,Printer,не принтира,2024-10-29 16:45:38,2024-10-29 16:46:25: сменен принтер | 2024-10-29 16:46:32: Сменено захранване | Resolved at 2024-10-29 16:47:37: Принтерът е ремонтиран,2024-10-29 16:47:37
-Toyota,T25,Terminal,счупен екран,2024-10-29 16:48:25,2024-10-29 16:48:34: сменен екран | 2024-10-29 16:48:38: сменен терминал | Resolved at 2024-10-29 16:48:53: тествано и работи,2024-10-29 16:48:53
-Still,S20,Printer,test,2024-10-29 16:49:30,2024-10-29 16:49:34: тест1 | 2024-10-29 16:49:36: тест2 | Resolved at 2024-10-29 16:49:39: готово,2024-10-29 16:49:39
-Still,S15,Scanner,ne raboti,2024-10-29 17:40:31,2024-10-29 17:42:00: сменен кабел | 2024-10-29 17:42:06: сменен скенер | Resolved at 2024-10-29 17:42:32: отстранен пронлем,2024-10-29 17:42:32
-Toyota,T20,Shaking,тресе,2024-11-04 09:03:10,2024-11-04 09:03:56:  сменено колело | 2024-11-04 09:04:03: сменено.... | Resolved at 2024-11-04 09:04:31: ремонтирано,2024-11-04 09:04:31
-Toyota,T1,Lights,не свети,2024-11-04 10:16:00,2024-11-04 10:16:09: не свети 1 | 2024-11-04 10:16:15: не свети 2 | Resolved at 2024-11-04 10:16:19: свети 3,2024-11-04 10:16:19
-Toyota,T1,Printer,не работи,2024-11-04 10:50:11, | Resolved at 2024-11-04 10:50:18: гд,2024-11-04 10:50:18,2 hours
+Toyota,T25,Printer,РЅРµ РїСЂРёРЅС‚РёСЂР°,2024-10-29 16:45:38,2024-10-29 16:46:25: СЃРјРµРЅРµРЅ РїСЂРёРЅС‚РµСЂ | 2024-10-29 16:46:32: РЎРјРµРЅРµРЅРѕ Р·Р°С…СЂР°РЅРІР°РЅРµ | Resolved at 2024-10-29 16:47:37: РџСЂРёРЅС‚РµСЂСЉС‚ Рµ СЂРµРјРѕРЅС‚РёСЂР°РЅ,2024-10-29 16:47:37
+Toyota,T25,Terminal,СЃС‡СѓРїРµРЅ РµРєСЂР°РЅ,2024-10-29 16:48:25,2024-10-29 16:48:34: СЃРјРµРЅРµРЅ РµРєСЂР°РЅ | 2024-10-29 16:48:38: СЃРјРµРЅРµРЅ С‚РµСЂРјРёРЅР°Р» | Resolved at 2024-10-29 16:48:53: С‚РµСЃС‚РІР°РЅРѕ Рё СЂР°Р±РѕС‚Рё,2024-10-29 16:48:53
+Still,S20,Printer,test,2024-10-29 16:49:30,2024-10-29 16:49:34: С‚РµСЃС‚1 | 2024-10-29 16:49:36: С‚РµСЃС‚2 | Resolved at 2024-10-29 16:49:39: РіРѕС‚РѕРІРѕ,2024-10-29 16:49:39
+Still,S15,Scanner,ne raboti,2024-10-29 17:40:31,2024-10-29 17:42:00: СЃРјРµРЅРµРЅ РєР°Р±РµР» | 2024-10-29 17:42:06: СЃРјРµРЅРµРЅ СЃРєРµРЅРµСЂ | Resolved at 2024-10-29 17:42:32: РѕС‚СЃС‚СЂР°РЅРµРЅ РїСЂРѕРЅР»РµРј,2024-10-29 17:42:32
+Toyota,T20,Shaking,С‚СЂРµСЃРµ,2024-11-04 09:03:10,2024-11-04 09:03:56:  СЃРјРµРЅРµРЅРѕ РєРѕР»РµР»Рѕ | 2024-11-04 09:04:03: СЃРјРµРЅРµРЅРѕ.... | Resolved at 2024-11-04 09:04:31: СЂРµРјРѕРЅС‚РёСЂР°РЅРѕ,2024-11-04 09:04:31
+Toyota,T1,Lights,РЅРµ СЃРІРµС‚Рё,2024-11-04 10:16:00,2024-11-04 10:16:09: РЅРµ СЃРІРµС‚Рё 1 | 2024-11-04 10:16:15: РЅРµ СЃРІРµС‚Рё 2 | Resolved at 2024-11-04 10:16:19: СЃРІРµС‚Рё 3,2024-11-04 10:16:19
+Toyota,T1,Printer,РЅРµ СЂР°Р±РѕС‚Рё,2024-11-04 10:50:11, | Resolved at 2024-11-04 10:50:18: РіРґ,2024-11-04 10:50:18,2 hours
 Toyota,T1,,test,2024-11-04 16:13:39, | Resolved at 2024-11-04 16:13:45: ,2024-11-04 16:13:45,0 hours
 Toyota,T1,Terminal,,2024-11-04 11:32:10, | Resolved at 2024-11-04 16:13:48: ,2024-11-04 16:13:48,4 hours
 Still,S1,Other,tesdt,2024-11-04 16:17:48, | Resolved at 2024-11-06 14:32:45: asdasdasd,2024-11-06 14:32:45,1 days
 Toyota,T1,,,2024-11-07 13:14:55, | Resolved at 2024-11-07 13:16:17: ,2024-11-07 13:16:17,0 hours
 Toyota,T1,,,2024-11-07 11:57:46, | Resolved at 2024-11-07 13:16:20: ,2024-11-07 13:16:20,1 hours
-Toyota,T1,,тест,2024-11-07 11:52:31, | Resolved at 2024-11-07 13:16:23: ,2024-11-07 13:16:23,1 hours
+Toyota,T1,,С‚РµСЃС‚,2024-11-07 11:52:31, | Resolved at 2024-11-07 13:16:23: ,2024-11-07 13:16:23,1 hours
 Toyota,T30,Forklift Error,greshka,2024-11-07 13:41:09,2024-11-07 13:41:16: greshka | 2024-11-07 13:41:17: greshka | Resolved at 2024-11-07 13:41:33: gotowo,2024-11-07 13:41:33
 Toyota,T1,,gre,2024-11-07 13:42:36,,2024-11-07 13:42:52
 Toyota,T2,Printer,test,2024-11-07 14:31:28,2024-11-07 14:33:08: test1 | 2024-11-07 14:33:10: test2 | Resolved at 2024-11-07 14:33:18: tetest,2024-11-07 14:33:18
@@ -34,10 +34,129 @@ Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-
 Toyota,T1,,yrdy,2024-11-08 15:51:55, | Resolved at 2024-11-08 15:52:01: test,2024-11-08 15:52:01
 Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2 | Resolved at 2024-11-08 16:22:48: donedone,2024-11-08 16:22:48
 Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2,2024-11-08 16:23:06
-Toyota,T20,Damage,ударена,2024-11-11 14:25:12,2024-11-11 14:26:09: Сменено колело | 2024-11-11 14:26:16: смена страна | Resolved at 2024-11-11 14:26:38: Отрементирана,2024-11-11 14:26:38
+Toyota,T20,Damage,СѓРґР°СЂРµРЅР°,2024-11-11 14:25:12,2024-11-11 14:26:09: РЎРјРµРЅРµРЅРѕ РєРѕР»РµР»Рѕ | 2024-11-11 14:26:16: СЃРјРµРЅР° СЃС‚СЂР°РЅР° | Resolved at 2024-11-11 14:26:38: РћС‚СЂРµРјРµРЅС‚РёСЂР°РЅР°,2024-11-11 14:26:38
 Toyota,T1,,,2024-11-11 15:49:53,,2024-11-11 15:56:57
 Toyota,T1,,,2024-11-11 15:49:53,,2024-11-11 15:57:20
 Still,S1,Printer,,2024-11-11 16:01:35,,2024-11-12 09:55:13
 Toyota,T1,Damage,,2024-11-11 16:01:28,,2024-11-12 10:01:30
 Toyota,T10,2024-11-12 11:03:26,2024-11-12 11:03:35,0 hours,Forklift Error,2024-11-12 11:03:31: tete,te
-Toyota,T89,Other,test,2025-05-27 15:11:44,2025-05-27 15:11:49: test | 2025-05-27 15:11:50: test,2025-05-27 15:11:54,0 hours
+Toyota,T92,Damage,test,2025-05-27 15:20:55,2025-05-27 15:21:01: test,2025-05-27 15:21:03,0 hours
+Toyota,T49,,,2025-05-28 13:16:41,2025-05-29 12:26:11: test | 2025-05-29 12:26:16: test | 2025-05-29 12:26:23: test3 | 2025-05-29 12:26:25: test4 | 2025-05-29 12:26:27: test5,2025-05-29 12:26:36,23 hours
+Still,S98,Forklift Error,Erore 303,2025-06-06 15:34:17,2025-06-06 15:35:38: Forklifts wait parts,2025-06-06 15:36:39,0 hours
+Still,S41,Scanner,,2025-12-05 11:01:20,"2025-12-05 11:01:44: remontiran
+",2025-12-22 15:12:34,17 days
+Still,S52,Shaking,,2025-12-05 10:54:46,2025-12-05 11:02:30: remontirana,2025-12-22 15:13:01,17 days
+Still,S101,Scanner,Low range,2025-12-22 16:07:47,"2025-12-22 16:19:54: vzeta za remont
+",2025-12-22 16:21:05,0 hours
+Still,S85,,schupena ramka i kapak,2026-01-08 09:24:55,2026-01-20 16:23:40: remont ramka mobis 2 br osi 8118,2026-01-21 14:30:49,13 days
+Still,S26,Shaking,tropa za kolela,2026-01-20 14:29:29,2026-01-20 14:30:12: smeneni 4 dvoini oporni 1131,2026-01-21 14:31:26,1 days
+Still,S107,Other,lipsvasht bolt na gredata po stepenkata !!,2026-01-21 16:12:14,2026-01-22 11:07:35: opravena 777h,2026-01-23 16:08:00,1 days
+Still,S107,Other,skusan nbolt na stepenka,2026-01-22 11:06:53,2026-01-22 11:08:00: remontirana 777h,2026-01-23 16:08:12,1 days
+Still,S2,Other,"KONTAKTA NA KOLI`KATA ZA BATERIQTA E RAZTOPEN, UPS NE RABOTI",2026-01-21 13:42:55,2026-01-22 13:49:34: smeneshteker na mashinata 6635h,2026-01-23 16:08:31,2 days
+Still,S24,,schupena ramka mobis sledstvie udur,2026-01-22 12:15:55,"2026-01-22 12:17:11: smenena ramka mobis s dve osi za ramka
+1027",2026-01-23 16:08:59,1 days
+Still,S27,,kriva ramka mobis,2026-01-22 13:19:43,2026-01-22 13:20:34: smenena ramka mobis i dve osi 1163,2026-01-23 16:09:16,1 days
+Still,S28,,skusan cilinder na skuiz,2026-01-22 14:27:51,2026-01-22 14:28:41: smenen cilindur na skuiz 7749h,2026-01-23 16:09:31,1 days
+Still,S37,Shaking,za gumi,2026-01-22 14:55:03,2026-01-22 15:29:50: smeneni 4 oporni i dva rolera 1247h,2026-01-23 16:09:44,1 days
+Still,S3,Shaking,za smqna na prednite kolela,2026-01-23 12:04:31,2026-01-23 12:51:11: smeneno oporno kolelo 3849h,2026-01-23 16:09:59,4 hours
+Still,S25,Damage,problem s vdigane na vilici i ramka mobis,2026-01-23 12:53:04,"2026-01-23 12:54:52: smeneni tovqarni vilki 2 br, dulgi osi 2 br, kusi osi 2br, shplendovwe 6 br, osi za ramka mobis 2 br, dva rolera. 6290",2026-01-23 16:10:19,3 hours
+Toyota,T1,,pozistbane,2026-01-19 16:14:05,2026-01-19 16:15:02: gotoba | 2026-01-19 16:15:21: gotoba | 2026-01-19 16:15:50: gotoba,2026-01-28 12:22:52,8 days
+Toyota,T27,Other,,2026-01-28 12:23:26,,2026-01-28 12:24:01,0 hours
+Toyota,T60,Lights,test,2025-06-04 09:22:23,2025-12-03 11:34:41: TEST | 2025-12-05 10:56:41: chakame kabel | 2025-12-05 10:59:31: gotowa,2026-01-28 12:25:37,238 days
+Toyota,T33,,"oporho kolelo
+ ",2026-01-19 14:00:28,2026-01-19 15:53:31: gotova | 2026-01-28 12:14:17: gotova 6356h,2026-01-28 12:25:55,8 days
+Toyota,T46,Shaking,iskrivena greda,2026-01-05 15:59:34,"2026-01-05 16:00:20: smeneni kolela vilichni, podmenena greda",2026-01-28 12:27:47,22 days
+Toyota,T91,,smana na joistik,2026-01-30 13:07:05,2026-01-30 13:07:41: gotoba 6050,2026-02-04 11:46:29,4 days
+Still,S119,,padnal hidravlichen izravnitel,2026-01-30 15:16:24,2026-01-30 15:17:24: remontiran hidravlichen izravnitel 741h,2026-02-04 11:46:42,4 days
+Still,S123,Other,,2026-02-04 11:49:01,,2026-02-04 12:08:08,0 hours
+Still,S122,Other,Tech na hidravlika + na tazi mashina ostaviyam chast ot S 119 (El. Kari),2026-01-30 10:03:54,2026-01-30 15:19:12: stegnat markuch na push 151h,2026-02-04 12:10:16,5 days
+Still,S1,Other,TEST,2026-01-26 11:07:39,2026-01-26 11:07:46:  | 2026-01-26 11:58:00:  | 2026-01-26 12:13:32: ,2026-02-04 13:11:45,9 days
+Toyota,T94,Scanner,UPS na mobisa sweti v jalto,2026-02-03 07:49:44,2026-02-04 11:44:02: Normalno e da sweti w julto,2026-02-05 09:18:09,2 days
+Toyota,T76,,problem s mobis\ ne otjita,2026-01-29 21:08:05,2026-02-04 13:17:47: Predpolaga se chРё problema e otstranen,2026-02-05 09:51:37,6 days
+Toyota,T76,Terminal,KURSORA E NAI DOLU W LQVO I NE SE MESTI,2026-02-04 08:52:19,,2026-02-05 10:00:47,1 days
+Toyota,T32,Terminal,GREJKA/ KOD CM1,2026-02-03 09:43:08,"2026-02-04 13:14:41: da se restartira mobis, Errore CM1 -out of time to scan device's.",2026-02-05 10:22:46,2 days
+Still,S92,Printer,PRINTERA NE E PRISVOEN KYM KOLICKATA,2026-02-04 08:53:03,"2026-02-04 13:16:26: WMS ne sa obrabotili ticket kum momenta za podmqna na terminal. Kogato e gotova shte informirame
+",2026-02-05 10:26:09,1 days
+Still,S18,Printer,printera se vkluchva no nqms signal ,2026-01-27 13:39:01,,2026-02-05 10:26:46,8 days
+Still,S90,Other,skasani boltove na lapa,2026-01-08 09:11:45,"2026-01-14 13:01:21: smeneni boltove na skuiz, zavareni planki na lapi, oburnati lapi",2026-02-05 10:27:30,28 days
+Still,S52,,dava grejka E433 i postoianno prekasva,2026-01-13 15:36:31,2026-01-20 09:37:58: kolichkata e izkarana no nqmame informaciq dali e remontirana,2026-02-05 10:27:59,22 days
+Still,S13,Lights,sinya lampa,2025-12-23 11:14:13,2025-12-23 11:33:07: fixed,2026-02-05 10:28:32,43 days
+Still,S42,Forklift Error,zabiva i izbiva grejka E433,2026-01-13 16:13:14,2026-02-05 14:57:29: gotova 550,2026-02-10 09:08:23,27 days
+Still,S99,,koli4kata zabiva,2026-02-09 15:40:04,2026-02-10 12:11:18: napravena 706,2026-02-11 08:11:47,1 days
+Still,S64,Damage,"Edno ot kolelata na vilicite na S64 e schupeno, molq za podmqna",2026-02-10 07:37:11,2026-02-10 12:12:47: napravena 1302,2026-02-11 08:12:15,1 days
+Still,S57,,za oporna stoika,2026-01-30 15:56:58,2026-02-10 12:11:40: napravena 11200,2026-02-11 08:12:24,11 days
+Still,S92,,problem s printer,2026-02-05 12:16:20,,2026-02-11 08:14:42,5 days
+Still,S40,Damage,schupen avarien stop buton,2026-01-22 15:24:53,2026-01-26 11:56:56:  | 2026-02-11 13:41:08: smenen stop buton 2783 | 2026-02-11 13:41:25: 2378h,2026-02-12 11:34:08,20 days
+Toyota,T80,Scanner,skenera gubi obhvat,2026-02-09 20:45:35,,2026-02-12 13:53:29,2 days
+Toyota,T72,Scanner,"skenera ne raboti, prekyswa",2026-02-09 20:03:30,,2026-02-12 14:05:12,2 days
+Still,S2,Printer,"printera ne raboti, izklucva se sam ",2026-02-11 22:53:24,"2026-02-16 16:11:18: fixed | 2026-02-16 16:11:34: 6693
+",2026-02-17 10:53:45,5 days
+Still,S78,Scanner,"skenera skanira ot blizo razstoqnie, 10 sm. molq da se smeni",2026-02-18 09:57:33,,2026-02-18 15:34:33,5 hours
+Still,S113,Other,Povreden senzor za dvijenie ,2026-02-16 21:29:35,2026-02-17 15:18:10: prekalibrirana 2090h,2026-02-18 15:35:02,1 days
+Toyota,T72,Printer,"PRINTERA NE RABOTI, NE PUSKA ETIKETI, ROLKATA NE SE VARTI",2026-02-19 08:55:59,,2026-02-19 12:00:56,3 hours
+Still,S65,,zabiva ,2026-02-11 13:39:56,2026-02-20 14:27:20: smenen volan 11670h,2026-02-23 11:49:56,11 days
+Toyota,T90,Other,test,2026-02-23 12:00:07,,2026-02-23 12:10:03,0 hours
+Toyota,T1,,test,2026-02-23 13:36:06,,2026-02-23 13:36:27,0 hours
+Still,S21,,"problemi s Mobisa ,mac adres",2026-02-23 11:05:30,,2026-02-23 15:55:18,4 hours
+Still,S65,,"problemi s mobisa , mac adres",2026-02-23 11:18:36,,2026-02-23 15:55:52,4 hours
+Still,S18,Other,"problem s mobis, mac adres",2026-02-23 11:43:50,,2026-02-23 15:56:24,4 hours
+Still,S118,,tech na maslo ot markuchi,2026-02-23 14:11:11,2026-02-23 14:11:48: smeneni markuchi 2 dulgi 2294h,2026-02-23 15:56:52,1 hours
+Toyota,T90,Other,test,2026-02-23 12:40:25,,2026-02-23 15:57:14,3 hours
+Still,S92,Forklift Error,L 303 spira neprekysnato,2026-02-19 12:15:14,"2026-02-20 14:26:43: senzor na machta schupen ot tiksa, smenen 3062h",2026-02-23 15:57:27,4 days
+Still,S65,Shaking,,2026-02-25 15:41:10,2026-02-25 15:44:20: xodova chast tropa,2026-02-25 15:45:14,0 hours
+Still,S112,Forklift Error,Problem s vilici. Ne vdiga ,2026-02-25 17:51:39,,2026-02-26 12:50:10,18 hours
+Still,S17,,"zabiva v dvijenie , ne pokazva greshka ",2026-02-25 12:09:12,,2026-02-26 13:03:44,1 days
+Still,S109,,"tropa , hodova chast",2026-02-26 13:58:38,,2026-02-26 14:12:44,0 hours
+Still,S65,Shaking,tropa xodova chast,2026-02-25 15:46:21,,2026-02-26 14:54:14,23 hours
+Still,S65,Forklift Error,zabiva v dvijenie. Greshka 1157,2026-01-15 20:57:26,2026-01-20 16:42:26: da se testva!,2026-02-26 15:06:03,41 days
+Still,S90,Other,Te4 na maslo ot pred v dqsno pri marku4ite na lapite.,2026-01-19 10:50:26,,2026-02-26 15:07:45,38 days
+Still,S19,,problem s koleta ,2026-02-11 13:39:32,,2026-02-26 15:31:04,15 days
+Still,S21,Terminal,tach ne raboti.tropa xodova chast,2026-02-25 16:00:25,,2026-02-26 16:03:36,1 days
+Toyota,T1,Shaking,trese mi vilicata,2026-02-27 10:11:29,2026-02-27 10:13:15: dqsnata vilica mi e problemna,2026-02-27 10:14:24,0 hours
+Toyota,T1,Scanner,"bateriata ne zarejda, problem s hodova chast",2026-02-27 15:10:16,2026-02-27 15:12:35: vilichni oporni kolela,2026-02-27 15:18:32,0 hours
+Toyota,T37,,tropa,2026-02-18 14:24:25,2026-02-20 11:32:21:  | 2026-02-20 11:32:46: smana na kolela,2026-02-27 15:59:50,9 days
+Toyota,T90,,tropa,2026-02-27 16:16:36,,2026-02-27 16:20:19,0 hours
+Still,S21,Terminal,mobis tuch ne raboti,2026-02-26 16:04:38,,2026-02-28 13:32:24,1 days
+Toyota,T23,Damage,Izkrivena greda v osnovata pri krakata.,2026-02-27 11:34:18,2026-03-02 11:58:46: izkrivena greda ,2026-03-02 11:59:50,3 days
+Still,S105,Shaking,tropa xodova chast,2026-03-02 08:53:03,,2026-03-02 14:27:21,5 hours
+Still,S5,,spira vnezapno,2026-02-26 19:56:52,,2026-03-02 15:38:34,3 days
+Still,S19,,zabiva,2026-03-02 16:19:43,,2026-03-02 16:20:39,0 hours
+Still,S19,Shaking,spira vnezapno e-440,2026-03-02 08:52:09,,2026-03-02 16:21:53,7 hours
+Still,S16,Damage,"izkurtena ramka mobis, tropa",2026-02-26 16:06:21,2026-03-02 16:50:00: schupeni vsichki kori po mashinata!,2026-03-02 16:50:26,4 days
+Still,S41,Shaking,tropa xodova chast,2026-02-27 16:08:55,,2026-03-02 17:17:07,3 days
+Toyota,T93,Other,Kapaka na bateriata se otvarya sam,2026-03-04 06:28:23,2026-03-04 16:24:43: ne se zaklajva kapaka na bateriata,2026-03-04 16:25:50,9 hours
+Still,S88,Other,skusan hidravlichen markuch,2026-03-02 13:05:45,,2026-03-05 08:16:51,2 days
+Still,S89,Other,skusan hidravlichen markuch,2026-03-02 13:06:23,,2026-03-05 08:21:18,2 days
+Still,S25,Damage,"pri vdigane na vilicite, prednata chast na vilicite izostava sprqmo zadnata ot kum bateriata, kolichkata se chupi neestestveno. v sledstvie na tova se poluchava naklon na vilicite",2026-03-05 11:12:13,,2026-03-05 12:37:51,1 hours
+Toyota,T69,Terminal,,2026-03-05 07:07:42,,2026-03-05 15:13:43,8 hours
+Toyota,T72,,buksuva rolka na printer,2026-02-26 16:37:09,,2026-03-05 15:20:28,6 days
+Still,S36,Shaking,Kolichkata traka po vreme na dvijenie.Cqlta kolichka se trese.,2026-03-05 21:16:40,,2026-03-06 06:49:55,9 hours
+Still,S18,Shaking,"Mnogo drusa, predpolagam e za smqna na glavno kolelo",2026-03-05 22:21:24,,2026-03-06 07:54:10,9 hours
+Still,S76,,trese mnogo,2026-03-06 08:35:43,,2026-03-06 08:51:38,0 hours
+Still,S76,,tropa,2026-03-06 08:47:48,,2026-03-06 08:51:57,0 hours
+Still,S76,Shaking,,2026-03-06 08:48:44,,2026-03-06 08:52:11,0 hours
+Still,S70,,razkachena e ramkata na mobisa i buksata na bateriata e schupena.skenera i zkluchva,2026-03-02 09:29:06,"2026-03-05 15:24:29: Skenera e w losho systoqnie no kym momenta raboti adekwatno
+",2026-03-06 09:34:34,4 days
+Toyota,T36,Damage,"trakashti kolela, zabiva volana, spira v dvijenie",2026-03-06 10:30:13,2026-03-06 11:45:46: tropa,2026-03-06 11:47:34,1 hours
+Still,S88,Other,trqbva da se oburnat posokite na stiskane i otvarqne na lapite,2026-03-06 10:32:04,,2026-03-06 11:58:35,1 hours
+Still,S89,Other,"Triabva da se zavartiat posokite na stiskane i puskane na lapite.
+Mashinata niama da se otkarva, a shte bade predadena pri poiskvane i vazmojnost ot vasha strana za deistvie.",2026-03-05 17:13:52,,2026-03-06 11:59:10,18 hours
+Still,S33,Other,trqbva da se oburne posokata na reversa,2026-03-06 10:42:41,,2026-03-06 11:59:34,1 hours
+Toyota,T65,Terminal,,2026-03-06 12:07:53,,2026-03-06 12:09:21,0 hours
+Toyota,T93,,Kapaka na bateriata ne se zatvarja,2026-03-05 06:28:45,2026-03-06 11:47:58:  | 2026-03-06 11:48:06:  | 2026-03-06 11:48:08: ,2026-03-06 12:23:04,1 days
+Still,S19,Terminal,povredena buksa za mobis,2026-03-06 11:43:39,,2026-03-09 10:16:52,2 days
+Still,S45,Shaking,predno kolelo,2026-03-09 06:10:25,,2026-03-09 11:29:51,5 hours
+Still,S18,Shaking,"Otnovo drusa, no ne kolkoto vchera. Mnogo trudno zaviva, buksuva na edno mqsto",2026-03-06 17:49:42,,2026-03-09 11:56:47,2 days
+Still,S70,Damage,problem s ramka,2026-03-09 11:59:56,,2026-03-09 12:02:02,0 hours
+Still,S12,,schupeno USB na skenera ,2026-03-09 11:00:02,,2026-03-09 12:21:35,1 hours
+Toyota,T1,,test,2026-03-09 15:17:48,,2026-03-10 10:55:54,19 hours
+Toyota,T1,,С‚РµСЃС‚,2026-03-09 15:22:32,2026-03-09 16:31:08: С‚РµСЃС‚С‚РµСЃС‚,2026-03-10 10:56:00,19 hours
+Toyota,T83,Other,kabel prehod USB,2026-03-10 10:58:29,,2026-03-10 10:59:22,0 hours
+Still,S23,Shaking,"РњРЅРѕРіРѕ С‚СЂРѕРїР° Рё С‚СЂРµСЃРµ, РїСЂРµРґРїРѕР»Р°РіР°РјРµ Рµ Р·Р° СЃРјСЏРЅР° РЅР° РїСЂРµРґРЅРё РєРѕР»РµР»Р°",2026-03-10 11:33:04,,2026-03-10 15:21:01,3 hours
+Still,S113,Shaking,"РњРЅРѕРіРѕ С‚СЂРѕРїР° Рё С‚СЂРµСЃРµ, РїСЂРµРґРїРѕР»Р°РіР°РјРµ Рµ Р·Р° СЃРјСЏРЅР° РЅР° РїСЂРµРґРЅРё РєРѕР»РµР»Р°",2026-03-10 11:33:20,,2026-03-11 13:27:50,1 days
+Still,S11,Shaking,tropa mnogo,2026-03-11 13:45:12,,2026-03-11 13:47:52,0 hours
+Still,S21,Shaking,Tropa kolelo,2026-03-10 21:33:54,,2026-03-11 14:22:32,16 hours
+Toyota,T1,Printer,Printer test create,2026-03-12 10:49:11,2026-03-12 10:49:23: Comment test,2026-03-12 10:50:05,0 hours
+Toyota,T1,Terminal,testtest,2026-03-12 10:58:17,Resolved at 2026-03-12 10:58:29: final test,2026-03-12 10:58:29,0 hours
+Toyota,T10,Shaking,С‚РµСЃС‚,2026-03-09 16:01:07,Resolved at 2026-03-12 14:00:27: DA TAKA E,2026-03-12 14:00:27,2 days
+Still,S18,Shaking,"Tropa po vreme na dvijenie, boksuva i podnasq. Problem v kolelata.",2026-03-10 15:47:57,Resolved at 2026-03-12 14:02:39: SMQNA NA 2BR OPORNI DVOINI,2026-03-12 14:02:39,1 days

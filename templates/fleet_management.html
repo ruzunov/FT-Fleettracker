@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>FT - Fleet Management</title>
+    <style>
+        :root { --bg:#0d0f12; --surface:#141720; --surface2:#1c2030; --border:#252a38; --accent:#f5a623; --accent2:#e05c2e; --green:#2ecc71; --red:#e74c3c; --blue:#3b82f6; --text:#e8eaf0; --muted:#6b7280; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+        header { display:flex; align-items:center; justify-content:space-between; padding:20px 40px; border-bottom:1px solid var(--border); background:var(--surface); position:sticky; top:0; z-index:100; }
+        .logo { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.1em; color:var(--accent); text-decoration:none; }
+        .logo-sub { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--muted); letter-spacing:0.2em; margin-left:12px; }
+        .header-right { display:flex; align-items:center; gap:12px; }
+        .lang-toggle { display:flex; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+        .lang-btn { font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; padding:6px 14px; background:transparent; color:var(--muted); border:none; cursor:pointer; transition:all 0.2s; }
+        .lang-btn.active { background:var(--accent); color:#0d0f12; font-weight:600; }
+        .lang-btn:not(.active):hover { background:var(--surface2); color:var(--text); }
+        .back-link { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--muted); text-decoration:none; letter-spacing:0.1em; border:1px solid var(--border); padding:6px 14px; border-radius:4px; transition:all 0.2s; }
+        .back-link:hover { color:var(--text); border-color:var(--accent); }
+        .theme-btn { background:none; border:1px solid var(--border); border-radius:6px; padding:5px 10px; font-size:1rem; cursor:pointer; transition:border-color 0.2s; line-height:1; }
+        .theme-btn:hover { border-color:var(--accent); }
+        [data-theme="light"] { --bg:#f0f2f5; --surface:#ffffff; --surface2:#e8eaed; --border:#d1d5db; --text:#111827; --muted:#6b7280; --accent:#d4890a; --green:#16a34a; --red:#dc2626; }
+        [data-theme="light"] body { background:var(--bg); }
+        [data-theme="light"] header { background:var(--surface); border-color:var(--border); }
+        [data-theme="light"] .lang-btn:not(.active):hover { background:var(--surface2); }
+        [data-theme="light"] .form-input,[data-theme="light"] .form-select { background:var(--surface2); color:var(--text); border-color:var(--border); }
+        [data-theme="light"] .unit-tag:hover { background:rgba(220,38,38,0.08); }
+
+        main { flex:1; padding:40px; max-width:1300px; margin:0 auto; width:100%; }
+        .section-label { font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
+        .page-sub { font-size:0.82rem; color:var(--muted); margin-bottom:32px; }
+        .card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:24px; }
+        .form-label { font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:6px; }
+        .form-input, .form-select { font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:6px; padding:9px 13px; transition:border-color 0.2s; }
+        .form-input:focus, .form-select:focus { outline:none; border-color:var(--accent); }
+        .form-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; background-color:var(--surface2); padding-right:36px; cursor:pointer; }
+        .btn { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; padding:9px 20px; border-radius:5px; cursor:pointer; border:none; text-decoration:none; transition:opacity 0.2s; display:inline-block; }
+        .btn-primary { background:var(--accent); color:#0d0f12; font-weight:600; }
+        .btn-primary:hover { opacity:0.85; }
+        .btn-ghost { background:transparent; border:1px solid var(--border); color:var(--muted); }
+        .btn-ghost:hover { border-color:var(--accent); color:var(--text); }
+
+        /* Two column layout */
+        .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px; }
+
+        /* Add form row */
+        .add-row { display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
+        .add-row .fg { display:flex; flex-direction:column; }
+
+        /* Unit tag grid */
+        .unit-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; min-height:48px; }
+        .unit-tag { font-family:'IBM Plex Mono',monospace; font-size:0.78rem; background:var(--surface2); border:1px solid var(--border); border-radius:5px; padding:5px 10px; display:flex; align-items:center; gap:8px; transition:border-color 0.15s; cursor:default; }
+        .unit-tag:hover { border-color:rgba(231,76,60,0.5); }
+        .del-btn { background:none; border:none; color:var(--muted); cursor:pointer; font-size:0.85rem; padding:0 2px; line-height:1; transition:color 0.15s; }
+        .del-btn:hover { color:var(--red); }
+
+        /* Stats bar */
+        .stats-bar { display:flex; gap:24px; margin-bottom:28px; flex-wrap:wrap; }
+        .stat { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:14px 20px; display:flex; flex-direction:column; gap:2px; }
+        .stat-val { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:var(--accent); }
+        .stat-label { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; color:var(--muted); text-transform:uppercase; }
+
+        /* Section title inside card */
+        .card-section-title { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:0.08em; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+
+        /* Flash messages */
+        .flash { padding:10px 16px; border-radius:6px; font-size:0.85rem; margin-bottom:20px; }
+        .flash-success { background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.3); color:var(--green); }
+        .flash-error { background:rgba(231,76,60,0.12); border:1px solid rgba(231,76,60,0.3); color:var(--red); }
+
+        /* Model filter tabs */
+        .tab-row { display:flex; gap:8px; margin-bottom:14px; }
+        .tab { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; padding:5px 14px; border-radius:4px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.15s; }
+        .tab.active { background:var(--accent); color:#0d0f12; border-color:var(--accent); font-weight:600; }
+        .tab:not(.active):hover { border-color:var(--accent); color:var(--text); }
+
+        /* Confirm modal */
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:200; align-items:center; justify-content:center; }
+        .modal-overlay.open { display:flex; }
+        .modal { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px; max-width:380px; width:90%; }
+        .modal-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.06em; margin-bottom:10px; color:var(--red); }
+        .modal-body { font-size:0.88rem; color:var(--muted); margin-bottom:22px; line-height:1.5; }
+        .modal-actions { display:flex; gap:10px; }
+
+        @media(max-width:760px){
+            header,.page { padding:16px 20px; }
+            .two-col { grid-template-columns:1fr; }
+            main { padding:20px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div style="display:flex;align-items:baseline;">
+        <a href="{{ url_for('landing_page') }}" class="logo">FleetTracker</a>
+        <span class="logo-sub" data-i18n="headerSub">FLEET MANAGEMENT</span>
+    </div>
+    <div class="header-right">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+        <div class="lang-toggle">
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="bg" onclick="setLang('bg')">БГ</button>
+        </div>
+        <a href="{{ url_for('service_page') }}" class="back-link" data-i18n="goBack">← Go Back</a>
+    </div>
+</header>
+
+<main>
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for cat, msg in messages %}
+        <div class="flash flash-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="section-label" data-i18n="pageTitle">Fleet Management</div>
+    <p class="page-sub" data-i18n="pageSub">Add or remove units from the fleet and battery registry.</p>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-val">{{ forklifts|length }}</div>
+            <div class="stat-label" data-i18n="statForklifts">Forklifts</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val">{{ forklifts|selectattr('Model','equalto','Toyota')|list|length }}</div>
+            <div class="stat-label">Toyota</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val">{{ forklifts|selectattr('Model','equalto','Still')|list|length }}</div>
+            <div class="stat-label">Still</div>
+        </div>
+        <div class="stat" style="border-color:rgba(59,130,246,0.3);">
+            <div class="stat-val" style="color:var(--blue);">{{ batteries|length }}</div>
+            <div class="stat-label" data-i18n="statBatteries">Batteries</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val" style="color:var(--blue);">{{ batteries|selectattr('Model','equalto','Toyota')|list|length }}</div>
+            <div class="stat-label">Toyota Bat.</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val" style="color:var(--blue);">{{ batteries|selectattr('Model','equalto','Still')|list|length }}</div>
+            <div class="stat-label">Still Bat.</div>
+        </div>
+    </div>
+
+    <div class="two-col">
+        <!-- ── FORKLIFTS ── -->
+        <div class="card">
+            <div class="card-section-title">🚜 <span data-i18n="forkliftSection">Forklifts</span></div>
+
+            <!-- Add forklift -->
+            <form method="POST" action="{{ url_for('fleet_management') }}" style="margin-bottom:20px;">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="reg_type" value="forklift">
+                <div class="add-row">
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelModel">Model</label>
+                        <select name="model" class="form-select" style="min-width:110px;">
+                            <option value="Toyota">Toyota</option>
+                            <option value="Still">Still</option>
+                        </select>
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelNumber">Number</label>
+                        <input name="number" class="form-input" style="width:100px;" placeholder="e.g. T99" required>
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelUser">User</label>
+                        <input name="username" class="form-input" style="width:90px;" placeholder="admin" autocomplete="off">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelPin">PIN</label>
+                        <input name="pin" type="password" class="form-input" style="width:80px;" placeholder="••••" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="addBtn">+ Add</button>
+                </div>
+            </form>
+
+            <!-- Filter tabs -->
+            <div class="tab-row">
+                <button class="tab active" onclick="filterUnits('forklift','all',this)" data-i18n="tabAll">All</button>
+                <button class="tab" onclick="filterUnits('forklift','Toyota',this)">Toyota</button>
+                <button class="tab" onclick="filterUnits('forklift','Still',this)">Still</button>
+            </div>
+
+            <!-- Unit tags -->
+            <div class="unit-grid" id="forklift-grid">
+                {% for f in forklifts %}
+                <div class="unit-tag" data-model="{{ f.Model }}">
+                    <span>{{ f.Model }} {{ f.Number }}</span>
+                    <button class="del-btn" title="Remove"
+                        onclick="confirmDelete('forklift','{{ f.Model }}','{{ f.Number }}')">✕</button>
+                </div>
+                {% else %}
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--muted);" data-i18n="noUnits">No units registered.</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ── BATTERIES ── -->
+        <div class="card">
+            <div class="card-section-title">🔋 <span data-i18n="batterySection">Batteries</span></div>
+
+            <!-- Add battery -->
+            <form method="POST" action="{{ url_for('fleet_management') }}" style="margin-bottom:20px;">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="reg_type" value="battery">
+                <div class="add-row">
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelModel">Model</label>
+                        <select name="model" class="form-select" style="min-width:110px;">
+                            <option value="Toyota">Toyota</option>
+                            <option value="Still">Still</option>
+                        </select>
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelNumber">Number</label>
+                        <input name="number" class="form-input" style="width:110px;" placeholder="e.g. TB175" required>
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelUser">User</label>
+                        <input name="username" class="form-input" style="width:90px;" placeholder="admin" autocomplete="off">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="labelPin">PIN</label>
+                        <input name="pin" type="password" class="form-input" style="width:80px;" placeholder="••••" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="addBtn">+ Add</button>
+                </div>
+            </form>
+
+            <!-- Filter tabs -->
+            <div class="tab-row">
+                <button class="tab active" onclick="filterUnits('battery','all',this)" data-i18n="tabAll">All</button>
+                <button class="tab" onclick="filterUnits('battery','Toyota',this)">Toyota</button>
+                <button class="tab" onclick="filterUnits('battery','Still',this)">Still</button>
+            </div>
+
+            <!-- Unit tags -->
+            <div class="unit-grid" id="battery-grid">
+                {% for b in batteries %}
+                <div class="unit-tag" data-model="{{ b.Model }}">
+                    <span>{{ b.Model }} {{ b.Number }}</span>
+                    <button class="del-btn" title="Remove"
+                        onclick="confirmDelete('battery','{{ b.Model }}','{{ b.Number }}')">✕</button>
+                </div>
+                {% else %}
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--muted);" data-i18n="noUnits">No units registered.</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+        <div class="modal-title" data-i18n="modalTitle">Confirm Remove</div>
+        <div class="modal-body" id="modalBody">Are you sure you want to remove this unit?</div>
+        <div class="modal-actions">
+            <form method="POST" action="{{ url_for('fleet_management') }}" id="deleteForm">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="reg_type" id="deleteRegType">
+                <input type="hidden" name="model" id="deleteModel">
+                <input type="hidden" name="number" id="deleteNumber">
+                <div style="display:flex;gap:8px;margin-bottom:14px;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                        <label class="form-label" data-i18n="labelUser">User</label>
+                        <input id="deleteUsername" name="username" class="form-input" style="width:90px;" placeholder="admin" autocomplete="off">
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                        <label class="form-label" data-i18n="labelPin">PIN</label>
+                        <input id="deletePIN" name="pin" type="password" class="form-input" style="width:80px;" placeholder="••••" autocomplete="new-password">
+                    </div>
+                </div>
+                <button type="submit" class="btn" style="background:var(--red);color:#fff;" data-i18n="modalConfirm">Remove</button>
+            </form>
+            <button class="btn btn-ghost" onclick="closeModal()" data-i18n="modalCancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const T = {
+    en: { headerSub:"FLEET MANAGEMENT", goBack:"← Go Back", pageTitle:"Fleet Management", pageSub:"Add or remove units from the fleet and battery registry.",
+          statForklifts:"Forklifts", statBatteries:"Batteries", forkliftSection:"Forklifts", batterySection:"Batteries",
+          labelModel:"Model", labelNumber:"Number", labelUser:"User", labelPin:"PIN", addBtn:"+ Add", tabAll:"All", noUnits:"No units registered.",
+          modalTitle:"Confirm Remove", modalConfirm:"Remove", modalCancel:"Cancel",
+          modalBodyTpl:"Remove {type} {model} {number}? This will not delete existing issue records." },
+    bg: { headerSub:"УПРАВЛЕНИЕ НА ФЛОТА", goBack:"← Назад", pageTitle:"Управление на флота", pageSub:"Добавяне или премахване на единици от регистъра.",
+          statForklifts:"Мотокари", statBatteries:"Батерии", forkliftSection:"Мотокари", batterySection:"Батерии",
+          labelModel:"Модел", labelNumber:"Номер", labelUser:"Потребител", labelPin:"PIN", addBtn:"+ Добави", tabAll:"Всички", noUnits:"Няма регистрирани единици.",
+          modalTitle:"Потвърди премахване", modalConfirm:"Премахни", modalCancel:"Отказ",
+          modalBodyTpl:"Премахни {type} {model} {number}? Съществуващите записи за проблеми няма да бъдат изтрити." }
+};
+
+function getLang(){return localStorage.getItem('fleetLang')||'en';}
+function setLang(lang){
+    localStorage.setItem('fleetLang',lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});
+}
+
+function filterUnits(type, model, btn){
+    const grid = document.getElementById(type+'-grid');
+    grid.querySelectorAll('.unit-tag').forEach(tag=>{
+        tag.style.display = (model==='all' || tag.dataset.model===model) ? 'flex' : 'none';
+    });
+    btn.closest('.tab-row').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function confirmDelete(regType, model, number){
+    const lang = getLang();
+    const tpl = T[lang].modalBodyTpl;
+    const typeLabel = regType==='forklift' ? (lang==='bg'?'мотокар':'forklift') : (lang==='bg'?'батерия':'battery');
+    document.getElementById('modalBody').textContent = tpl.replace('{type}',typeLabel).replace('{model}',model).replace('{number}',number);
+    document.getElementById('deleteRegType').value = regType;
+    document.getElementById('deleteModel').value = model;
+    document.getElementById('deleteNumber').value = number;
+    document.getElementById('deleteModal').classList.add('open');
+    // Clear PIN fields each time modal opens
+    document.getElementById('deleteUsername').value = '';
+    document.getElementById('deletePIN').value = '';
+    setTimeout(()=>document.getElementById('deleteUsername').focus(), 50);
+}
+function closeModal(){ document.getElementById('deleteModal').classList.remove('open'); }
+document.getElementById('deleteModal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
+
+// Theme
+function getTheme(){return localStorage.getItem('fleetTheme')||'dark';}
+function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme',theme);
+    const btn=document.getElementById('themeToggle');
+    if(btn) btn.textContent = theme==='dark'?'🌙':'☀️';
+}
+function toggleTheme(){const next=getTheme()==='dark'?'light':'dark';localStorage.setItem('fleetTheme',next);applyTheme(next);}
+applyTheme(getTheme());
+setLang(getLang());
+</script>
+</body>
+</html>

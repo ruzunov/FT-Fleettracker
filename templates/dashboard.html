@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0f12;
+            --surface: #141720;
+            --surface2: #1c2030;
+            --border: #252a38;
+            --accent: #f5a623;
+            --accent2: #e05c2e;
+            --green: #2ecc71;
+            --red: #e74c3c;
+            --blue: #3b82f6;
+            --text: #e8eaf0;
+            --muted: #6b7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area { display: flex; align-items: baseline; gap: 12px; }
+
+        .logo-area h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+
+        .logo-area span {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .header-right { display: flex; align-items: center; gap: 16px; }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--green);
+            letter-spacing: 0.15em;
+        }
+
+        .live-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .lang-toggle {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 6px 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #0d0f12;
+            font-weight: 600;
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .back-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { color: var(--text); border-color: var(--accent); }
+
+        .dashboard { padding: 32px 40px; max-width: 1600px; margin: 0 auto; }
+
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding-left: 2px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 22px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .stat-card:hover { border-color: var(--accent); }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-card.alert::before { background: var(--red); opacity: 1; }
+        .stat-card.ok::before { background: var(--green); opacity: 1; }
+        .stat-card.info::before { background: var(--blue); opacity: 1; }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+            min-height: 2.4em;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .stat-value.red { color: var(--red); }
+        .stat-value.green { color: var(--green); }
+        .stat-value.orange { color: var(--accent); }
+
+        .stat-sub { font-size: 0.7rem; color: var(--muted); margin-top: 6px; }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
+            color: var(--text);
+        }
+
+        .card-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .badge-red { background: rgba(231,76,60,0.15); color: var(--red); border: 1px solid rgba(231,76,60,0.3); }
+        .badge-green { background: rgba(46,204,113,0.15); color: var(--green); border: 1px solid rgba(46,204,113,0.3); }
+        .badge-orange { background: rgba(245,166,35,0.15); color: var(--accent); border: 1px solid rgba(245,166,35,0.3); }
+
+        .chart-wrap { position: relative; height: 220px; }
+
+        .maint-table { width: 100%; border-collapse: collapse; }
+
+        .maint-table th {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            text-transform: uppercase;
+            text-align: left;
+            padding: 0 12px 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .maint-table td {
+            padding: 10px 12px 10px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(37,42,56,0.6);
+            vertical-align: middle;
+        }
+
+        .maint-table tr:last-child td { border-bottom: none; }
+
+        .unit-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            background: var(--surface2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .due-pill {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 2px 1px;
+        }
+
+        .due-pill.overdue { background: rgba(231,76,60,0.2); color: var(--red); border: 1px solid rgba(231,76,60,0.4); }
+
+        .issue-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(37,42,56,0.6);
+        }
+        .issue-item:last-child { border-bottom: none; }
+
+        .issue-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+        .issue-body { flex: 1; }
+
+        .issue-unit {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .issue-desc { font-size: 0.82rem; color: var(--text); margin-bottom: 4px; }
+
+        .issue-time {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .bottom-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+        .no-data {
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .offender-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(37,42,56,0.6);
+        }
+        .offender-row:last-child { border-bottom: none; }
+
+        .offender-rank {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--muted);
+            width: 24px;
+            text-align: center;
+        }
+
+        .offender-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--text); flex: 1; }
+        .offender-bar-wrap { width: 80px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+        .offender-bar { height: 100%; background: var(--accent2); border-radius: 2px; }
+
+        .offender-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            width: 28px;
+            text-align: right;
+        }
+
+        @media (max-width: 1100px) {
+            .stats-row { grid-template-columns: repeat(3, 1fr); }
+            .main-grid { grid-template-columns: 1fr; }
+            .bottom-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            header, .dashboard { padding: 16px 20px; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .live-badge { display: none; }
+        }
+    
+        [data-theme="light"] {
+            --bg:#f0f2f5; --surface:#ffffff; --surface2:#e8eaed;
+            --border:#d1d5db; --text:#111827; --muted:#6b7280;
+            --accent:#d4890a; --accent2:#c04a1e; --green:#16a34a;
+            --red:#dc2626; --blue:#2563eb;
+        }
+        [data-theme="light"] body { background:var(--bg); }
+        [data-theme="light"] header { background:var(--surface); border-color:var(--border); }
+        [data-theme="light"] .lang-btn:not(.active):hover { background:var(--surface2); }
+        [data-theme="light"] .filter-select,
+        [data-theme="light"] .search-input,
+        [data-theme="light"] .form-input,
+        [data-theme="light"] .form-select,
+        [data-theme="light"] .form-textarea,
+        [data-theme="light"] .hours-input { background:var(--surface2); color:var(--text); border-color:var(--border); }
+        [data-theme="light"] .dark-table tbody tr:hover { background:rgba(0,0,0,0.02); }
+        [data-theme="light"] .issue-btn { background:var(--surface2); color:var(--muted); border-color:var(--border); }
+        [data-theme="light"] .issue-btn:hover { border-color:var(--accent); color:var(--text); }
+        [data-theme="light"] .issue-btn.selected { background:rgba(212,137,10,0.12); border-color:var(--accent); color:var(--accent); }
+        [data-theme="light"] .toggle-btn.state-changed { background:#e5e7eb; border-color:#9ca3af; color:#6b7280; }
+        [data-theme="light"] .maint-bar-wrap { background:#d1d5db; }
+        [data-theme="light"] .offender-bar-wrap { background:#d1d5db; }
+        .theme-btn { background:none; border:1px solid var(--border); border-radius:6px; padding:5px 10px; font-size:1rem; cursor:pointer; transition:border-color 0.2s, background 0.2s; line-height:1; }
+        .theme-btn:hover { border-color:var(--accent); background:var(--surface2); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <a href="{{ url_for('landing_page') }}" style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;">FleetTracker</a>
+        <span data-i18n="headerSub">Operations Dashboard</span>
+    </div>
+    <div class="header-right">
+        <div class="live-badge">
+            <div class="live-dot"></div>
+            <span data-i18n="liveData">LIVE DATA</span>
+        </div>
+
+                <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+        <div class="lang-toggle">
+            <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" id="btn-bg" onclick="setLang('bg')">БГ</button>
+        </div>
+
+        <a href="{{ url_for('landing_page') }}" class="back-link" data-i18n="back">← BACK</a>
+    </div>
+</header>
+
+<div class="dashboard">
+
+    <div class="section-label" data-i18n="fleetOverview">Fleet Overview</div>
+    <div class="stats-row">
+        <div class="stat-card {{ 'alert' if stats.open_forklift_issues > 0 else 'ok' }}">
+            <div class="stat-label" data-i18n="openForklift">Open Forklift Issues</div>
+            <div class="stat-value {{ 'red' if stats.open_forklift_issues > 0 else 'green' }}">{{ stats.open_forklift_issues }}</div>
+            <div class="stat-sub" data-i18n="activeTickets">Active tickets</div>
+        </div>
+        <div class="stat-card {{ 'alert' if stats.open_battery_issues > 0 else 'ok' }}">
+            <div class="stat-label" data-i18n="openBattery">Open Battery Issues</div>
+            <div class="stat-value {{ 'red' if stats.open_battery_issues > 0 else 'green' }}">{{ stats.open_battery_issues }}</div>
+            <div class="stat-sub" data-i18n="activeTickets">Active tickets</div>
+        </div>
+        <div class="stat-card info">
+            <div class="stat-label" data-i18n="resolvedAllTime">Resolved (All Time)</div>
+            <div class="stat-value">{{ stats.total_resolved }}</div>
+            <div class="stat-sub" data-i18n="forkliftBattery">Forklift + battery</div>
+        </div>
+        <div class="stat-card {{ 'alert' if stats.maintenance_overdue > 0 else 'ok' }}">
+            <div class="stat-label" data-i18n="maintOverdue">Maintenance Overdue</div>
+            <div class="stat-value {{ 'red' if stats.maintenance_overdue > 0 else 'green' }}">{{ stats.maintenance_overdue }}</div>
+            <div class="stat-sub" data-i18n="unitsNeedService">Units needing service</div>
+        </div>
+        <div class="stat-card info">
+            <div class="stat-label" data-i18n="tracked">Forklifts Tracked</div>
+            <div class="stat-value orange">{{ stats.total_units }}</div>
+            <div class="stat-sub" data-i18n="uniqueUnits">Unique units in system</div>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="issuesByType">Issues by Type</div>
+                <span class="card-badge badge-orange" data-i18n="badgeForklift">FORKLIFT</span>
+            </div>
+            <div class="chart-wrap"><canvas id="issueTypeChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="trendTitle">Issue Trend — Last 30 Days</div>
+                <span class="card-badge badge-orange" data-i18n="badgeResolved">RESOLVED</span>
+            </div>
+            <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="batteryByType">Battery Issues by Type</div>
+                <span class="card-badge badge-orange" data-i18n="badgeBattery">BATTERY</span>
+            </div>
+            <div class="chart-wrap"><canvas id="batteryTypeChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="modelBreakdown">Model Breakdown</div>
+                <span class="card-badge badge-orange" data-i18n="badgeAllIssues">ALL ISSUES</span>
+            </div>
+            <div class="chart-wrap"><canvas id="modelChart"></canvas></div>
+        </div>
+    </div>
+
+    <div class="bottom-grid">
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="openIssues">Open Issues</div>
+                {% if stats.open_forklift_issues > 0 %}
+                <span class="card-badge badge-red">{{ stats.open_forklift_issues }} <span data-i18n="badgeActive">ACTIVE</span></span>
+                {% else %}
+                <span class="card-badge badge-green" data-i18n="allClear">ALL CLEAR</span>
+                {% endif %}
+            </div>
+            {% if current_issues %}
+                {% for issue in current_issues[:6] %}
+                <div class="issue-item">
+                    <div class="issue-dot" style="background: var(--red);"></div>
+                    <div class="issue-body">
+                        <div class="issue-unit">{{ issue.Model }} {{ issue.Number }}</div>
+                        <div class="issue-desc">{{ issue.Description[:60] }}{% if issue.Description|length > 60 %}…{% endif %}</div>
+                        <div class="issue-time">{{ issue.DateTime }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-data" data-i18n="noOpenIssues">No open issues 🟢</div>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="mostIssues">Most Issues (All Time)</div>
+                <span class="card-badge badge-orange" data-i18n="badgeTopUnits">TOP UNITS</span>
+            </div>
+            {% if top_offenders %}
+                {% for unit, count, pct in top_offenders %}
+                <div class="offender-row">
+                    <div class="offender-rank">{{ loop.index }}</div>
+                    <div class="offender-name">{{ unit }}</div>
+                    <div class="offender-bar-wrap">
+                        <div class="offender-bar" style="width: {{ pct }}%;"></div>
+                    </div>
+                    <div class="offender-count">{{ count }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-data" data-i18n="noData">No data yet</div>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" data-i18n="maintDue">Maintenance Due</div>
+                {% if maintenance_overdue_list %}
+                <span class="card-badge badge-red">{{ maintenance_overdue_list|length }} <span data-i18n="badgeUnits">UNITS</span></span>
+                {% else %}
+                <span class="card-badge badge-green" data-i18n="allClear">ALL CLEAR</span>
+                {% endif %}
+            </div>
+            {% if maintenance_overdue_list %}
+            <table class="maint-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="thUnit">Unit</th>
+                        <th data-i18n="thHours">Hours</th>
+                        <th data-i18n="thStatus">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in maintenance_overdue_list[:8] %}
+                    <tr>
+                        <td><span class="unit-tag">{{ item.Model }} {{ item.Number }}</span></td>
+                        <td style="font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem;">{{ item.WorkHours }}h</td>
+                        <td>
+                            {% if item.GreasingDue %}<span class="due-pill overdue" data-i18n="grease">GREASE</span>{% endif %}
+                            {% if item.OilChangeDue %}<span class="due-pill overdue" data-i18n="oil">OIL</span>{% endif %}
+                            {% if item.HydraulicChangeDue %}<span class="due-pill overdue" data-i18n="hyd">HYD</span>{% endif %}
+                            {% if item.FilterChangeDue %}<span class="due-pill overdue" data-i18n="filter">FILTER</span>{% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="no-data" data-i18n="allUpToDate">All units up to date 🟢</div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<script>
+const TRANSLATIONS = {
+    en: {
+        headerSub:        "Operations Dashboard",
+        liveData:         "LIVE DATA",
+        back:             "← BACK",
+        fleetOverview:    "Fleet Overview",
+        openForklift:     "Open Forklift Issues",
+        openBattery:      "Open Battery Issues",
+        activeTickets:    "Active tickets",
+        resolvedAllTime:  "Resolved (All Time)",
+        forkliftBattery:  "Forklift + battery",
+        maintOverdue:     "Maintenance Overdue",
+        unitsNeedService: "Units needing service",
+        tracked:          "Forklifts Tracked",
+        uniqueUnits:      "Unique units in system",
+        issuesByType:     "Issues by Type",
+        trendTitle:       "Issue Trend — Last 30 Days",
+        batteryByType:    "Battery Issues by Type",
+        modelBreakdown:   "Model Breakdown",
+        openIssues:       "Open Issues",
+        mostIssues:       "Most Issues (All Time)",
+        maintDue:         "Maintenance Due",
+        badgeForklift:    "FORKLIFT",
+        badgeResolved:    "RESOLVED",
+        badgeBattery:     "BATTERY",
+        badgeAllIssues:   "ALL ISSUES",
+        badgeActive:      "ACTIVE",
+        badgeTopUnits:    "TOP UNITS",
+        badgeUnits:       "UNITS",
+        allClear:         "ALL CLEAR",
+        noOpenIssues:     "No open issues 🟢",
+        noData:           "No data yet",
+        allUpToDate:      "All units up to date 🟢",
+        thUnit:           "Unit",
+        thHours:          "Hours",
+        thStatus:         "Status",
+        grease:           "GREASE",
+        oil:              "OIL",
+        hyd:              "HYD",
+        filter:           "FILTER",
+        trendLabel:       "Resolved Issues",
+        modelLabel:       "Total Issues",
+    },
+    bg: {
+        headerSub:        "Оперативно табло",
+        liveData:         "НА ЖИВО",
+        back:             "← НАЗАД",
+        fleetOverview:    "Преглед на флота",
+        openForklift:     "Отворени проблеми — мотокари",
+        openBattery:      "Отворени проблеми — батерии",
+        activeTickets:    "Активни заявки",
+        resolvedAllTime:  "Решени (общо)",
+        forkliftBattery:  "Мотокари + батерии",
+        maintOverdue:     "Просрочена поддръжка",
+        unitsNeedService: "Единици за сервиз",
+        tracked:          "Следени мотокари",
+        uniqueUnits:      "Уникални единици",
+        issuesByType:     "Проблеми по вид",
+        trendTitle:       "Тенденция — последни 30 дни",
+        batteryByType:    "Проблеми с батерии по вид",
+        modelBreakdown:   "По марка",
+        openIssues:       "Отворени проблеми",
+        mostIssues:       "Най-много проблеми (общо)",
+        maintDue:         "Дължима поддръжка",
+        badgeForklift:    "МОТОКАР",
+        badgeResolved:    "РЕШЕНИ",
+        badgeBattery:     "БАТЕРИЯ",
+        badgeAllIssues:   "ВСИЧКИ",
+        badgeActive:      "АКТИВНИ",
+        badgeTopUnits:    "ТОП ЕДИНИЦИ",
+        badgeUnits:       "ЕДИНИЦИ",
+        allClear:         "ВСИЧКО НАРЕД",
+        noOpenIssues:     "Няма отворени проблеми 🟢",
+        noData:           "Няма данни",
+        allUpToDate:      "Всички единици са актуални 🟢",
+        thUnit:           "Единица",
+        thHours:          "Часове",
+        thStatus:         "Статус",
+        grease:           "ГРЕС",
+        oil:              "МАСЛО",
+        hyd:              "ХИДР.",
+        filter:           "ФИЛТЪР",
+        trendLabel:       "Решени проблеми",
+        modelLabel:       "Общо проблеми",
+    }
+};
+
+let currentLang = localStorage.getItem('fleetLang') || 'en';
+let trendChart = null;
+let modelChart = null;
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('fleetLang', lang);
+
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-bg').classList.toggle('active', lang === 'bg');
+
+    const t = TRANSLATIONS[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    if (trendChart) {
+        trendChart.data.datasets[0].label = t.trendLabel;
+        trendChart.update();
+    }
+    if (modelChart) {
+        modelChart.data.datasets[0].label = t.modelLabel;
+        modelChart.update();
+    }
+}
+
+// ── Charts ────────────────────────────────────────────────────────────────────
+Chart.defaults.color = '#6b7280';
+Chart.defaults.borderColor = '#252a38';
+Chart.defaults.font = { family: "'IBM Plex Mono', monospace", size: 11 };
+
+const COLORS = ['#f5a623','#e05c2e','#3b82f6','#2ecc71','#9b59b6','#1abc9c','#e74c3c','#f39c12'];
+
+const issueTypeData   = {{ issue_type_data | tojson }};
+const trendData       = {{ trend_data | tojson }};
+const batteryTypeData = {{ battery_type_data | tojson }};
+const modelData       = {{ model_data | tojson }};
+
+if (issueTypeData.labels.length > 0) {
+    new Chart(document.getElementById('issueTypeChart'), {
+        type: 'doughnut',
+        data: {
+            labels: issueTypeData.labels,
+            datasets: [{ data: issueTypeData.values, backgroundColor: COLORS, borderColor: '#141720', borderWidth: 3 }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 14 } } }
+        }
+    });
+}
+
+trendChart = new Chart(document.getElementById('trendChart'), {
+    type: 'bar',
+    data: {
+        labels: trendData.labels,
+        datasets: [{
+            label: TRANSLATIONS[currentLang].trendLabel,
+            data: trendData.values,
+            backgroundColor: 'rgba(245,166,35,0.25)',
+            borderColor: '#f5a623',
+            borderWidth: 2,
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: 'rgba(37,42,56,0.6)' }, ticks: { maxRotation: 45 } },
+            y: { grid: { color: 'rgba(37,42,56,0.6)' }, beginAtZero: true, ticks: { stepSize: 1 } }
+        }
+    }
+});
+
+if (batteryTypeData.labels.length > 0) {
+    new Chart(document.getElementById('batteryTypeChart'), {
+        type: 'doughnut',
+        data: {
+            labels: batteryTypeData.labels,
+            datasets: [{ data: batteryTypeData.values, backgroundColor: COLORS.slice(2), borderColor: '#141720', borderWidth: 3 }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 14 } } }
+        }
+    });
+}
+
+modelChart = new Chart(document.getElementById('modelChart'), {
+    type: 'bar',
+    data: {
+        labels: modelData.labels,
+        datasets: [{
+            label: TRANSLATIONS[currentLang].modelLabel,
+            data: modelData.values,
+            backgroundColor: modelData.labels.map((_, i) => COLORS[i % COLORS.length] + '40'),
+            borderColor: modelData.labels.map((_, i) => COLORS[i % COLORS.length]),
+            borderWidth: 2,
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: 'rgba(37,42,56,0.6)' } },
+            y: { grid: { color: 'rgba(37,42,56,0.6)' }, beginAtZero: true, ticks: { stepSize: 1 } }
+        }
+    }
+});
+
+// Apply saved/default language on load
+setLang(currentLang);
+
+// ── Theme ────────────────────────────────────────────────────────────────────
+function getTheme(){return localStorage.getItem('fleetTheme')||'dark';}
+function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme',theme);
+    const btn=document.getElementById('themeToggle');
+    if(btn) btn.textContent = theme==='dark' ? '🌙' : '☀️';
+}
+function toggleTheme(){
+    const next = getTheme()==='dark' ? 'light' : 'dark';
+    localStorage.setItem('fleetTheme',next);
+    applyTheme(next);
+}
+applyTheme(getTheme());
+</script>
+</body>
+</html>

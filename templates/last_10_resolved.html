@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>FT - Current Battery Issues</title>
+    <title>FT - Last 10 Resolved</title>
     <style>
         :root { --bg:#0d0f12; --surface:#141720; --surface2:#1c2030; --border:#252a38; --accent:#f5a623; --accent2:#e05c2e; --green:#2ecc71; --red:#e74c3c; --blue:#3b82f6; --text:#e8eaf0; --muted:#6b7280; }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -135,7 +135,7 @@
 <header>
     <div style="display:flex;align-items:baseline;">
         <a href="{{ url_for('landing_page') }}" class="logo">FleetTracker</a>
-        <span class="logo-sub" data-i18n="headerSub">BATTERY ISSUES</span>
+        <span class="logo-sub" data-i18n="headerSub">LAST 10 RESOLVED</span>
     </div>
     <div class="header-right">
                 <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
@@ -143,45 +143,41 @@
             <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
             <button class="lang-btn" data-lang="bg" onclick="setLang('bg')">БГ</button>
         </div>
-        <a href="{{ url_for('landing_page') }}" class="back-link" data-i18n="home">← Home</a>
+        <a href="{{ url_for('select_resolved') }}" class="back-link" data-i18n="goBack">← Go Back</a>
     </div>
 </header>
-<div class="page" style="max-width:1400px;">
-    <div class="section-label" data-i18n="pageTitle">Current Battery Issues</div>
+<div class="page" style="max-width:1000px;">
+    <div class="section-label" data-i18n="pageTitle">Last 10 Resolved Issues</div>
     <div class="card" style="padding:0;overflow:hidden;">
         <table class="dark-table">
             <thead><tr>
                 <th data-i18n="colModel">Model</th>
                 <th data-i18n="colNumber">Number</th>
-                <th data-i18n="colIssue">Issue</th>
-                <th data-i18n="colDesc">Description</th>
-                <th data-i18n="colReported">Reported</th>
-                <th data-i18n="colComments">Comments</th>
-                <th data-i18n="colActions">Actions</th>
+                <th data-i18n="colReportedDate">Reported</th>
+                <th data-i18n="colResolvedDate">Resolved</th>
+                <th data-i18n="colResTime">Duration</th>
             </tr></thead>
             <tbody>
                 {% if issues %}{% for issue in issues %}
                 <tr>
-                    <td><span class="tag">{{ issue['Model'] }}</span></td>
-                    <td><span class="tag">{{ issue['Number'] }}</span></td>
-                    <td><span class="pill pill-red">{{ issue['Issue'] }}</span></td>
-                    <td style="max-width:260px;color:var(--muted);">{{ issue['Description'] }}</td>
-                    <td style="font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--muted);">{{ issue['DateTime'] }}</td>
-                    <td style="max-width:180px;font-size:0.8rem;color:var(--muted);">{{ issue['Comments'] }}</td>
-                    <td><a href="{{ url_for('comment_battery_issue', index=loop.index0) }}" class="btn btn-ghost btn-sm" data-i18n="btnComment">View / Comment</a></td>
+                    <td><span class="tag">{{ issue.get('Model','') }}</span></td>
+                    <td><span class="tag">{{ issue.get('Number','') }}</span></td>
+                    <td style="font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--muted);">{{ issue.get('DateTime','') }}</td>
+                    <td style="font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--green);">{{ issue.get('Resolved','') }}</td>
+                    <td><span class="pill pill-orange">{{ issue.get('ResolutionTime','') }}</span></td>
                 </tr>
                 {% endfor %}{% else %}
-                <tr class="no-data"><td colspan="7" data-i18n="noBatteryIssues">No open battery issues.</td></tr>
+                <tr class="no-data"><td colspan="5" data-i18n="noResolvedFound">No resolved issues found.</td></tr>
                 {% endif %}
             </tbody>
         </table>
     </div>
-    <div style="margin-top:20px;"><a href="{{ url_for('landing_page') }}" class="btn btn-ghost" data-i18n="home">← Home</a></div>
+    <div style="margin-top:20px;"><a href="{{ url_for('select_resolved') }}" class="btn btn-ghost" data-i18n="back">← Back</a></div>
 </div>
 <script>
 const T = {
-    en: {headerSub:'BATTERY ISSUES', home:'← Home', pageTitle:'Current Battery Issues', colModel:'Model', colNumber:'Number', colIssue:'Issue', colDesc:'Description', colReported:'Reported', colComments:'Comments', colActions:'Actions', btnComment:'View / Comment', noBatteryIssues:'No open battery issues.'},
-    bg: {headerSub:'ПРОБЛЕМИ С БАТЕРИИ', home:'← Начало', pageTitle:'Текущи проблеми с батерии', colModel:'Модел', colNumber:'Номер', colIssue:'Проблем', colDesc:'Описание', colReported:'Докладвано', colComments:'Коментари', colActions:'Действия', btnComment:'Виж / Коментар', noBatteryIssues:'Няма отворени проблеми с батерии.'}
+    en: {headerSub:'LAST 10 RESOLVED', back:'← Back', pageTitle:'Last 10 Resolved Issues', colModel:'Model', colNumber:'Number', colReportedDate:'Reported', colResolvedDate:'Resolved', colResTime:'Duration', noResolvedFound:'No resolved issues found.'},
+    bg: {headerSub:'ПОСЛЕДНИ 10 РЕШЕНИ', back:'← Назад', pageTitle:'Последни 10 решени проблема', colModel:'Модел', colNumber:'Номер', colReportedDate:'Докладвано', colResolvedDate:'Решено', colResTime:'Продължителност', noResolvedFound:'Няма намерени решени проблеми.'}
 };
 
 function getLang(){return localStorage.getItem('fleetLang')||'en';}

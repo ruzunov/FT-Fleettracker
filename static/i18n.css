@@ -1,0 +1,41 @@
+/* Language toggle bar – injected into every page */
+#langBar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    gap: 0;
+}
+
+.lang-btn {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+}
+
+.lang-btn:first-child {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+.lang-btn:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.lang-btn.active {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.lang-btn:not(.active):hover {
+    background: #e0e0e0;
+    color: #333;
+}

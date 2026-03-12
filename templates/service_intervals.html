@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>FT - Service Intervals</title>
+    <style>
+        :root{--bg:#0d0f12;--surface:#141720;--surface2:#1c2030;--border:#252a38;--accent:#f5a623;--green:#2ecc71;--red:#e74c3c;--orange:#f39c12;--blue:#3b82f6;--text:#e8eaf0;--muted:#6b7280;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+
+        /* ── Header ── */
+        header{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:200;}
+        .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--accent);text-decoration:none;}
+        .logo-sub{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.2em;margin-left:12px;}
+        .header-right{display:flex;align-items:center;gap:10px;}
+        .lang-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+        .lang-btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:6px 13px;background:transparent;color:var(--muted);border:none;cursor:pointer;transition:all .2s;}
+        .lang-btn.active{background:var(--accent);color:#0d0f12;font-weight:600;}
+        .lang-btn:not(.active):hover{background:var(--surface2);color:var(--text);}
+        .theme-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-size:1rem;cursor:pointer;line-height:1;}
+        .theme-btn:hover{border-color:var(--accent);}
+        .back-link{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;border:1px solid var(--border);padding:6px 13px;border-radius:4px;transition:all .2s;white-space:nowrap;}
+        .back-link:hover{color:var(--text);border-color:var(--accent);}
+
+        /* ── Light mode ── */
+        [data-theme="light"]{--bg:#f0f2f5;--surface:#fff;--surface2:#e8eaed;--border:#d1d5db;--text:#111827;--muted:#6b7280;--accent:#d4890a;--green:#16a34a;--red:#dc2626;--orange:#d97706;}
+        [data-theme="light"] body{background:var(--bg);}
+        [data-theme="light"] header{background:var(--surface);border-color:var(--border);}
+        [data-theme="light"] .form-input,[data-theme="light"] .form-select{background:var(--surface2);color:var(--text);border-color:var(--border);}
+        [data-theme="light"] .unit-row:hover{background:rgba(0,0,0,.02);}
+        [data-theme="light"] .bar-track{background:#d1d5db;}
+        [data-theme="light"] .tab:not(.active):hover{background:var(--surface2);}
+        [data-theme="light"] .search-input{background:var(--surface2);color:var(--text);border-color:var(--border);}
+
+        /* ── Layout ── */
+        main{flex:1;padding:32px 36px;max-width:1600px;margin:0 auto;width:100%;}
+        .section-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+        .page-sub{font-size:.82rem;color:var(--muted);margin-bottom:24px;}
+        .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px;}
+
+        /* ── Flash ── */
+        .flash{padding:10px 16px;border-radius:6px;font-size:.85rem;margin-bottom:18px;}
+        .flash-success{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.3);color:var(--green);}
+        .flash-error{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:var(--red);}
+
+        /* ── Bulk editor ── */
+        .bulk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+        .bulk-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;}
+        .bulk-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+        .bulk-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;}
+        .fg{display:flex;flex-direction:column;gap:4px;}
+        .form-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+        .form-input,.form-select{font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:7px 11px;transition:border-color .2s;}
+        .form-input:focus,.form-select:focus{outline:none;border-color:var(--accent);}
+        .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-color:var(--surface2);padding-right:30px;cursor:pointer;}
+        .btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;padding:8px 16px;border-radius:5px;cursor:pointer;border:none;text-decoration:none;transition:opacity .2s;white-space:nowrap;}
+        .btn-primary{background:var(--accent);color:#0d0f12;font-weight:600;}
+        .btn-primary:hover{opacity:.85;}
+        .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted);}
+        .btn-ghost:hover{border-color:var(--accent);color:var(--text);}
+        .pin-row{display:flex;gap:8px;align-items:flex-end;}
+
+        /* ── Filter bar ── */
+        .filter-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+        .search-input{font-family:'IBM Plex Sans',sans-serif;font-size:.85rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:7px 12px;width:160px;transition:border-color .2s;}
+        .search-input:focus{outline:none;border-color:var(--accent);}
+        .tab-row{display:flex;gap:6px;}
+        .tab{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;padding:5px 13px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;}
+        .tab.active{background:var(--accent);color:#0d0f12;border-color:var(--accent);font-weight:600;}
+        .tab:not(.active):hover{border-color:var(--accent);color:var(--text);}
+        .results-count{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted);margin-left:auto;}
+
+        /* ── Table ── */
+        .table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);}
+        table{width:100%;border-collapse:collapse;}
+        thead{background:var(--surface2);}
+        th{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);white-space:nowrap;}
+        th.center{text-align:center;}
+        td{padding:10px 14px;font-size:.83rem;border-bottom:1px solid rgba(37,42,56,.4);vertical-align:middle;}
+        .unit-row:last-child td{border-bottom:none;}
+        .unit-row:hover{background:rgba(245,166,35,.03);}
+        .unit-row.hidden{display:none;}
+
+        /* ── Tags ── */
+        .tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 7px;display:inline-block;}
+        .pill{font-family:'IBM Plex Mono',monospace;font-size:.68rem;padding:2px 8px;border-radius:10px;display:inline-block;white-space:nowrap;}
+        .pill-green{background:rgba(46,204,113,.12);color:var(--green);border:1px solid rgba(46,204,113,.25);}
+        .pill-red{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.25);}
+        .pill-orange{background:rgba(243,156,18,.12);color:var(--orange);border:1px solid rgba(243,156,18,.25);}
+
+        /* ── Progress bar ── */
+        .bar-wrap{display:flex;flex-direction:column;gap:3px;min-width:110px;}
+        .bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+        .bar-fill{height:100%;border-radius:3px;transition:width .3s;}
+        .bar-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--muted);display:flex;justify-content:space-between;}
+
+        /* ── Inline edit ── */
+        .edit-btn{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:3px 9px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;}
+        .edit-btn:hover{border-color:var(--accent);color:var(--accent);}
+        .inline-form{display:none;margin-top:6px;}
+        .inline-form.open{display:block;}
+        .inline-grid{display:grid;grid-template-columns:repeat(4,90px) 90px 90px auto;gap:6px;align-items:flex-end;flex-wrap:wrap;}
+
+        /* ── Modal ── */
+        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;align-items:center;justify-content:center;}
+        .modal-overlay.open{display:flex;}
+        .modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:26px;max-width:480px;width:92%;}
+        .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.06em;margin-bottom:8px;color:var(--accent);}
+        .modal-sub{font-size:.82rem;color:var(--muted);margin-bottom:18px;line-height:1.5;}
+        .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+        .modal-actions{display:flex;gap:8px;margin-top:4px;}
+
+        @media(max-width:900px){
+            main{padding:18px;}
+            .bulk-grid{grid-template-columns:1fr;}
+            .inline-grid{grid-template-columns:repeat(2,1fr);}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div style="display:flex;align-items:baseline;">
+        <a href="{{ url_for('landing_page') }}" class="logo">FleetTracker</a>
+        <span class="logo-sub" data-i18n="headerSub">SERVICE INTERVALS</span>
+    </div>
+    <div class="header-right">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+        <div class="lang-toggle">
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="bg" onclick="setLang('bg')">БГ</button>
+        </div>
+        <a href="{{ url_for('service_page') }}" class="back-link" data-i18n="goBack">← Go Back</a>
+    </div>
+</header>
+
+<main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat,msg in messages %}
+    <div class="flash flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+
+    <div class="section-label" data-i18n="pageTitle">Service Intervals</div>
+    <p class="page-sub" data-i18n="pageSub">View and edit greasing, oil, hydraulic and filter intervals across all units.</p>
+
+    <!-- ── Bulk Interval Editor ──────────────────────────────────────────── -->
+    <div class="bulk-grid">
+        {% for model_name, color in [('Toyota','var(--accent)'),('Still','var(--blue)')] %}
+        <div class="bulk-card">
+            <div class="bulk-title">
+                <span style="color:{{ color }};">{{ model_name }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.15em;" data-i18n="bulkLabel">BULK UPDATE ALL</span>
+            </div>
+            <form method="POST" action="{{ url_for('service_intervals') }}">
+                <input type="hidden" name="action" value="bulk">
+                <input type="hidden" name="bulk_model" value="{{ model_name }}">
+                <div class="bulk-row" style="margin-bottom:10px;">
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lGrease">Greasing</label>
+                        <input name="bulk_grease" class="form-input" style="width:80px;" placeholder="{{ bulk[model_name].grease }}" value="{{ bulk[model_name].grease }}">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lOil">Oil Change</label>
+                        <input name="bulk_oil" class="form-input" style="width:80px;" placeholder="{{ bulk[model_name].oil }}" value="{{ bulk[model_name].oil }}">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lHyd">Hydraulic</label>
+                        <input name="bulk_hyd" class="form-input" style="width:80px;" placeholder="{{ bulk[model_name].hyd }}" value="{{ bulk[model_name].hyd }}">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lFilt">Filter</label>
+                        <input name="bulk_filt" class="form-input" style="width:80px;" placeholder="{{ bulk[model_name].filt }}" value="{{ bulk[model_name].filt }}">
+                    </div>
+                </div>
+                <div class="pin-row">
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lUser">User</label>
+                        <input name="username" class="form-input" style="width:90px;" placeholder="admin" autocomplete="off">
+                    </div>
+                    <div class="fg">
+                        <label class="form-label" data-i18n="lPin">PIN</label>
+                        <input name="pin" type="password" class="form-input" style="width:80px;" placeholder="••••" autocomplete="new-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="applyBtn">Apply →</button>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── Unit Table ─────────────────────────────────────────────────────── -->
+    <div class="filter-bar">
+        <input type="text" class="search-input" id="searchInput" oninput="applyFilters()" data-i18n-placeholder="searchPh" placeholder="Search unit...">
+        <div class="tab-row">
+            <button class="tab active" data-model="all"   onclick="setModelTab(this)" data-i18n="tabAll">All</button>
+            <button class="tab"        data-model="Toyota" onclick="setModelTab(this)">Toyota</button>
+            <button class="tab"        data-model="Still"  onclick="setModelTab(this)">Still</button>
+        </div>
+        <div class="tab-row" style="margin-left:8px;">
+            <button class="tab active" data-status="all"     onclick="setStatusTab(this)" data-i18n="tabAll">All</button>
+            <button class="tab"        data-status="overdue" onclick="setStatusTab(this)" data-i18n="tabOverdue">Overdue</button>
+            <button class="tab"        data-status="ok"      onclick="setStatusTab(this)" data-i18n="tabOk">OK</button>
+        </div>
+        <span class="results-count" id="resultsCount"></span>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th data-i18n="colUnit">Unit</th>
+                    <th data-i18n="colHours">Hours</th>
+                    <th data-i18n="colGrease">Greasing</th>
+                    <th data-i18n="colOil">Oil Change</th>
+                    <th data-i18n="colHyd">Hydraulic</th>
+                    <th data-i18n="colFilt">Filter</th>
+                    <th data-i18n="colEdit">Edit Intervals</th>
+                </tr>
+            </thead>
+            <tbody id="unitTable">
+            {% for u in units %}
+            <tr class="unit-row"
+                data-model="{{ u.model }}"
+                data-number="{{ u.number }}"
+                data-overdue="{{ 'yes' if (u.grease.over or u.oil.over or u.hydraulic.over or u.filter.over) else 'no' }}">
+                <td>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;">{{ u.model }}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--accent);">{{ u.number }}</div>
+                </td>
+                <td>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:.9rem;font-weight:600;">{{ u.work_hours }}</div>
+                    <div style="font-size:.72rem;color:var(--muted);">{{ u.last_date[:10] if u.last_date else '' }}</div>
+                </td>
+
+                {% for svc, label in [(u.grease,'G'),(u.oil,'O'),(u.hydraulic,'H'),(u.filter,'F')] %}
+                <td>
+                    <div class="bar-wrap">
+                        <div class="bar-label">
+                            <span>{{ svc.last }}h</span>
+                            <span style="color:{{ 'var(--red)' if svc.over else 'var(--muted)' }};">
+                                {% if svc.over %}⚠ {{ svc.due_at }}{% else %}→{{ svc.due_at }}{% endif %}
+                            </span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width:{{ svc.pct }}%;background:{{ 'var(--red)' if svc.over else ('var(--orange)' if svc.pct >= 80 else 'var(--green)') }};"></div>
+                        </div>
+                        <div class="bar-label">
+                            <span style="color:var(--muted);">int: {{ svc.interval }}h</span>
+                            <span>{{ svc.pct }}%</span>
+                        </div>
+                    </div>
+                </td>
+                {% endfor %}
+
+                <td>
+                    <button class="edit-btn" onclick="toggleEdit('edit-{{ u.model }}-{{ u.number }}')" data-i18n="editBtn">✎ Edit</button>
+                    <div class="inline-form" id="edit-{{ u.model }}-{{ u.number }}">
+                        <form method="POST" action="{{ url_for('service_intervals') }}" style="margin-top:8px;">
+                            <input type="hidden" name="action" value="unit">
+                            <input type="hidden" name="unit_model" value="{{ u.model }}">
+                            <input type="hidden" name="unit_number" value="{{ u.number }}">
+                            <div class="inline-grid">
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lGrease">Grease</label>
+                                    <input name="unit_grease" class="form-input" style="width:80px;" value="{{ u.grease.interval }}">
+                                </div>
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lOil">Oil</label>
+                                    <input name="unit_oil" class="form-input" style="width:80px;" value="{{ u.oil.interval }}">
+                                </div>
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lHyd">Hyd</label>
+                                    <input name="unit_hyd" class="form-input" style="width:80px;" value="{{ u.hydraulic.interval }}">
+                                </div>
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lFilt">Filter</label>
+                                    <input name="unit_filt" class="form-input" style="width:80px;" value="{{ u.filter.interval }}">
+                                </div>
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lUser">User</label>
+                                    <input name="username" class="form-input" style="width:80px;" placeholder="admin" autocomplete="off">
+                                </div>
+                                <div class="fg">
+                                    <label class="form-label" data-i18n="lPin">PIN</label>
+                                    <input name="pin" type="password" class="form-input" style="width:70px;" placeholder="••••" autocomplete="new-password">
+                                </div>
+                                <div class="fg" style="padding-top:18px;">
+                                    <button type="submit" class="btn btn-primary" style="font-size:.68rem;padding:7px 12px;" data-i18n="saveBtn">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+const T = {
+    en:{
+        headerSub:"SERVICE INTERVALS", goBack:"← Go Back",
+        pageTitle:"Service Intervals", pageSub:"View and edit greasing, oil, hydraulic and filter intervals across all units.",
+        bulkLabel:"BULK UPDATE ALL", lGrease:"Greasing", lOil:"Oil Change", lHyd:"Hydraulic", lFilt:"Filter",
+        lUser:"User", lPin:"PIN", applyBtn:"Apply →", saveBtn:"Save",
+        searchPh:"Search unit...", tabAll:"All", tabOverdue:"Overdue", tabOk:"OK",
+        colUnit:"Unit", colHours:"Hours", colGrease:"Greasing", colOil:"Oil Change",
+        colHyd:"Hydraulic", colFilt:"Filter", colEdit:"Edit Intervals", editBtn:"✎ Edit",
+        resultsOf:"of"
+    },
+    bg:{
+        headerSub:"СЕРВИЗНИ ИНТЕРВАЛИ", goBack:"← Назад",
+        pageTitle:"Сервизни интервали", pageSub:"Преглед и редактиране на интервали за смазване, масло, хидравлика и филтри.",
+        bulkLabel:"МАСОВА ПРОМЯНА", lGrease:"Смазване", lOil:"Смяна масло", lHyd:"Хидравлика", lFilt:"Филтър",
+        lUser:"Потребител", lPin:"PIN", applyBtn:"Приложи →", saveBtn:"Запази",
+        searchPh:"Търси единица...", tabAll:"Всички", tabOverdue:"Просрочени", tabOk:"Наред",
+        colUnit:"Единица", colHours:"Часове", colGrease:"Смазване", colOil:"Смяна масло",
+        colHyd:"Хидравлика", colFilt:"Филтър", colEdit:"Редактирай", editBtn:"✎ Редактирай",
+        resultsOf:"от"
+    }
+};
+
+// ── Lang ──────────────────────────────────────────────────────────────────────
+function getLang(){return localStorage.getItem('fleetLang')||'en';}
+function setLang(lang){
+    localStorage.setItem('fleetLang',lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.getAttribute('data-i18n-placeholder');if(T[lang][k]!==undefined)el.placeholder=T[lang][k];});
+    updateCount();
+}
+
+// ── Theme ─────────────────────────────────────────────────────────────────────
+function getTheme(){return localStorage.getItem('fleetTheme')||'dark';}
+function applyTheme(t){
+    document.documentElement.setAttribute('data-theme',t);
+    const b=document.getElementById('themeToggle');
+    if(b) b.textContent=t==='dark'?'🌙':'☀️';
+}
+function toggleTheme(){const n=getTheme()==='dark'?'light':'dark';localStorage.setItem('fleetTheme',n);applyTheme(n);}
+
+// ── Inline edit toggle ────────────────────────────────────────────────────────
+function toggleEdit(id){
+    const el=document.getElementById(id);
+    el.classList.toggle('open');
+}
+
+// ── Filter ────────────────────────────────────────────────────────────────────
+let activeModel  = 'all';
+let activeStatus = 'all';
+
+function setModelTab(btn){
+    activeModel = btn.dataset.model;
+    btn.closest('.tab-row').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+}
+function setStatusTab(btn){
+    activeStatus = btn.dataset.status;
+    btn.closest('.tab-row').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+}
+function applyFilters(){
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('.unit-row');
+    let shown = 0;
+    rows.forEach(r=>{
+        const model  = r.dataset.model;
+        const number = r.dataset.number.toLowerCase();
+        const over   = r.dataset.overdue;
+        const matchM = activeModel==='all'  || model===activeModel;
+        const matchS = activeStatus==='all' || (activeStatus==='overdue'&&over==='yes') || (activeStatus==='ok'&&over==='no');
+        const matchQ = !q || number.includes(q) || model.toLowerCase().includes(q);
+        const visible = matchM && matchS && matchQ;
+        r.classList.toggle('hidden', !visible);
+        if(visible) shown++;
+    });
+    updateCount(shown, rows.length);
+}
+function updateCount(shown, total){
+    const el = document.getElementById('resultsCount');
+    if(!el) return;
+    if(shown===undefined){
+        shown=document.querySelectorAll('.unit-row:not(.hidden)').length;
+        total=document.querySelectorAll('.unit-row').length;
+    }
+    const lang=getLang();
+    el.textContent = shown + ' ' + T[lang].resultsOf + ' ' + total;
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+applyTheme(getTheme());
+setLang(getLang());
+updateCount();
+</script>
+</body>
+</html>
