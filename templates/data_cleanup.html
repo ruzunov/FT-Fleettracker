@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>FT - Data Cleanup</title>
+    <style>
+        :root{--bg:#0d0f12;--surface:#141720;--surface2:#1c2030;--border:#252a38;--accent:#f5a623;--green:#2ecc71;--red:#e74c3c;--orange:#f39c12;--blue:#3b82f6;--text:#e8eaf0;--muted:#6b7280;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+
+        header{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
+        .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--accent);text-decoration:none;}
+        .logo-sub{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.2em;margin-left:12px;}
+        .header-right{display:flex;align-items:center;gap:10px;}
+        .lang-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+        .lang-btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:6px 13px;background:transparent;color:var(--muted);border:none;cursor:pointer;transition:all .2s;}
+        .lang-btn.active{background:var(--accent);color:#0d0f12;font-weight:600;}
+        .lang-btn:not(.active):hover{background:var(--surface2);color:var(--text);}
+        .theme-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-size:1rem;cursor:pointer;line-height:1;}
+        .theme-btn:hover{border-color:var(--accent);}
+        .back-link{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;border:1px solid var(--border);padding:6px 13px;border-radius:4px;transition:all .2s;}
+        .back-link:hover{color:var(--text);border-color:var(--accent);}
+
+        [data-theme="light"]{--bg:#f0f2f5;--surface:#fff;--surface2:#e8eaed;--border:#d1d5db;--text:#111827;--muted:#6b7280;--accent:#d4890a;--green:#16a34a;--red:#dc2626;--orange:#d97706;}
+        [data-theme="light"] body{background:var(--bg);}
+        [data-theme="light"] header{background:var(--surface);}
+        [data-theme="light"] .detail-list{background:var(--surface2);}
+        [data-theme="light"] .form-input{background:var(--surface2);color:var(--text);border-color:var(--border);}
+
+        main{flex:1;padding:30px 36px;max-width:1100px;margin:0 auto;width:100%;}
+        .section-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+        .page-sub{font-size:.82rem;color:var(--muted);margin-bottom:28px;}
+
+        .flash{padding:10px 16px;border-radius:6px;font-size:.85rem;margin-bottom:16px;}
+        .flash-success{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.3);color:var(--green);}
+        .flash-error{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:var(--red);}
+
+        /* ── Summary bar ── */
+        .summary-bar{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+        .sum-card{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:14px 20px;display:flex;flex-direction:column;gap:3px;}
+        .sum-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;}
+        .sum-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+
+        /* ── Issue cards ── */
+        .issues-list{display:flex;flex-direction:column;gap:16px;}
+        .issue-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+        .issue-card.sev-error  {border-left:3px solid var(--red);}
+        .issue-card.sev-warning{border-left:3px solid var(--orange);}
+        .issue-card.sev-info   {border-left:3px solid var(--blue);}
+
+        .issue-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;}
+        .issue-header:hover{background:rgba(255,255,255,.02);}
+        .sev-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+        .sev-error   .sev-dot{background:var(--red);}
+        .sev-warning .sev-dot{background:var(--orange);}
+        .sev-info    .sev-dot{background:var(--blue);}
+        .issue-title{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;flex:1;}
+        .chevron{font-size:.75rem;color:var(--muted);transition:transform .2s;margin-left:auto;}
+        .chevron.open{transform:rotate(90deg);}
+
+        .issue-body{display:none;padding:0 20px 18px;}
+        .issue-body.open{display:block;}
+        .issue-desc{font-size:.83rem;color:var(--muted);margin-bottom:14px;line-height:1.55;}
+
+        .detail-list{background:var(--surface2);border-radius:6px;padding:10px 14px;margin-bottom:14px;max-height:180px;overflow-y:auto;}
+        .detail-item{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+        .detail-item:last-child{border-bottom:none;}
+
+        /* ── Fix form ── */
+        .fix-form{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;padding-top:4px;}
+        .fg{display:flex;flex-direction:column;gap:4px;}
+        .form-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+        .form-input{font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:7px 11px;transition:border-color .2s;}
+        .form-input:focus{outline:none;border-color:var(--accent);}
+        .btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;padding:8px 16px;border-radius:5px;cursor:pointer;border:none;transition:opacity .2s;white-space:nowrap;}
+        .btn-fix-error  {background:var(--red);color:#fff;font-weight:600;}
+        .btn-fix-warning{background:var(--orange);color:#0d0f12;font-weight:600;}
+        .btn-fix-info   {background:var(--blue);color:#fff;font-weight:600;}
+        .btn:hover{opacity:.85;}
+        .fix-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);padding:8px 0;}
+
+        /* ── All clean state ── */
+        .all-clean{text-align:center;padding:56px 20px;}
+        .all-clean-icon{font-size:3rem;margin-bottom:12px;}
+        .all-clean-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.08em;color:var(--green);margin-bottom:8px;}
+        .all-clean-sub{font-size:.85rem;color:var(--muted);}
+
+        /* ── Rescan button ── */
+        .rescan-btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:8px 18px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--muted);cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;margin-bottom:24px;}
+        .rescan-btn:hover{border-color:var(--accent);color:var(--text);}
+
+        @media(max-width:700px){main{padding:16px;}header{padding:14px 20px;}}
+    </style>
+</head>
+<body>
+<header>
+    <div style="display:flex;align-items:baseline;">
+        <a href="{{ url_for('landing_page') }}" class="logo">FleetTracker</a>
+        <span class="logo-sub" data-i18n="headerSub">DATA CLEANUP</span>
+    </div>
+    <div class="header-right">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+        <div class="lang-toggle">
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="bg" onclick="setLang('bg')">БГ</button>
+        </div>
+        <a href="{{ url_for('service_page') }}" class="back-link" data-i18n="goBack">← Go Back</a>
+    </div>
+</header>
+
+<main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat,msg in messages %}
+    <div class="flash flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+
+    <div class="section-label" data-i18n="pageTitle">Data Cleanup Wizard</div>
+    <p class="page-sub" data-i18n="pageSub">Scans all CSV files for errors, duplicates, and inconsistencies. Each issue shows what was found and offers a one-click fix.</p>
+
+    <!-- Summary bar -->
+    {% set errors   = issues | selectattr('severity','equalto','error')   | list %}
+    {% set warnings = issues | selectattr('severity','equalto','warning') | list %}
+    {% set infos    = issues | selectattr('severity','equalto','info')    | list %}
+    <div class="summary-bar">
+        <div class="sum-card" style="border-color:rgba(231,76,60,.35);">
+            <div class="sum-val" style="color:var(--red);">{{ errors|length }}</div>
+            <div class="sum-label" data-i18n="sumErrors">Errors</div>
+        </div>
+        <div class="sum-card" style="border-color:rgba(243,156,18,.35);">
+            <div class="sum-val" style="color:var(--orange);">{{ warnings|length }}</div>
+            <div class="sum-label" data-i18n="sumWarnings">Warnings</div>
+        </div>
+        <div class="sum-card" style="border-color:rgba(59,130,246,.35);">
+            <div class="sum-val" style="color:var(--blue);">{{ infos|length }}</div>
+            <div class="sum-label" data-i18n="sumInfo">Info</div>
+        </div>
+        <div class="sum-card">
+            <div class="sum-val" style="color:var(--accent);">{{ total_fixable }}</div>
+            <div class="sum-label" data-i18n="sumFixable">Fixable</div>
+        </div>
+    </div>
+
+    <a href="{{ url_for('data_cleanup') }}" class="rescan-btn" data-i18n="rescanBtn">↺ Re-scan</a>
+
+    {% if issues %}
+    <div class="issues-list">
+        {% for issue in issues %}
+        <div class="issue-card sev-{{ issue.severity }}">
+            <div class="issue-header" onclick="toggleCard('card-{{ loop.index }}')">
+                <div class="sev-dot"></div>
+                <div class="issue-title">{{ issue.title }}</div>
+                <span class="chevron" id="chev-card-{{ loop.index }}">▶</span>
+            </div>
+            <div class="issue-body" id="card-{{ loop.index }}">
+                <p class="issue-desc">{{ issue.desc }}</p>
+
+                {% if issue.details %}
+                <div class="detail-list">
+                    {% for d in issue.details %}
+                    <div class="detail-item">{{ d }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if issue.fix_label and issue.id %}
+                <form method="POST" action="{{ url_for('data_cleanup') }}" onsubmit="return confirmFix(this)">
+                    <input type="hidden" name="fix" value="{{ issue.id }}">
+                    <div class="fix-form">
+                        <div class="fix-label">{{ issue.fix_label }}</div>
+                        <div class="fg">
+                            <label class="form-label" data-i18n="lUser">User</label>
+                            <input name="username" class="form-input" style="width:88px;" placeholder="admin" autocomplete="off">
+                        </div>
+                        <div class="fg">
+                            <label class="form-label" data-i18n="lPin">PIN</label>
+                            <input name="pin" type="password" class="form-input" style="width:76px;" placeholder="••••" autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn btn-fix-{{ issue.severity }}" data-i18n="fixBtn">✓ Apply Fix</button>
+                    </div>
+                </form>
+                {% elif not issue.fix_label %}
+                <div class="fix-label" style="color:var(--blue);" data-i18n="noFixNeeded">ℹ No action needed — handled automatically.</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="all-clean">
+        <div class="all-clean-icon">✅</div>
+        <div class="all-clean-title" data-i18n="allCleanTitle">All Clean</div>
+        <div class="all-clean-sub" data-i18n="allCleanSub">No issues found across all CSV files.</div>
+    </div>
+    {% endif %}
+</main>
+
+<script>
+const T = {
+    en:{
+        headerSub:"DATA CLEANUP", goBack:"← Go Back",
+        pageTitle:"Data Cleanup Wizard",
+        pageSub:"Scans all CSV files for errors, duplicates, and inconsistencies. Each issue shows what was found and offers a one-click fix.",
+        sumErrors:"Errors", sumWarnings:"Warnings", sumInfo:"Info", sumFixable:"Fixable",
+        rescanBtn:"↺ Re-scan",
+        lUser:"User", lPin:"PIN", fixBtn:"✓ Apply Fix",
+        noFixNeeded:"ℹ No action needed — handled automatically.",
+        allCleanTitle:"All Clean", allCleanSub:"No issues found across all CSV files.",
+        confirmMsg:"Apply this fix? This will modify your CSV files. Make sure you have a backup."
+    },
+    bg:{
+        headerSub:"ПОЧИСТВАНЕ НА ДАННИ", goBack:"← Назад",
+        pageTitle:"Съветник за почистване",
+        pageSub:"Сканира всички CSV файлове за грешки и дублирани записи. Всеки проблем може да бъде поправен с едно натискане.",
+        sumErrors:"Грешки", sumWarnings:"Предупреждения", sumInfo:"Инфо", sumFixable:"Поправими",
+        rescanBtn:"↺ Повторно сканиране",
+        lUser:"Потребител", lPin:"PIN", fixBtn:"✓ Приложи",
+        noFixNeeded:"ℹ Не е необходимо действие — обработва се автоматично.",
+        allCleanTitle:"Всичко е наред", allCleanSub:"Не са открити проблеми в CSV файловете.",
+        confirmMsg:"Да се приложи тази корекция? Ще бъдат променени CSV файлове."
+    }
+};
+
+function getLang(){return localStorage.getItem('fleetLang')||'en';}
+function setLang(lang){
+    localStorage.setItem('fleetLang',lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});
+}
+function getTheme(){return localStorage.getItem('fleetTheme')||'dark';}
+function applyTheme(t){
+    document.documentElement.setAttribute('data-theme',t);
+    const b=document.getElementById('themeToggle');
+    if(b) b.textContent=t==='dark'?'🌙':'☀️';
+}
+function toggleTheme(){const n=getTheme()==='dark'?'light':'dark';localStorage.setItem('fleetTheme',n);applyTheme(n);}
+
+function toggleCard(id){
+    const body = document.getElementById(id);
+    const chev = document.getElementById('chev-' + id);
+    const open = body.classList.toggle('open');
+    if(chev) chev.classList.toggle('open', open);
+}
+
+function confirmFix(form){
+    const pin = form.querySelector('input[name="pin"]').value;
+    if(!pin){ alert('Please enter your PIN.'); return false; }
+    const lang = getLang();
+    return confirm(T[lang].confirmMsg);
+}
+
+// Auto-open first error card
+document.addEventListener('DOMContentLoaded', ()=>{
+    const first = document.querySelector('.issue-card.sev-error .issue-header, .issue-card.sev-warning .issue-header');
+    if(first) first.click();
+});
+
+applyTheme(getTheme());
+setLang(getLang());
+</script>
+</body>
+</html>

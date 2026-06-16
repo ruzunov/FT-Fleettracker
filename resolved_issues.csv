@@ -1,6 +1,439 @@
 ﻿Model,Number,Issue,Description,DateTime,Comments,Resolved,ResolutionTime
+Toyota,T15,Scanner,пада,Тествано
+Toyota,T17,,,,2024-10-29 15:20:51: Тестов коментар | 2024-10-29 15:20:55: Тестов коментар | 2024-10-29 15:20:56: Тестов коментар | 2024-10-29 15:20:59: Тестов коментар2 | 2024-10-29 15:21:06: Тестов коментар3 | 2024-10-29 15:21:29: последен коментар
+Toyota,T18,Damage,тесттест,2024-10-29 15:21:41,2024-10-29 15:21:51: тест1 | 2024-10-29 15:21:53: тест2 | 2024-10-29 15:21:57: тест3 | 2024-10-29 15:22:24: разрешен проблем
+Toyota,T17,Lights,не работи лампата,2024-10-29 15:37:35,"2024-10-29 15:37:51: Проверен ток
+ | 2024-10-29 15:37:57: Няма проблем в тока | 2024-10-29 15:38:28: Разрешен проблем"
+Still,S18,Other,,,2024-10-29 15:48:48:  | 2024-10-29 15:48:49: sd | 2024-10-29 16:01:10: doine
+Toyota,T30,Printer,не баца,2024-10-29 16:01:34,2024-10-29 16:01:40: тествано | 2024-10-29 16:01:47: ремонтирано | 2024-10-29 16:01:52: Готово
+Toyota,T30,Scanner,пак не баца,2024-10-29 16:02:39,2024-10-29 16:02:46: готово е
+Toyota,T30,Forklift Error,greshka,2024-10-29 16:11:20,2024-10-29 16:11:28: nqma greshka,
+Toyota,T1,Lights,ssss,2024-10-29 16:13:35," | Resolved at 2024-10-29 16:14:44: gotowo
+",2024-10-29 16:14:44
+Toyota,T25,Printer,не принтира,2024-10-29 16:45:38,2024-10-29 16:46:25: сменен принтер | 2024-10-29 16:46:32: Сменено захранване | Resolved at 2024-10-29 16:47:37: Принтерът е ремонтиран,2024-10-29 16:47:37
+Toyota,T25,Terminal,счупен екран,2024-10-29 16:48:25,2024-10-29 16:48:34: сменен екран | 2024-10-29 16:48:38: сменен терминал | Resolved at 2024-10-29 16:48:53: тествано и работи,2024-10-29 16:48:53
+Still,S20,Printer,test,2024-10-29 16:49:30,2024-10-29 16:49:34: тест1 | 2024-10-29 16:49:36: тест2 | Resolved at 2024-10-29 16:49:39: готово,2024-10-29 16:49:39
+Still,S15,Scanner,ne raboti,2024-10-29 17:40:31,2024-10-29 17:42:00: сменен кабел | 2024-10-29 17:42:06: сменен скенер | Resolved at 2024-10-29 17:42:32: отстранен пронлем,2024-10-29 17:42:32
+Toyota,T20,Shaking,тресе,2024-11-04 09:03:10,2024-11-04 09:03:56:  сменено колело | 2024-11-04 09:04:03: сменено.... | Resolved at 2024-11-04 09:04:31: ремонтирано,2024-11-04 09:04:31
+Toyota,T1,Lights,не свети,2024-11-04 10:16:00,2024-11-04 10:16:09: не свети 1 | 2024-11-04 10:16:15: не свети 2 | Resolved at 2024-11-04 10:16:19: свети 3,2024-11-04 10:16:19
+Toyota,T1,Printer,не работи,2024-11-04 10:50:11, | Resolved at 2024-11-04 10:50:18: гд,2024-11-04 10:50:18,2 hours
+Toyota,T1,,test,2024-11-04 16:13:39, | Resolved at 2024-11-04 16:13:45: ,2024-11-04 16:13:45,0 hours
+Toyota,T1,Terminal,,2024-11-04 11:32:10, | Resolved at 2024-11-04 16:13:48: ,2024-11-04 16:13:48,4 hours
+Still,S1,Other,tesdt,2024-11-04 16:17:48, | Resolved at 2024-11-06 14:32:45: asdasdasd,2024-11-06 14:32:45,1 days
+Toyota,T1,,,2024-11-07 13:14:55, | Resolved at 2024-11-07 13:16:17: ,2024-11-07 13:16:17,0 hours
+Toyota,T1,,,2024-11-07 11:57:46, | Resolved at 2024-11-07 13:16:20: ,2024-11-07 13:16:20,1 hours
+Toyota,T1,,тест,2024-11-07 11:52:31, | Resolved at 2024-11-07 13:16:23: ,2024-11-07 13:16:23,1 hours
+Toyota,T30,Forklift Error,greshka,2024-11-07 13:41:09,2024-11-07 13:41:16: greshka | 2024-11-07 13:41:17: greshka | Resolved at 2024-11-07 13:41:33: gotowo,2024-11-07 13:41:33
+Toyota,T1,,gre,2024-11-07 13:42:36,,2024-11-07 13:42:52
+Toyota,T2,Printer,test,2024-11-07 14:31:28,2024-11-07 14:33:08: test1 | 2024-11-07 14:33:10: test2 | Resolved at 2024-11-07 14:33:18: tetest,2024-11-07 14:33:18
+Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2,2024-11-07 14:46:06
+Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2 | Resolved at 2024-11-07 15:42:41: Gotowo,2024-11-07 15:42:41
+Toyota,T5,Lights,,2024-11-08 11:30:47, | Resolved at 2024-11-08 11:31:01: done,2024-11-08 11:31:01
+Toyota,T3,Terminal,,2024-11-08 11:32:12, | Resolved at 2024-11-08 11:32:33: doneond,2024-11-08 11:32:33
+Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2 | Resolved at 2024-11-08 15:16:51: done test,2024-11-08 15:16:51
+Toyota,T1,,yrdy,2024-11-08 15:51:55, | Resolved at 2024-11-08 15:52:01: test,2024-11-08 15:52:01
+Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2 | Resolved at 2024-11-08 16:22:48: donedone,2024-11-08 16:22:48
+Toyota,T1,Terminal,teesst,2024-11-04 16:15:33,2024-11-06 17:13:14: test1 | 2024-11-06 17:13:15: test2,2024-11-08 16:23:06
+Toyota,T20,Damage,ударена,2024-11-11 14:25:12,2024-11-11 14:26:09: Сменено колело | 2024-11-11 14:26:16: смена страна | Resolved at 2024-11-11 14:26:38: Отрементирана,2024-11-11 14:26:38
+Toyota,T1,,,2024-11-11 15:49:53,,2024-11-11 15:56:57
+Toyota,T1,,,2024-11-11 15:49:53,,2024-11-11 15:57:20
+Still,S1,Printer,,2024-11-11 16:01:35,,2024-11-12 09:55:13
+Toyota,T1,Damage,,2024-11-11 16:01:28,,2024-11-12 10:01:30
+Toyota,T10,2024-11-12 11:03:26,2024-11-12 11:03:35,0 hours,Forklift Error,2024-11-12 11:03:31: tete,te
+Toyota,T92,Damage,test,2025-05-27 15:20:55,2025-05-27 15:21:01: test,2025-05-27 15:21:03,0 hours
+Toyota,T49,,,2025-05-28 13:16:41,2025-05-29 12:26:11: test | 2025-05-29 12:26:16: test | 2025-05-29 12:26:23: test3 | 2025-05-29 12:26:25: test4 | 2025-05-29 12:26:27: test5,2025-05-29 12:26:36,23 hours
+Still,S98,Forklift Error,Erore 303,2025-06-06 15:34:17,2025-06-06 15:35:38: Forklifts wait parts,2025-06-06 15:36:39,0 hours
+Still,S41,Scanner,,2025-12-05 11:01:20,"2025-12-05 11:01:44: remontiran
+",2025-12-22 15:12:34,17 days
+Still,S52,Shaking,,2025-12-05 10:54:46,2025-12-05 11:02:30: remontirana,2025-12-22 15:13:01,17 days
+Still,S101,Scanner,Low range,2025-12-22 16:07:47,"2025-12-22 16:19:54: vzeta za remont
+",2025-12-22 16:21:05,0 hours
+Still,S85,,schupena ramka i kapak,2026-01-08 09:24:55,2026-01-20 16:23:40: remont ramka mobis 2 br osi 8118,2026-01-21 14:30:49,13 days
+Still,S26,Shaking,tropa za kolela,2026-01-20 14:29:29,2026-01-20 14:30:12: smeneni 4 dvoini oporni 1131,2026-01-21 14:31:26,1 days
+Still,S107,Other,lipsvasht bolt na gredata po stepenkata !!,2026-01-21 16:12:14,2026-01-22 11:07:35: opravena 777h,2026-01-23 16:08:00,1 days
+Still,S107,Other,skusan nbolt na stepenka,2026-01-22 11:06:53,2026-01-22 11:08:00: remontirana 777h,2026-01-23 16:08:12,1 days
+Still,S2,Other,"KONTAKTA NA KOLI`KATA ZA BATERIQTA E RAZTOPEN, UPS NE RABOTI",2026-01-21 13:42:55,2026-01-22 13:49:34: smeneshteker na mashinata 6635h,2026-01-23 16:08:31,2 days
+Still,S24,,schupena ramka mobis sledstvie udur,2026-01-22 12:15:55,"2026-01-22 12:17:11: smenena ramka mobis s dve osi za ramka
+1027",2026-01-23 16:08:59,1 days
+Still,S27,,kriva ramka mobis,2026-01-22 13:19:43,2026-01-22 13:20:34: smenena ramka mobis i dve osi 1163,2026-01-23 16:09:16,1 days
+Still,S28,,skusan cilinder na skuiz,2026-01-22 14:27:51,2026-01-22 14:28:41: smenen cilindur na skuiz 7749h,2026-01-23 16:09:31,1 days
+Still,S37,Shaking,za gumi,2026-01-22 14:55:03,2026-01-22 15:29:50: smeneni 4 oporni i dva rolera 1247h,2026-01-23 16:09:44,1 days
+Still,S3,Shaking,za smqna na prednite kolela,2026-01-23 12:04:31,2026-01-23 12:51:11: smeneno oporno kolelo 3849h,2026-01-23 16:09:59,4 hours
+Still,S25,Damage,problem s vdigane na vilici i ramka mobis,2026-01-23 12:53:04,"2026-01-23 12:54:52: smeneni tovqarni vilki 2 br, dulgi osi 2 br, kusi osi 2br, shplendovwe 6 br, osi za ramka mobis 2 br, dva rolera. 6290",2026-01-23 16:10:19,3 hours
+Toyota,T1,,pozistbane,2026-01-19 16:14:05,2026-01-19 16:15:02: gotoba | 2026-01-19 16:15:21: gotoba | 2026-01-19 16:15:50: gotoba,2026-01-28 12:22:52,8 days
+Toyota,T27,Other,,2026-01-28 12:23:26,,2026-01-28 12:24:01,0 hours
+Toyota,T60,Lights,test,2025-06-04 09:22:23,2025-12-03 11:34:41: TEST | 2025-12-05 10:56:41: chakame kabel | 2025-12-05 10:59:31: gotowa,2026-01-28 12:25:37,238 days
+Toyota,T33,,"oporho kolelo
+ ",2026-01-19 14:00:28,2026-01-19 15:53:31: gotova | 2026-01-28 12:14:17: gotova 6356h,2026-01-28 12:25:55,8 days
+Toyota,T46,Shaking,iskrivena greda,2026-01-05 15:59:34,"2026-01-05 16:00:20: smeneni kolela vilichni, podmenena greda",2026-01-28 12:27:47,22 days
+Toyota,T91,,smana na joistik,2026-01-30 13:07:05,2026-01-30 13:07:41: gotoba 6050,2026-02-04 11:46:29,4 days
+Still,S119,,padnal hidravlichen izravnitel,2026-01-30 15:16:24,2026-01-30 15:17:24: remontiran hidravlichen izravnitel 741h,2026-02-04 11:46:42,4 days
+Still,S123,Other,,2026-02-04 11:49:01,,2026-02-04 12:08:08,0 hours
+Still,S122,Other,Tech na hidravlika + na tazi mashina ostaviyam chast ot S 119 (El. Kari),2026-01-30 10:03:54,2026-01-30 15:19:12: stegnat markuch na push 151h,2026-02-04 12:10:16,5 days
+Still,S1,Other,TEST,2026-01-26 11:07:39,2026-01-26 11:07:46:  | 2026-01-26 11:58:00:  | 2026-01-26 12:13:32: ,2026-02-04 13:11:45,9 days
+Toyota,T94,Scanner,UPS na mobisa sweti v jalto,2026-02-03 07:49:44,2026-02-04 11:44:02: Normalno e da sweti w julto,2026-02-05 09:18:09,2 days
+Toyota,T76,,problem s mobis\ ne otjita,2026-01-29 21:08:05,2026-02-04 13:17:47: Predpolaga se chи problema e otstranen,2026-02-05 09:51:37,6 days
+Toyota,T76,Terminal,KURSORA E NAI DOLU W LQVO I NE SE MESTI,2026-02-04 08:52:19,,2026-02-05 10:00:47,1 days
+Toyota,T32,Terminal,GREJKA/ KOD CM1,2026-02-03 09:43:08,"2026-02-04 13:14:41: da se restartira mobis, Errore CM1 -out of time to scan device's.",2026-02-05 10:22:46,2 days
+Still,S92,Printer,PRINTERA NE E PRISVOEN KYM KOLICKATA,2026-02-04 08:53:03,"2026-02-04 13:16:26: WMS ne sa obrabotili ticket kum momenta za podmqna na terminal. Kogato e gotova shte informirame
+",2026-02-05 10:26:09,1 days
+Still,S18,Printer,printera se vkluchva no nqms signal ,2026-01-27 13:39:01,,2026-02-05 10:26:46,8 days
+Still,S90,Other,skasani boltove na lapa,2026-01-08 09:11:45,"2026-01-14 13:01:21: smeneni boltove na skuiz, zavareni planki na lapi, oburnati lapi",2026-02-05 10:27:30,28 days
+Still,S52,,dava grejka E433 i postoianno prekasva,2026-01-13 15:36:31,2026-01-20 09:37:58: kolichkata e izkarana no nqmame informaciq dali e remontirana,2026-02-05 10:27:59,22 days
+Still,S13,Lights,sinya lampa,2025-12-23 11:14:13,2025-12-23 11:33:07: fixed,2026-02-05 10:28:32,43 days
+Still,S42,Forklift Error,zabiva i izbiva grejka E433,2026-01-13 16:13:14,2026-02-05 14:57:29: gotova 550,2026-02-10 09:08:23,27 days
+Still,S99,,koli4kata zabiva,2026-02-09 15:40:04,2026-02-10 12:11:18: napravena 706,2026-02-11 08:11:47,1 days
+Still,S64,Damage,"Edno ot kolelata na vilicite na S64 e schupeno, molq za podmqna",2026-02-10 07:37:11,2026-02-10 12:12:47: napravena 1302,2026-02-11 08:12:15,1 days
+Still,S57,,za oporna stoika,2026-01-30 15:56:58,2026-02-10 12:11:40: napravena 11200,2026-02-11 08:12:24,11 days
+Still,S92,,problem s printer,2026-02-05 12:16:20,,2026-02-11 08:14:42,5 days
+Still,S40,Damage,schupen avarien stop buton,2026-01-22 15:24:53,2026-01-26 11:56:56:  | 2026-02-11 13:41:08: smenen stop buton 2783 | 2026-02-11 13:41:25: 2378h,2026-02-12 11:34:08,20 days
+Toyota,T80,Scanner,skenera gubi obhvat,2026-02-09 20:45:35,,2026-02-12 13:53:29,2 days
+Toyota,T72,Scanner,"skenera ne raboti, prekyswa",2026-02-09 20:03:30,,2026-02-12 14:05:12,2 days
+Still,S2,Printer,"printera ne raboti, izklucva se sam ",2026-02-11 22:53:24,"2026-02-16 16:11:18: fixed | 2026-02-16 16:11:34: 6693
+",2026-02-17 10:53:45,5 days
+Still,S78,Scanner,"skenera skanira ot blizo razstoqnie, 10 sm. molq da se smeni",2026-02-18 09:57:33,,2026-02-18 15:34:33,5 hours
+Still,S113,Other,Povreden senzor za dvijenie ,2026-02-16 21:29:35,2026-02-17 15:18:10: prekalibrirana 2090h,2026-02-18 15:35:02,1 days
+Toyota,T72,Printer,"PRINTERA NE RABOTI, NE PUSKA ETIKETI, ROLKATA NE SE VARTI",2026-02-19 08:55:59,,2026-02-19 12:00:56,3 hours
+Still,S65,,zabiva ,2026-02-11 13:39:56,2026-02-20 14:27:20: smenen volan 11670h,2026-02-23 11:49:56,11 days
+Toyota,T90,Other,test,2026-02-23 12:00:07,,2026-02-23 12:10:03,0 hours
+Toyota,T1,,test,2026-02-23 13:36:06,,2026-02-23 13:36:27,0 hours
+Still,S21,,"problemi s Mobisa ,mac adres",2026-02-23 11:05:30,,2026-02-23 15:55:18,4 hours
+Still,S65,,"problemi s mobisa , mac adres",2026-02-23 11:18:36,,2026-02-23 15:55:52,4 hours
+Still,S18,Other,"problem s mobis, mac adres",2026-02-23 11:43:50,,2026-02-23 15:56:24,4 hours
+Still,S118,,tech na maslo ot markuchi,2026-02-23 14:11:11,2026-02-23 14:11:48: smeneni markuchi 2 dulgi 2294h,2026-02-23 15:56:52,1 hours
+Toyota,T90,Other,test,2026-02-23 12:40:25,,2026-02-23 15:57:14,3 hours
+Still,S92,Forklift Error,L 303 spira neprekysnato,2026-02-19 12:15:14,"2026-02-20 14:26:43: senzor na machta schupen ot tiksa, smenen 3062h",2026-02-23 15:57:27,4 days
+Still,S65,Shaking,,2026-02-25 15:41:10,2026-02-25 15:44:20: xodova chast tropa,2026-02-25 15:45:14,0 hours
+Still,S112,Forklift Error,Problem s vilici. Ne vdiga ,2026-02-25 17:51:39,,2026-02-26 12:50:10,18 hours
+Still,S17,,"zabiva v dvijenie , ne pokazva greshka ",2026-02-25 12:09:12,,2026-02-26 13:03:44,1 days
+Still,S109,,"tropa , hodova chast",2026-02-26 13:58:38,,2026-02-26 14:12:44,0 hours
+Still,S65,Shaking,tropa xodova chast,2026-02-25 15:46:21,,2026-02-26 14:54:14,23 hours
+Still,S65,Forklift Error,zabiva v dvijenie. Greshka 1157,2026-01-15 20:57:26,2026-01-20 16:42:26: da se testva!,2026-02-26 15:06:03,41 days
+Still,S90,Other,Te4 na maslo ot pred v dqsno pri marku4ite na lapite.,2026-01-19 10:50:26,,2026-02-26 15:07:45,38 days
+Still,S19,,problem s koleta ,2026-02-11 13:39:32,,2026-02-26 15:31:04,15 days
+Still,S21,Terminal,tach ne raboti.tropa xodova chast,2026-02-25 16:00:25,,2026-02-26 16:03:36,1 days
+Toyota,T1,Shaking,trese mi vilicata,2026-02-27 10:11:29,2026-02-27 10:13:15: dqsnata vilica mi e problemna,2026-02-27 10:14:24,0 hours
+Toyota,T1,Scanner,"bateriata ne zarejda, problem s hodova chast",2026-02-27 15:10:16,2026-02-27 15:12:35: vilichni oporni kolela,2026-02-27 15:18:32,0 hours
+Toyota,T37,,tropa,2026-02-18 14:24:25,2026-02-20 11:32:21:  | 2026-02-20 11:32:46: smana na kolela,2026-02-27 15:59:50,9 days
+Toyota,T90,,tropa,2026-02-27 16:16:36,,2026-02-27 16:20:19,0 hours
+Still,S21,Terminal,mobis tuch ne raboti,2026-02-26 16:04:38,,2026-02-28 13:32:24,1 days
+Toyota,T23,Damage,Izkrivena greda v osnovata pri krakata.,2026-02-27 11:34:18,2026-03-02 11:58:46: izkrivena greda ,2026-03-02 11:59:50,3 days
+Still,S105,Shaking,tropa xodova chast,2026-03-02 08:53:03,,2026-03-02 14:27:21,5 hours
+Still,S5,,spira vnezapno,2026-02-26 19:56:52,,2026-03-02 15:38:34,3 days
+Still,S19,,zabiva,2026-03-02 16:19:43,,2026-03-02 16:20:39,0 hours
+Still,S19,Shaking,spira vnezapno e-440,2026-03-02 08:52:09,,2026-03-02 16:21:53,7 hours
+Still,S16,Damage,"izkurtena ramka mobis, tropa",2026-02-26 16:06:21,2026-03-02 16:50:00: schupeni vsichki kori po mashinata!,2026-03-02 16:50:26,4 days
+Still,S41,Shaking,tropa xodova chast,2026-02-27 16:08:55,,2026-03-02 17:17:07,3 days
+Toyota,T93,Other,Kapaka na bateriata se otvarya sam,2026-03-04 06:28:23,2026-03-04 16:24:43: ne se zaklajva kapaka na bateriata,2026-03-04 16:25:50,9 hours
+Still,S88,Other,skusan hidravlichen markuch,2026-03-02 13:05:45,,2026-03-05 08:16:51,2 days
+Still,S89,Other,skusan hidravlichen markuch,2026-03-02 13:06:23,,2026-03-05 08:21:18,2 days
+Still,S25,Damage,"pri vdigane na vilicite, prednata chast na vilicite izostava sprqmo zadnata ot kum bateriata, kolichkata se chupi neestestveno. v sledstvie na tova se poluchava naklon na vilicite",2026-03-05 11:12:13,,2026-03-05 12:37:51,1 hours
+Toyota,T69,Terminal,,2026-03-05 07:07:42,,2026-03-05 15:13:43,8 hours
+Toyota,T72,,buksuva rolka na printer,2026-02-26 16:37:09,,2026-03-05 15:20:28,6 days
+Still,S36,Shaking,Kolichkata traka po vreme na dvijenie.Cqlta kolichka se trese.,2026-03-05 21:16:40,,2026-03-06 06:49:55,9 hours
+Still,S18,Shaking,"Mnogo drusa, predpolagam e za smqna na glavno kolelo",2026-03-05 22:21:24,,2026-03-06 07:54:10,9 hours
+Still,S76,,trese mnogo,2026-03-06 08:35:43,,2026-03-06 08:51:38,0 hours
+Still,S76,,tropa,2026-03-06 08:47:48,,2026-03-06 08:51:57,0 hours
+Still,S76,Shaking,,2026-03-06 08:48:44,,2026-03-06 08:52:11,0 hours
+Still,S70,,razkachena e ramkata na mobisa i buksata na bateriata e schupena.skenera i zkluchva,2026-03-02 09:29:06,"2026-03-05 15:24:29: Skenera e w losho systoqnie no kym momenta raboti adekwatno
+",2026-03-06 09:34:34,4 days
+Toyota,T36,Damage,"trakashti kolela, zabiva volana, spira v dvijenie",2026-03-06 10:30:13,2026-03-06 11:45:46: tropa,2026-03-06 11:47:34,1 hours
+Still,S88,Other,trqbva da se oburnat posokite na stiskane i otvarqne na lapite,2026-03-06 10:32:04,,2026-03-06 11:58:35,1 hours
+Still,S89,Other,"Triabva da se zavartiat posokite na stiskane i puskane na lapite.
+Mashinata niama da se otkarva, a shte bade predadena pri poiskvane i vazmojnost ot vasha strana za deistvie.",2026-03-05 17:13:52,,2026-03-06 11:59:10,18 hours
+Still,S33,Other,trqbva da se oburne posokata na reversa,2026-03-06 10:42:41,,2026-03-06 11:59:34,1 hours
+Toyota,T65,Terminal,,2026-03-06 12:07:53,,2026-03-06 12:09:21,0 hours
+Toyota,T93,,Kapaka na bateriata ne se zatvarja,2026-03-05 06:28:45,2026-03-06 11:47:58:  | 2026-03-06 11:48:06:  | 2026-03-06 11:48:08: ,2026-03-06 12:23:04,1 days
+Still,S19,Terminal,povredena buksa za mobis,2026-03-06 11:43:39,,2026-03-09 10:16:52,2 days
+Still,S45,Shaking,predno kolelo,2026-03-09 06:10:25,,2026-03-09 11:29:51,5 hours
+Still,S18,Shaking,"Otnovo drusa, no ne kolkoto vchera. Mnogo trudno zaviva, buksuva na edno mqsto",2026-03-06 17:49:42,,2026-03-09 11:56:47,2 days
+Still,S70,Damage,problem s ramka,2026-03-09 11:59:56,,2026-03-09 12:02:02,0 hours
+Still,S12,,schupeno USB na skenera ,2026-03-09 11:00:02,,2026-03-09 12:21:35,1 hours
+Toyota,T1,,test,2026-03-09 15:17:48,,2026-03-10 10:55:54,19 hours
+Toyota,T1,,тест,2026-03-09 15:22:32,2026-03-09 16:31:08: тесттест,2026-03-10 10:56:00,19 hours
+Toyota,T83,Other,kabel prehod USB,2026-03-10 10:58:29,,2026-03-10 10:59:22,0 hours
+Still,S23,Shaking,"Много тропа и тресе, предполагаме е за смяна на предни колела",2026-03-10 11:33:04,,2026-03-10 15:21:01,3 hours
+Still,S113,Shaking,"Много тропа и тресе, предполагаме е за смяна на предни колела",2026-03-10 11:33:20,,2026-03-11 13:27:50,1 days
+Still,S11,Shaking,tropa mnogo,2026-03-11 13:45:12,,2026-03-11 13:47:52,0 hours
+Still,S21,Shaking,Tropa kolelo,2026-03-10 21:33:54,,2026-03-11 14:22:32,16 hours
 Toyota,T1,Printer,Printer test create,2026-03-12 10:49:11,2026-03-12 10:49:23: Comment test,2026-03-12 10:50:05,0 hours
 Toyota,T1,Terminal,testtest,2026-03-12 10:58:17,Resolved at 2026-03-12 10:58:29: final test,2026-03-12 10:58:29,0 hours
 Toyota,T10,Shaking,тест,2026-03-09 16:01:07,Resolved at 2026-03-12 14:00:27: DA TAKA E,2026-03-12 14:00:27,2 days
+Still,S18,Shaking,"Tropa po vreme na dvijenie, boksuva i podnasq. Problem v kolelata.",2026-03-10 15:47:57,Resolved at 2026-03-12 14:02:39: SMQNA NA 2BR OPORNI DVOINI,2026-03-12 14:02:39,1 days
+Toyota,T82,Other,vurvi bavno  ,2026-03-10 09:38:57,2026-03-16 16:22:27: za smana na senzor  | Resolved at 2026-03-16 16:23:22: cmenen senzor,2026-03-16 16:23:22,6 days
+Still,S31,Damage,"tech maslo, smqna na rotator s vilici",2026-03-18 13:43:03,Resolved at 2026-03-18 15:46:49: smenen rotator s hidravlichen izravnitel i markuchi 2br.,2026-03-18 15:46:49,2 hours
+Still,S36,Other,"Количка S036 е блокирала със стопена предна част на щекер за захранване от батерията. Случаят е от втора смяна на 17-03-2026 и пуснат near miss.
 
+Към настоящият момент се намира в ъгъла на коридор 510 и транспортен коридор 299 в зоната на палетизация при станция на EX и е потенциално пречеща.",2026-03-18 07:46:36,Resolved at 2026-03-18 15:48:11: Podmeneni konektori na mashina i bateriq.,2026-03-18 15:48:11,8 hours
+Toyota,T99,Other,OKABELQVANETO E DALO NA KUSO I MIRISHE,2026-03-12 14:00:07,Resolved at 2026-03-18 16:16:44: Профилактика ел. инсталация,2026-03-18 16:16:44,6 days
+Toyota,T28,Other,,2026-03-18 16:26:30,Resolved at 2026-03-18 16:28:05: mola da se zaegda bateriata,2026-03-18 16:28:05,0 hours
+Still,S82,Shaking,"Силно трака, предполагам за смяна на колело",2026-03-18 21:01:50,,2026-03-19 10:16:22,13 hours
+Still,S29,,PROBLEM S NAKLONA,2026-03-19 14:05:17,,2026-03-19 14:06:08,0 hours
+Still,S22,Shaking,ZA KOLELA,2026-03-19 13:38:32,,2026-03-19 14:08:43,0 hours
+Still,S95,Scanner,"скенера не работи всеки път, прекъсва, и друг път сме я давали за същия проблем, моля дори ако трябва ми се обадете, принтера е развинтен, в момента е подвижен, баркода за него също трябва да се смени.",2026-03-19 07:50:18,"Resolved at 2026-03-19 15:54:14: Докинг станцията на принтера е захваната баркода е сменен, четеца работи нормално - при не закрепен терминал има вибраций от износени колелца  и затова се получават прекъсвания",2026-03-19 15:54:14,8 hours
+Still,S54,Printer,Изкъртен принтер.,2026-03-10 15:26:59,Resolved at 2026-03-19 16:27:56: Принтера е подменен,2026-03-19 16:27:56,9 days
+Still,S118,,LQVA LAPA KRIVA,2026-03-20 11:20:44,,2026-03-20 11:36:02,0 hours
+Still,S71,,SINQ SVETLINA,2026-03-19 13:46:19,,2026-03-20 12:56:22,23 hours
+Still,S14,Damage,ZABIVA GRECHKA 350,2026-03-19 13:47:16,,2026-03-20 12:56:22,23 hours
+Still,S75,,TROPA,2026-03-19 13:45:50,,2026-03-20 13:04:52,23 hours
+Still,S18,Damage,TROPA TRESE GUBI CKOROST S PO TEJAK TOVAR,2026-03-19 11:51:26,,2026-03-20 13:05:31,1 days
+Still,S127,Lights,"sinq svetlina, tropa kolela",2026-03-18 14:23:46,,2026-03-20 13:06:11,1 days
+Still,S90,Forklift Error,BLOKIRA I IZPISVA PREDUPREVDENIE NA DISPLEIA.MARKUCHITE TECHAT,2026-03-20 06:18:02,,2026-03-24 10:38:11,4 days
+Still,S16,Damage,За смяна на капак на батерията,2026-03-16 22:57:03,,2026-03-24 10:40:09,7 days
+Still,S13,Shaking,"Ima zakle6ten ka6on mejdu kolelata i ne iska da vurvi, tropa .",2026-03-24 20:50:08,,2026-03-26 11:16:44,1 days
+Still,S8,Terminal,"терминала не работи, изгуби обхват, дава грешки на екрана.",2026-03-19 07:47:58,"2026-03-19 16:05:58: Терминал а е със стара мрежова карта, ще бъде подменена скоро. | Resolved at 2026-03-27 10:02:29: Kym momenta terminala nqma da byde podmenen.",2026-03-27 10:02:29,8 days
+Still,S7,Terminal,При движение мобиса губи връзка. Скенера губи връзка. Скенера сканира само отблизо.,2026-03-12 21:03:37,"2026-03-19 15:59:12: Терминала е със стара мрежова карта, относно скенера ще бъде подменен поради причина ,че е испускан и удрян многократно! | Resolved at 2026-03-27 10:25:03: Terminal kum momenta nqma da bude podmenen, cheteca e podmenen!",2026-03-27 10:25:03,14 days
+Still,S84,Damage,PRI VDIGNATI VILICI PAZLIKA NIVO VISOCHINA,2026-03-11 15:09:44,,2026-03-27 13:05:26,15 days
+Still,S8,Shaking,tropa,2026-03-30 10:43:55,,2026-03-30 10:51:58,0 hours
+Still,S9,Shaking,tropa,2026-03-30 10:44:36,,2026-03-30 10:58:44,0 hours
+Still,S7,Shaking,tropa,2026-03-30 10:44:23,,2026-03-30 11:06:47,0 hours
+Still,S6,Damage,schupen stop buton i tilur,2026-03-30 15:25:25,,2026-03-30 15:59:51,0 hours
+Still,S85,,kapak bateriq,2026-03-31 11:38:51,,2026-03-31 12:42:41,1 hours
+Still,S69,Shaking,tropa hodova cast,2026-03-31 14:42:50,,2026-03-31 15:39:33,0 hours
+Still,S69,Shaking,"предните колела се тресът, мобиса се изключва сам.",2026-03-30 07:38:00,2026-03-30 16:01:25: kolichkata q nqma v rabotilnicata,2026-03-31 15:40:07,1 days
+Toyota,T49,Shaking,za smiana na zadno scepeno kolelo,2026-03-30 22:09:55,2026-04-01 11:55:41: za smana na viliani kolela | Resolved at 2026-04-01 11:56:54: smana na 4br kolela,2026-04-01 11:56:54,1 days
+Toyota,T88,,otlepeno zadno kolelo,2026-03-26 18:17:51,2026-04-01 15:50:22: smana na kolela | Resolved at 2026-04-01 15:52:07: smana kolela vsiaki kolela i smana masla i gresirane,2026-04-01 15:52:07,5 days
+Still,S110,Lights,Sinqta lampa za bezpopasnost ne raboti.,2026-04-01 19:46:06,,2026-04-02 10:03:22,14 hours
+Still,S110,Damage,"Kolichkata beshe vleznala v avarien rejim, sveteshe znak vnimanie i kostenurkata.",2026-04-01 19:45:42,,2026-04-02 10:04:32,14 hours
+Still,S110,Scanner,Skenera ne raboti,2026-04-01 19:44:57,,2026-04-02 10:07:44,14 hours
+Still,S110,Shaking,kolela,2026-04-02 10:08:01,,2026-04-02 10:14:25,0 hours
+Still,S101,Shaking,tropa,2026-04-02 10:19:24,,2026-04-02 10:36:00,0 hours
+Still,S101,Terminal,"Mobisa e zabil, ne moje da se zagasi , nito da se restartira.",2026-04-02 08:22:51,,2026-04-02 10:36:21,2 hours
+Still,S72,Shaking,hodova tropa,2026-04-02 10:36:45,,2026-04-02 10:55:32,0 hours
+Toyota,T93,,Printera e za opravqne na nasitenostta na cveta,2026-03-31 20:23:18,"Resolved at 2026-04-02 12:13:59: Printera e prekonfiguriran, Molq da se sledi!!!",2026-04-02 12:13:59,1 days
+Still,S40,Damage,stuklo schupeno i problem v zaden most,2026-04-01 15:31:13,,2026-04-02 14:37:39,23 hours
+Still,S105,Shaking,"tropa , trese ",2026-04-02 14:49:25,,2026-04-02 15:03:43,0 hours
+Still,S106,Shaking,tocak za smqna,2026-04-02 15:06:33,,2026-04-02 15:08:47,0 hours
+Toyota,T67,Damage,"Количката е обляна с киселина от батерията. При опит да се подкара се чува лек звук, но количката не тръгва. Намира се пред офиса на Онлайн.",2026-03-11 21:34:01,"2026-03-18 06:22:35: Здраейте, 
 
+Има ли развите по този казус? | 2026-03-25 15:53:02: spiraakata e blokirala  | Resolved at 2026-04-03 11:07:55: smana na spiraakata",2026-04-03 11:07:55,22 days
+Toyota,T23,Other,When battery is changed it shows 0% battery and the forklift doesnt lift,2026-04-02 14:28:34,Resolved at 2026-04-03 16:43:19: smana na kabela,2026-04-03 16:43:19,1 days
+Toyota,T70,Other,Светва индикация за обслужване / масло/ при часовете.,2026-04-03 11:32:32,Resolved at 2026-04-03 16:45:41: koliakata e obslugena,2026-04-03 16:45:41,5 hours
+Toyota,T63,,smana na indikatora,2026-04-03 16:47:37,Resolved at 2026-04-03 16:48:21: smenen indikator,2026-04-03 16:48:21,0 hours
+Still,S80,Other,конектора на батерията прекъсва и губи ток,2026-04-02 22:46:19,,2026-04-07 14:21:56,4 days
+Still,S127,Other,"Счупена е стойката, която държи мобиса. 
+Моля да се отремонтира.",2026-04-06 22:44:17,,2026-04-07 14:23:08,15 hours
+Still,S127,,problem s mobis planka skusana ,2026-04-03 14:26:04,,2026-04-07 14:23:31,3 days
+Still,S80,Lights,проблем с конектора на батерията,2026-04-02 22:47:21,,2026-04-07 14:25:19,4 days
+Still,S111,Shaking,,2026-04-07 15:23:12,,2026-04-07 16:26:46,1 hours
+Still,S70,Shaking,buksuva za kolela ne moge da se dviji,2026-04-07 15:31:47,,2026-04-07 16:39:48,1 hours
+Still,S66,Shaking,problem s predno kolelo,2026-04-07 22:44:34,Resolved at 2026-04-08 12:50:26: smqna na 1br oporno s taz,2026-04-08 12:50:26,14 hours
+Still,S66,,predno kolelo,2026-04-08 12:55:55,,2026-04-08 12:56:13,0 hours
+Still,S86,Other,schupena os na lqva vilica,2026-04-07 16:36:49,,2026-04-08 13:38:19,21 hours
+Toyota,T62,Damage,"Povreden vagon, otkacha se po vreme na dvijenie. 
+
+Problema e vpisan na nomer na kolichka no ne e kolichka.",2026-04-06 09:14:08,Resolved at 2026-04-08 15:39:55: vagona e gotov,2026-04-08 15:39:55,2 days
+Toyota,T69,Printer,"Количка Toyota T69, има проблем с принтер BGDC-CDC-045, изразяващ се в печат на много бледи етикети.
+
+Също така има силни вибрации и тракане от задните колела на вилиците при ниско свалени вилици.",2026-03-31 12:58:13,2026-04-02 12:14:33: printera e profilaktiran | 2026-04-03 16:48:59: za viliani kolela | Resolved at 2026-04-14 11:07:39: Принтера е оправен дигналисте още веднъж същиа проблем,2026-04-14 11:07:39,13 days
+Toyota,T93,Printer,"Принтер BGDC-CDC-152  принтира бледи и нечетими етикети.
+
+Количката е закарана в ремонтното.",2026-04-14 06:37:58,Resolved at 2026-04-14 11:30:47: Подменен принтер,2026-04-14 11:30:47,4 hours
+Still,S98,,skener ne iska da zarejda i ramka mobis iskurtena,2026-04-08 14:44:16,Resolved at 2026-04-14 11:35:13: Заварена рамка и подменен четец както и пружина на док станция.,2026-04-14 11:35:13,5 days
+Still,S16,Scanner,"Скенера не може да бъде намерен от мобиса. Моля и апаратурата да бъде изместена, така че да може да се използва и принтера. В момента не може да се обслужва.",2026-04-06 15:29:28,Resolved at 2026-04-14 11:52:01: Скенера е подменен а техниката е разредена по обща стойка!,2026-04-14 11:52:01,7 days
+Still,S32,Damage,"
+skusan hidravlichen markuch",2026-04-15 06:48:01,,2026-04-15 11:34:48,4 hours
+Still,S45,,sled drusane umrq na mqsto. Opravi se sled izvajdane na buksata na bateriqta. ,2026-04-15 09:02:44,,2026-04-15 15:12:07,6 hours
+Still,S83,,tropa xova chast,2026-04-15 14:00:01,,2026-04-15 15:56:34,1 hours
+Toyota,T69,Shaking,"Toyota T69, има  силни вибрации и тракане от задните колела на вилиците при ниско свалени вилици. 
+
+Вероятна причина износване.",2026-04-14 06:41:38,Resolved at 2026-04-15 16:31:45: smana na vilichni kolela,2026-04-15 16:31:45,1 days
+Still,S51,,tropa,2026-04-16 13:35:15,Resolved at 2026-04-16 13:51:01: smqna na 1br oporno s taz,2026-04-16 13:51:01,0 hours
+Still,S94,,"tropa
+",2026-04-16 13:37:28,Resolved at 2026-04-16 13:51:29: smqna na 1br oporno s taz,2026-04-16 13:51:29,0 hours
+Toyota,T62,Terminal,Mobisa ne iska da se vkluchi.,2026-04-06 09:00:48,Resolved at 2026-04-16 14:46:16: Подменен,2026-04-16 14:46:16,10 days
+Still,S39,Scanner,"Скенера губи обхват.
+
+След рестартиране на  мобиса и проверка на неговата свързаност към стойката, проблемът за кратко изчезва и след определено време на работа в най-натоварен и неочакван момент се появява отново със зависнала и недовършена задача.
+
+Моля за обстойна проверка и профилактика на мобис и скенер.",2026-04-16 07:02:27,Resolved at 2026-04-16 14:56:05: Терминала е със стар уидоус и скоро ще бъде поменен. Към момента се ползва с тази кофигурация.,2026-04-16 14:56:05,7 hours
+Still,S75,Shaking,tropat zadni,2026-04-17 11:21:26,,2026-04-17 11:40:20,0 hours
+Still,S50,Shaking,tropa,2026-04-17 11:18:58,,2026-04-17 11:40:49,0 hours
+Toyota,T68,Scanner,skenera ne move da byde otkrit,2026-04-17 11:14:07,Resolved at 2026-04-17 14:25:24: Podmenen chetec,2026-04-17 14:25:24,3 hours
+Still,S111,Printer,ne raboti,2026-04-17 11:25:50,,2026-04-17 14:38:44,3 hours
+Still,S37,Shaking,kolichkata boksuva i trese ,2026-04-20 11:23:26,,2026-04-21 15:57:07,1 days
+Still,S28,Damage,Otkachen prut na volan-Ne zaviva,2026-04-18 09:06:35,,2026-04-21 15:58:41,3 days
+Toyota,T62,Terminal,Mobisa ne zarejda. Izpisva erori i gore dava X za mrejata.,2026-04-20 06:40:26,"Resolved at 2026-04-22 10:27:54: Терминала е подменен, ноля да си я вземете с вагончето!!!",2026-04-22 10:27:54,2 days
+Toyota,T50,Shaking,Смана на задвижващи предни колела. Има вибрации. Не може да се отвори предния капак на батериоята. ,2026-04-07 09:57:51,Resolved at 2026-04-22 12:48:47: gotova,2026-04-22 12:48:47,15 days
+Toyota,T75,Shaking,"задно колело е повредено, моля да се смени.",2026-04-20 17:25:20,Resolved at 2026-04-22 13:11:10: smana na vilishhi kolela,2026-04-22 13:11:10,1 days
+Toyota,T75,Shaking,"задно колело се е разпаднало, вибрира цялата количка, за смяна е.",2026-04-18 09:00:11,Resolved at 2026-04-22 13:12:40: smana na vilishni kolela,2026-04-22 13:12:40,4 days
+Still,S27,Other,ne zaviva ,2026-04-21 16:17:45,,2026-04-22 16:16:40,23 hours
+Toyota,T32,Terminal,"терминала не работи, не се включва.",2026-04-22 12:18:52,Resolved at 2026-04-23 10:39:46: Отреминтиран,2026-04-23 10:39:46,22 hours
+Still,S58,Shaking,"ima kolela za smqna ot pred, predpolagam i ot zad, molq da se poglednat i otremontirat (smenqt), skenera ne raboti syshto.
+Blagodarq.",2026-04-22 21:55:44,2026-04-23 11:01:24: Четеца е отремонтиран | Resolved at 2026-04-24 10:37:21: opravena smeneni roler1 i oporno s taz,2026-04-24 10:37:21,1 days
+Toyota,T85,,"Mobisa postoqnno gubi mrejata, dava X i se opravq sled restart. Kolega koito q kara kaza che restartira po 3-4 puti na den.",2026-04-07 08:35:10,"2026-04-14 09:03:00: Към момента не мога да създавам нови терминали поради смяна на Уиндоус. | 2026-04-23 11:02:53: Моля количката да дойде в работилницата за подмяна на терминал. Нека да ме уведоимите когато я доставите! | 2026-04-23 15:40:14: Привет, 
+Количката е доставена в ремонтното. | Resolved at 2026-04-24 16:05:59: Терминала е подменен",2026-04-24 16:05:59,17 days
+Still,S108,Other,"При количка S108 се наблюдават два технически проблема с оборудването:
+
+- Етикетният принтер BGDC-CDC-157 печати много бледи етикети.
+
+- Стойката за терминала/ мобиса е повредена и има опасност в неопределен момент мобиса да падне при движение.
+
+",2026-04-23 18:02:26,"2026-04-23 18:14:12: Количка S108 е предоставена на отдел Online срещу две транспортни колички от по-старият модел.
+
+Стойката на мобиса беше в това състояние при идването на количката в Online и се наложи да бъде обезопасена с допълнителни кабелни стяжки. | Resolved at 2026-04-24 16:06:55: Стойката е отремонтирана и принтера е ревизиран!",2026-04-24 16:06:55,22 hours
+Toyota,T74,Shaking,"zadno kolelo lipswa polovinata, trese se ujasno, molq da se smeni",2026-04-27 10:04:21,Resolved at 2026-04-27 16:19:55: smana na vilishni kolela smana na maslo,2026-04-27 16:19:55,6 hours
+Toyota,T92,Shaking,,2026-04-07 14:28:25,Resolved at 2026-04-27 16:21:54: smana na oporni kolela,2026-04-27 16:21:54,20 days
+Still,S21,Shaking,"trese se cqlata, move bi e kolelo, ili neshto po seriozno, mnogo e powredena",2026-04-27 06:52:31,Resolved at 2026-04-28 11:10:39: smeneno vodeshto kolelo i dve opormi dvoini or jusk,2026-04-28 11:10:39,1 days
+Still,S34,Shaking,tropa,2026-04-28 10:05:04,Resolved at 2026-04-28 11:29:43: smqna na 1br oporno s taz,2026-04-28 11:29:43,1 hours
+Still,S3,Shaking,tropa,2026-04-28 10:03:55,Resolved at 2026-04-28 11:37:24: smqna na 1br oporno s taz,2026-04-28 11:37:24,1 hours
+Still,S22,Other,"problem s vilicite , vdiga na edna strana ",2026-04-24 12:42:42,"Resolved at 2026-04-28 12:14:00: vilica na roler, dulga os, 4 vtulki, dva rolera",2026-04-28 12:14:00,3 days
+Still,S5,Damage,"Не се включва, пробвахме с друга батерия, но нищо не се промени. Наложи се да го преместим с мотокар до ремонтното.",2026-04-28 22:25:24,Resolved at 2026-04-29 15:37:38: remont bna klaviatura,2026-04-29 15:37:38,17 hours
+Still,S80,,tropa predno kolelo,2026-04-30 12:41:25,Resolved at 2026-04-30 12:53:44: smqna na 1br oporno s taz,2026-04-30 12:53:44,0 hours
+Still,S70,Other,Stoika za Mobis. ,2026-04-30 12:36:43,Resolved at 2026-04-30 14:51:19: Отремонтирана,2026-04-30 14:51:19,2 hours
+Toyota,T69,Terminal,"Мобиса не зарежда или има проблем с дисплея.
+В лявавата част на дисплея се наблюдава примигваща светла линия.",2026-04-30 13:34:53,"Resolved at 2026-04-30 15:02:32: 2 rolera, dve oporni al",2026-04-30 15:02:32,1 hours
+Toyota,T78,Scanner,"при друсване стойката на скенера губи сигнал, спира да работи, самия скенер не сканира всеки път, и той прекъсва.",2026-03-19 07:44:47,2026-03-19 16:01:42: Поради липса на машината в ремонтно помещение не може да се отстрани повредата. МОЛЯ да се достави в ремонтно помещение за да се прегледа!,2026-04-30 15:02:47,42 days
+Still,S104,Shaking,tropa,2026-04-30 12:45:59,"Resolved at 2026-04-30 15:04:21: smeneni oporni al 2 br, roler 2 br",2026-04-30 15:04:21,2 hours
+Still,S26,Damage,Silno tropane. Problem s kolela. ,2026-04-28 12:36:57,"2026-04-30 15:07:18: ima problem s ventilator na invertor | Resolved at 2026-04-30 15:37:11: smeneni 4 br dvoini oporni i 2 rolera, podmenen ventilator na invertor, remont na kapak za bateriq,",2026-04-30 15:37:11,2 days
+Still,S50,Shaking,"kolickata se trese silno ot pred, dqsnoto kolelo maje bi e problema, molq da se poglednat i smenqt.",2026-04-30 09:11:52,Resolved at 2026-04-30 15:44:09: oporno s taz,2026-04-30 15:44:09,6 hours
+Still,S50,Shaking,za vodeshto,2026-04-30 15:47:09,Resolved at 2026-04-30 15:48:54: smeneno vodeshto kolelo,2026-04-30 15:48:54,0 hours
+Toyota,T32,Terminal,"terminala blokira, ne raboti",2026-04-29 09:49:17,Resolved at 2026-04-30 15:54:24: gotova,2026-04-30 15:54:24,1 days
+Still,S32,Other,Oil,2026-05-05 09:44:49,Resolved at 2026-05-08 07:44:09: smqna na hidravlicen markuc za visoko nalqgane,2026-05-08 07:44:09,2 days
+Toyota,T77,Shaking,problem s kolelata,2026-05-05 14:40:50,Resolved at 2026-05-08 10:46:30: smeneni kolela,2026-05-08 10:46:30,2 days
+Toyota,T77,Shaking,"количката тресе цялата, има колела за смяна.",2026-04-23 22:04:39,2026-04-24 13:45:34: kade e kolishkata | Resolved at 2026-05-08 10:47:47: kolishkata e gotova,2026-05-08 10:47:47,14 days
+Toyota,T46,Shaking,"Тропащи колела, моля за замяна с рециклирани или с нови при липса на рециклирани.",2026-05-08 13:09:55,Resolved at 2026-05-11 12:36:26: smeneni kolela,2026-05-11 12:36:26,2 days
+Still,S18,Other,"Количката боксува, има проблем с колелата.",2026-03-24 21:45:34,,2026-05-11 14:11:10,47 days
+Still,S2,Shaking,количката е за смяна на предни колела,2026-05-11 07:13:16,,2026-05-11 14:53:40,7 hours
+Toyota,T72,Scanner,"skenera prekyswa, ne raboti",2026-05-08 20:10:07,Resolved at 2026-05-11 14:57:24: otremontirana,2026-05-11 14:57:24,2 days
+Toyota,T69,Terminal,"Проблемът с мобиса не е разрешен, но случая е затворен вчера от сервиз със следният коментар : 
+ {  2026-04-30 15:02:32: 2 rolera, dve oporni al }
+http://emeabgdcvweb12.jysk.com:8080/view_resolved?model=Toyota&number=T69
+
+Т69 беше изкарана извън ремонтното, но техническият проблем с мобиса остава неразрешен и реално тази количка не е използваема към настоящият момент за пикинг или транспорт със задача. Затова отваряме случая отново.
+
+Моля за проверка и съдействие.",2026-05-01 11:28:57,Resolved at 2026-05-11 15:46:22: podmenen terminal,2026-05-11 15:46:22,10 days
+Still,S11,Scanner,skenera ne raboti,2026-05-05 16:09:45,Resolved at 2026-05-11 16:11:53: scener podmenen,2026-05-11 16:11:53,6 days
+Toyota,T47,Other,"Изтекла киселина от батерията и облята частично по корпуса на количката.
+
+За измиване и почистване.",2026-04-20 20:10:45,Resolved at 2026-05-11 16:31:43: gotova,2026-05-11 16:31:43,20 days
+Still,S2,Shaking,,2026-05-09 10:05:46,Resolved at 2026-05-12 11:30:17: smeneno oporno kolelo,2026-05-12 11:30:17,3 days
+Still,S36,Shaking,,2026-05-12 06:56:40,,2026-05-12 11:38:35,4 hours
+Toyota,T85,Terminal,"Problem pri logvane na profil, dava greshka 401 pishe neshto za klient 500 za device management",2026-04-28 21:52:02,2026-04-30 15:09:30: при този проблем се пуска тикет на WMS | 2026-05-11 06:41:44: Количката не може да потегли. Намира се на паркинга на Онлайн.,2026-05-12 11:56:42,13 days
+Toyota,T78,Scanner,skenera ne se swyrzwa,2026-04-29 09:26:49,2026-04-30 15:53:51: GOTOVA | 2026-04-30 15:53:56: GOTOVA,2026-05-12 11:57:40,13 days
+Still,S75,Scanner,,2026-04-29 15:57:46,Resolved at 2026-05-12 12:00:28: машината липсва!!!,2026-05-12 12:00:28,12 days
+Toyota,T25,Scanner,"Повреден скенер, разкачена вътрешна част.",2026-04-29 16:09:53,Resolved at 2026-05-12 14:13:42: Скенера е тотализиран! Моля да се обърне внимание на служителя за начин на ползване на скенер.Подменен с нов.,2026-05-12 14:13:42,12 days
+Still,S63,Scanner,Мобиса не намира скенера.,2026-05-08 15:00:29,Resolved at 2026-05-12 14:35:05: Podmenen chetec,2026-05-12 14:35:05,3 days
+Still,S2,Scanner,,2026-05-09 10:05:20,Resolved at 2026-05-12 15:01:27: Pchisten chetec,2026-05-12 15:01:27,3 days
+Toyota,T69,,Navazmojno logvane na mobisa,2026-05-12 07:48:47,Resolved at 2026-05-12 15:02:20: opraven mak adres,2026-05-12 15:02:20,7 hours
+Still,S39,Scanner,"Скенера не прави връзка с мобиса и стои извън обхват, т.е. количката е неизползваема за WT като движения, пикинг или репленишмънт.
+
+Закарана е в ремонтното.",2026-05-12 08:54:05,Resolved at 2026-05-12 15:12:04: Otrmontirana,2026-05-12 15:12:04,6 hours
+Toyota,T32,Printer,"принтера се гаси след неопределено време, между 3 и 4 пъти на ден.",2026-05-05 18:24:48,Resolved at 2026-05-12 15:16:51: zalqt s kiselina adapter! podmenen,2026-05-12 15:16:51,6 days
+Toyota,T81,Scanner,"скенера не работи, прекъсва когато минем през неравност, при смяна на батерия се изключва количката.",2026-05-04 14:54:27,Resolved at 2026-05-12 15:18:42: otremontiran,2026-05-12 15:18:42,8 days
+Still,S75,Scanner,"skenera ne raboti, ne se swyrzwa sas stoikata, molq se se postawi i kabel s buksi na terminala.",2026-04-30 09:17:28,Resolved at 2026-05-12 15:21:41: lipswa,2026-05-12 15:21:41,12 days
+Still,S75,Scanner,"skenera ne mooje da byde otkrit, ne se swyrzwa, molq i za kabel kym terminala, kato wsichki ostanali kolichki",2026-05-04 21:39:39,Resolved at 2026-05-12 15:23:16: ne moje da se otremontira ako ne se namira v serviza i ne se pishe po 2-3 puti edin i susht problem,2026-05-12 15:23:16,7 days
+Toyota,T78,Scanner,"количката е в ремонтното, днес я оставяме там.",2026-05-04 14:57:19,Resolved at 2026-05-12 15:24:24: kolichkata ne e v remontnoto,2026-05-12 15:24:24,8 days
+Toyota,T75,Scanner,skenera ne raboti,2026-05-05 19:55:45,Resolved at 2026-05-12 15:24:57: otremointiran,2026-05-12 15:24:57,6 days
+Still,S99,Shaking,,2026-05-13 14:49:03,Resolved at 2026-05-13 14:49:26: smeneno oporno s taz,2026-05-13 14:49:26,0 hours
+Still,S81,Lights,"fara ne raboti
+printera se izkluchva
+mobisa zabiva",2026-05-12 15:58:12,"Resolved at 2026-05-14 14:20:57: Replaced terminal , fixed dock station on priter.",2026-05-14 14:20:57,1 days
+Still,S70,Damage,ne vdiga dostatucno vilicite,2026-05-14 14:20:22,"Resolved at 2026-05-14 14:35:21: smeneni 2 vilki za roleri, 2 kusi osi, dve dulgi osi za rolerite! smenena os 1 br na shtanga kum shasi, 4 shplenda, 4 distancionni vtulki, 2 br roler ot jysk",2026-05-14 14:35:21,0 hours
+Still,S64,Damage,Проблем с ходова част.,2026-05-09 14:25:51,"Resolved at 2026-05-14 15:21:20: smeneni dve oporni edinichni kolela JYSK , dva rolera JYSK",2026-05-14 15:21:20,5 days
+Toyota,T85,Damage,"Здравейте,
+
+Количка Т85 е блокирала и не може да се премести. Батерията и е на 40%, но при опит за тръгване от паркинга в отдел Online не може да помръдне и угасва веднага. Моля за проверка и техническо съдействие.",2026-05-12 08:30:50,Resolved at 2026-05-15 13:18:14: za smana na bateriata,2026-05-15 13:18:14,3 days
+Toyota,T93,Other,Kolichkata podnasq pri vzimane na zavoi.,2026-05-12 15:42:28,Resolved at 2026-05-15 13:19:40: smana na vodejo kolelo,2026-05-15 13:19:40,2 days
+Still,S82,Damage,"problem s vilicite , ne vdiga ravnomerno",2026-05-14 22:43:12,"Resolved at 2026-05-15 15:54:52: smenei dva rolera, dve osi za roler, dve kusi osi, dve dulgi osi za vilicite, 6 shplenda, 4 vtulki",2026-05-15 15:54:52,17 hours
+Toyota,T99,Shaking,,2026-05-15 15:12:01,Resolved at 2026-05-18 10:05:55: smana na vilishni kolela,2026-05-18 10:05:55,2 days
+Still,S112,Other,"счупена рамка на мобис
+ролки на вилиците и отделно главното колело тропа",2026-05-15 08:45:58,"2026-05-15 14:17:21: smeneni oporni 2 br, oporni al 2br | Resolved at 2026-05-18 11:44:56: Otremontirana",2026-05-18 11:44:56,3 days
+Toyota,T67,Printer,"Принтера не работи, не се включва от копчето.",2026-05-18 06:36:19,"Resolved at 2026-05-18 12:06:55: Количката е обилно облята с киселина от батерията, захранващия блок е почисен и принтера функционира нормално към момента, подменена пружина на заключване четец.",2026-05-18 12:06:55,5 hours
+Toyota,T65,Terminal,"Mobisa gasne po vreme na picking i se nalaga restart po nyakolko puti.
+Nomerat na mobisa e T039",2026-05-15 11:53:22,Resolved at 2026-05-18 12:24:35: подменен терминал,2026-05-18 12:24:35,3 days
+Toyota,T85,Damage,"Когато се включи количката пали, при опит да се подкара гасне.
+Когато е включена и се опита да се дигнат вилиците също гасне.
+Количката се намира на паркинта за колички на Онлайн отдела.
+Нямаме възможнсот да я закараме в ремонтното.",2026-05-12 21:23:31,Resolved at 2026-05-18 15:10:07: Сменена батерия.,2026-05-18 15:10:07,5 days
+Still,S105,Damage,"Счупена е гредата под кантара, основното колело е за смяна",2026-05-19 11:13:37,"Resolved at 2026-05-19 14:25:22: 2 br oporni al, 2 br roler",2026-05-19 14:25:22,3 hours
+Toyota,T62,Damage,"Enregomover T62 model Toyota BT Optio ima tehnicheska neizpravnost s prikachwashtiyat mehanizum kum WAGON 1 i nyakolko puti se sluchva opasno razkachvane pri dvijenie i izvurshvane na picking v otdel Online.
+
+Za proverka i remont na prikachvashtiyat mehanizum.",2026-05-18 17:19:38,Resolved at 2026-05-20 13:12:25: sled proverka shepeni gredi gredite sa smeneni,2026-05-20 13:12:25,1 days
+Still,S83,Shaking,,2026-05-20 13:13:29,Resolved at 2026-05-20 13:14:01: smeneni dve oporni edinichni kolela jysk,2026-05-20 13:14:01,0 hours
+Still,S116,Other,Скъсан маркуч и рахлабени/липсващи болтове придържащи лопатите.,2026-05-19 07:48:20,Resolved at 2026-05-20 15:58:01: smenen hidravlichen markuch,2026-05-20 15:58:01,1 days
+Still,S2,Scanner,"skenera prekyswa, spira internet wryzkata",2026-05-20 14:52:00,,2026-05-20 15:59:36,1 hours
+Toyota,T91,Scanner,Majkata na cheteca ne sveti. i suotvetno toi ne raboti,2026-05-20 09:11:30,Resolved at 2026-05-20 16:00:42: otremontirana,2026-05-20 16:00:42,6 hours
+Toyota,T82,Shaking,prednite kolela sa za smqna,2026-05-20 12:29:14,Resolved at 2026-05-20 16:05:31: smana   na tagovo kolelo ismana na masla,2026-05-20 16:05:31,3 hours
+Still,S17,,"Koli4kata zabiva po vreme na dvijenie, ne izpisva gre6ksa. Pokazva se samo gai4en klu4.",2026-02-26 18:37:30,Resolved at 2026-05-20 16:22:26: za test,2026-05-20 16:22:26,82 days
+Toyota,T36,Shaking,Problem s kantara spira rqzko chesto i traka.,2026-05-19 07:38:21,Resolved at 2026-05-20 16:38:32: smana na vilishni kolela,2026-05-20 16:38:32,1 days
+Still,S91,Damage,tech na maslo,2026-05-20 17:03:51,Resolved at 2026-05-20 17:04:35: smeneni semeringi na reduktor s maslo,2026-05-20 17:04:35,0 hours
+Still,S127,,"tropa
+",2026-04-17 14:29:43,2026-05-11 15:40:59: kolichkata q nqma v seiza | Resolved at 2026-05-20 17:18:43: smeneni dve oporni al,2026-05-20 17:18:43,33 days
+Still,S28,Damage,"Машината е в пределите на Inbound, ще бъде предоставена при възможност да се работи веднага по нея.
+Установени проблеми по нея:
+1. Спирачките не действат. /при натискане на спирачният педал, няма очакваната реакция/
+2. Движи се много бавно и излиза съобщение за грешка и висока температура.",2026-04-29 22:30:36,"2026-04-30 15:06:33: poruchan senzor na spirachka | 2026-04-30 22:42:17: Машината е откарана в Ремонтното, защото се скъса закрапващият болт на цилиндъра на лявата лапа и сега не може да се прибира. | 2026-05-04 11:30:26: smenen cilindur na skuiz, nova gaika, planka, koronka, shplend | Resolved at 2026-05-21 13:30:45: smenen e senzor za spirachka",2026-05-21 13:30:45,21 days
+Still,S110,Shaking,tropa,2026-05-20 17:22:33,Resolved at 2026-05-21 15:04:37: smeneni dve oporni al,2026-05-21 15:04:37,21 hours
+Still,S109,Forklift Error,"Машината изписва следните грешки:
+226
+294
+347
+395
+242
+Т.к. не може да бъде преместена, машината се намира на паркинга пред Outbound офиса.",2026-03-25 07:36:31,Resolved at 2026-05-21 16:27:07: opravena smenen senzor na volana,2026-05-21 16:27:07,57 days
+Toyota,T25,Shaking,За смяна на колелета.,2026-05-22 06:26:52,,2026-05-22 06:28:48,0 hours
+Still,S76,,niama zahranvane na 220v.,2026-05-20 22:04:48,"2026-05-22 08:00:13: Изгорял инвертор, подлежи на подмяна. | Resolved at 2026-05-22 15:18:27: smenen invertor 220v",2026-05-22 15:18:27,1 days
+Toyota,T81,Terminal,Губи  обхват и се оправя само с рестарт,2026-05-26 17:25:35,"Resolved at 2026-05-27 14:55:04: Когато машината липсва в ремонтно помещение ,няма да бъде сервизирана!",2026-05-27 14:55:04,21 hours
+Still,S52,Scanner,счупен е скенера. за смяна,2026-05-22 14:37:51,Resolved at 2026-05-27 15:04:32: Molq de sa puska po edin bilet,2026-05-27 15:04:32,5 days
+Still,S52,Scanner,"Четеца пада, счупена е стойката",2026-05-22 15:22:41,Resolved at 2026-05-27 15:04:54: podmenen chetec,2026-05-27 15:04:54,4 days
+Still,S45,Damage,sjupen lager na zadno liavo kolelo,2026-05-21 20:49:27,Resolved at 2026-05-28 10:37:44: smqna na 4br tovarni rolki i 2br kantarna vilka,2026-05-28 10:37:44,6 days
+Still,S91,Terminal,"na terminala izliza neprekasnato saobshtenie, razlogwa lognaliq se kolega",2026-05-20 21:53:28,Resolved at 2026-05-28 12:00:30: Podmenen terminal,2026-05-28 12:00:30,7 days
+Still,S118,,pregrqva ventilatora ne raboti ,2026-05-28 10:48:33,Resolved at 2026-05-28 12:24:32: Cheteca e podmenen,2026-05-28 12:24:32,1 hours
+Toyota,T86,Scanner,"skenera ne raboti, ne move da se swyrve",2026-05-28 06:25:58,Resolved at 2026-05-28 12:26:59: Cheteca e smenen,2026-05-28 12:26:59,6 hours
+Still,S63,Terminal,Счупен дисплей на мобиса,2026-05-27 22:43:30,Resolved at 2026-05-28 12:30:08: Podmenen,2026-05-28 12:30:08,13 hours
+Still,S2,Terminal,kod greshka SM 1,2026-05-26 13:26:40,Resolved at 2026-05-28 12:39:42: Podmenen chetec,2026-05-28 12:39:42,1 days
+Still,S45,Damage,lipswa zadno kolelo,2026-05-26 13:31:36,Resolved at 2026-05-28 16:11:39: smqna na 4br tovarni rolki i 2br kantarni vilki,2026-05-28 16:11:39,2 days
+Still,S85,Terminal,Za smqna na stanciq terminal-stoika mobis,2026-03-24 14:46:42,2026-03-27 10:28:47: Porednata kolichka zapisana za remont no lipsva fizicheski w rabotilnica.MOLQ da bude dostawena za otstranqwane na problema. | Resolved at 2026-05-29 09:33:29: 1,2026-05-29 09:33:29,65 days
+Still,S28,,pregrqva kato doidat casti  6e go vzemem,2026-05-28 10:50:54,Resolved at 2026-05-29 10:01:07: smqna ma 2br tovarni rolki i 2br oporni edenicni jysk,2026-05-29 10:01:07,23 hours
+Still,S89,Forklift Error,"След смяна на батерия машината не тръгва, също така куплонга за включване на батерията е силно повреден, предполагам няма връзка между батерията и машината.",2026-05-22 07:00:14,2026-05-22 07:00:51: Машината се намира в зарядната станция поради невъзможност да бъде преместена. | Resolved at 2026-05-29 10:57:38: smqna na 1br pedal za gazta i 4br buhoni 220 volta i 1br MSU,2026-05-29 10:57:38,7 days
+Still,S86,Shaking,"Проблем с главното колело, трака и вибрира.",2026-05-26 07:14:04,Resolved at 2026-05-29 10:57:38: smqna na 1br pedal za gazta i 4br buhoni 220 volta i 1br MSU,2026-05-29 10:57:38,3 days
+Still,S16,Shaking,Колелата задират при завои,2026-05-28 22:33:59,Resolved at 2026-05-29 15:03:22: smqna na 2br tovarni rolki 1br vode6o kolelo 4br oporni dvoini,2026-05-29 15:03:22,16 hours
+Still,S22,Damage,"Привет,
+
+Количка S22 е със счупена щанга.
+
+Поздрави",2026-05-13 14:56:24,Resolved at 2026-05-29 16:02:26: povtarq se,2026-05-29 16:02:26,16 days
+Toyota,T30,Shaking,За смяна на колелета.,2026-05-22 06:28:34,Resolved at 2026-05-29 16:13:11: smana na kolela,2026-05-29 16:13:11,7 days
+Toyota,T81,Damage,"когато има товар на количката спира (прекъсва) да се движи, спира внезапно.",2026-05-29 13:44:02,Resolved at 2026-06-01 16:25:04: smana na dashika,2026-06-01 16:25:04,3 days
+Toyota,T48,Forklift Error,"3.511 greshka, ne se dviji",2026-06-01 14:58:11,2026-06-01 16:31:28: bateriata e za smana,2026-06-01 16:32:21,1 hours
+Toyota,T79,Shaking,"predno kolelo trese, molq da se smeni",2026-06-01 14:55:42,Resolved at 2026-06-01 16:43:51: poshistvane na kolelata,2026-06-01 16:43:51,1 hours
+Toyota,T67,Terminal,"Mobisa gubi mreja, opravq se sled restart, no gubi mrejata prez opredeleno vreme",2026-06-02 08:46:31,Resolved at 2026-06-02 10:29:56: podmenen terminal,2026-06-02 10:29:56,1 hours
+Still,S105,Terminal,за смяна на терминал. има пуснат имейл по този казус,2026-06-02 10:59:02,Resolved at 2026-06-02 16:01:39: Podmenen terminal,2026-06-02 16:01:39,5 hours
+Still,S32,Damage,Теч от един от маркучите които служат при местене на лапите настрани. ,2026-06-01 14:03:09,2026-06-01 14:04:03: Както обикновено машината е в Инбаунд до поискване за започване на ремонта. | Resolved at 2026-06-02 16:56:58: smqna na 2br hidravlicni markuci na vilicniq izravnitel,2026-06-02 16:56:58,1 days
+Still,S18,Shaking,Тропа,2026-06-02 15:05:11,Resolved at 2026-06-03 10:11:53: smqna na 2br oporni dvoini  jysk,2026-06-03 10:11:53,19 hours
+Toyota,T86,Forklift Error,"kolickata spira, zabiwa w dwivenie",2026-04-18 09:51:28,2026-04-22 14:44:14: za smana na kabela na mahinata porashan | Resolved at 2026-06-03 14:04:27: smana na gese i kolela,2026-06-03 14:04:27,46 days
+Toyota,T48,Other,подава гас и дирекно гасне батерията е на 50 процента,2026-06-01 10:05:37,,2026-06-03 14:05:15,2 days
+Toyota,T36,Other,Спира внезапно по време на движение.,2026-06-01 11:51:00,Resolved at 2026-06-03 16:53:53: reglah na stepenkata,2026-06-03 16:53:53,2 days
+Still,S77,Scanner,spored kolegata raboti i spira,2026-06-04 06:26:42,Resolved at 2026-06-04 09:35:07: ot baterqta e,2026-06-04 09:35:07,3 hours
+Still,S127,Lights,Няма я лампата за синя светлина и тропа.,2026-06-03 18:46:05,Resolved at 2026-06-04 09:49:47: montirane na sinq svetlina jysk,2026-06-04 09:49:47,15 hours
+Still,S6,,s4upena,2026-05-14 10:41:51,2026-05-20 16:15:43: nqma q | Resolved at 2026-06-04 11:25:33: koli4kata q nqma v serviznoto,2026-06-04 11:25:33,21 days
+Still,S93,Shaking,,2026-06-08 13:50:44,Resolved at 2026-06-08 13:51:16: smeneno oporno s taz,2026-06-08 13:51:16,0 hours
+Still,S112,Shaking,Тропа,2026-06-05 14:40:30,Resolved at 2026-06-08 14:00:57: smeneni dve oporni al,2026-06-08 14:00:57,2 days
+Still,S91,Scanner,,2026-06-08 15:53:35,Resolved at 2026-06-08 15:53:53: podmenen,2026-06-08 15:53:53,0 hours
+Still,S77,Scanner,skenera e za smqna,2026-06-08 11:55:35,Resolved at 2026-06-08 16:00:45: podmenen,2026-06-08 16:00:45,4 hours
+Still,S83,Printer,Счупен принтер.,2026-06-05 16:05:40,Resolved at 2026-06-08 16:13:49: otremontiran dok printer i dok terminal schupeni ot udar,2026-06-08 16:13:49,3 days
+Still,S8,Lights,,2026-06-08 16:17:38,Resolved at 2026-06-08 16:18:12: opravena sinq svetlina,2026-06-08 16:18:12,0 hours
+Still,S118,,pregrqva,2026-06-08 16:20:14,Resolved at 2026-06-08 16:21:18: pochoisteni invertori i obslujen,2026-06-08 16:21:18,0 hours
+Still,S87,Scanner,Мобиса не намира скенера.,2026-06-05 22:22:05,Resolved at 2026-06-08 16:22:22: otremontirana,2026-06-08 16:22:22,2 days
+Toyota,T49,Damage,Grumnala kolichka,2026-06-05 11:19:46,Resolved at 2026-06-08 16:25:50: smana na kontaktor i poshstbane na kolishkata ot kiselina,2026-06-08 16:25:50,3 days
+Still,S122,Other,"lapata e pred izpadane, lipsvat boltove",2026-06-09 09:38:30,Resolved at 2026-06-09 14:41:14: postavqne na krepejni elementi,2026-06-09 14:41:14,5 hours
+Still,S80,Damage,izdawa styrjeshti zvuci ot zadnata stranan ot kam grabcheto,2026-06-09 06:13:33,Resolved at 2026-06-09 14:50:24: 4 br tandem roler,2026-06-09 14:50:24,8 hours
+Still,S60,Scanner,Smqna Doking stanciq|Proverka printer ,2026-06-09 14:20:20,Resolved at 2026-06-10 11:40:05: otremontirana,2026-06-10 11:40:05,21 hours
+Still,S42,Forklift Error,"Забива по време на движение.
+Грешка Е344",2026-06-03 16:16:27,Resolved at 2026-06-10 14:29:52: smenena bateriq,2026-06-10 14:29:52,6 days
+Still,S13,Damage,Счупена/разхлабена рамка.,2026-06-08 08:36:54,Resolved at 2026-06-10 14:36:00: krepeji na ramka mobis i 1 os,2026-06-10 14:36:00,2 days
+Still,S39,,Скенера не прави връзка. Количката е неизползваема. Моля да не се изкарва от ремонтното помещение ако не е отремонтирана!,2026-06-11 08:47:00,,2026-06-11 08:50:40,0 hours
+Still,S13,,tropa,2026-06-12 12:06:56,"Resolved at 2026-06-12 14:30:05: dvoini oporni 2 br. jysk, 2 br. roler",2026-06-12 14:30:05,2 hours
+Still,S24,Other,про блем при колелото под коша(тропа),2026-06-02 12:33:23,"Resolved at 2026-06-12 15:03:35: smenena oporna stoika, oporno edinichno kolelo, 1 br roler",2026-06-12 15:03:35,10 days
+Still,S57,Forklift Error,"Движи се много бавно, дава грешка L304",2026-06-01 08:55:59,Resolved at 2026-06-12 15:28:48: smeneni dva senzora na machta,2026-06-12 15:28:48,11 days
+Still,S127,Shaking,ЗА СМЯНА НА КОЛЕЛА,2026-06-15 12:24:56,"Resolved at 2026-06-15 12:58:07: smeneni 2br oporni al, 2 br roler",2026-06-15 12:58:07,0 hours
+Still,S63,Shaking,За смяна на колела,2026-06-15 09:32:34,"Resolved at 2026-06-15 12:59:10: smeneni vodeshto kolelo, 2br oporni edinichni, 2 br roleri",2026-06-15 12:59:10,3 hours
+Still,S111,Shaking,Трака главно колело,2026-06-15 08:12:37,"Resolved at 2026-06-15 13:00:16: smeneni 2 br oporni al, 2 br roleri",2026-06-15 13:00:16,4 hours
+Still,S74,Shaking,Kolichkata trese pri dvijenie,2026-06-12 21:14:37,"Resolved at 2026-06-15 13:01:26: smeneni oporno s taz, 4 br tandem roleri",2026-06-15 13:01:26,2 days
+Still,S57,Damage,izpisva greshka S278,2026-05-18 12:17:21,Resolved at 2026-06-15 13:32:06: smqna na 2br senzori na machta,2026-06-15 13:32:06,28 days
+Still,S33,Damage,"Машината е в пределите на Inbound, ще бъде предоставена при възможност да се работи веднага по нея.
+Установени проблеми по нея:
+1. Излиза съобщение за грешка и висока температура, след като се охлади може отново да се ползва по предназначение.",2026-04-29 22:31:42,2026-04-30 15:06:08: trqbvat ventilatori na invertori-poruchani sa | Resolved at 2026-06-15 15:46:16: smenen ventilator na invrtor traction,2026-06-15 15:46:16,46 days
+Still,S77,,dava grehka 278,2026-06-04 12:21:20,"Resolved at 2026-06-15 17:08:00: smenena bateriq, oporno s taz, 4 br tandem roleri",2026-06-15 17:08:00,11 days
+Still,S57,Forklift Error,"Заби на едно място, наложи се да го преместим с машина до ремонтното",2026-06-16 10:18:05,Resolved at 2026-06-16 14:08:08: smeneno vodeshto kolelo,2026-06-16 14:08:08,3 hours

@@ -126,11 +126,17 @@
             <div class="card-desc" data-i18n="whLogDesc">Browse and delete work hours log entries by unit. Remove test or erroneous records.</div>
             <div class="card-arrow">→ OPEN</div>
         </a>
+        <a href="{{ url_for('data_cleanup') }}" class="service-card" style="border-color:rgba(231,76,60,.3);">
+            <div class="card-icon">🧹</div>
+            <div class="card-title" data-i18n="cleanup">Data Cleanup</div>
+            <div class="card-desc" data-i18n="cleanupDesc">Scan all CSV files for errors, duplicates, and bad data. Fix with one click.</div>
+            <div class="card-arrow">→ OPEN</div>
+        </a>
     </div>
 </main>
 <script>
 const T = {
-    en: { serviceTitle:"SERVICE", goBack:"← Go Back", workHours:"Work Hours", workHoursDesc:"View and filter work hour history per forklift unit and model.", maintenance:"Maintenance", maintDesc:"Log greasing, oil changes, hydraulic and filter maintenance per unit.", fleetMgmt:"Fleet Management", fleetMgmtDesc:"Add or remove forklift and battery units from the registry.", intervals:"Service Intervals", intervalsDesc:"View all units service status and edit intervals per unit or per model.", whLog:"Hours Log", whLogDesc:"Browse and delete work hours log entries by unit. Remove test or erroneous records." },
+    en: { serviceTitle:"SERVICE", goBack:"← Go Back", workHours:"Work Hours", workHoursDesc:"View and filter work hour history per forklift unit and model.", maintenance:"Maintenance", maintDesc:"Log greasing, oil changes, hydraulic and filter maintenance per unit.", fleetMgmt:"Fleet Management", fleetMgmtDesc:"Add or remove forklift and battery units from the registry.", intervals:"Service Intervals", intervalsDesc:"View all units service status and edit intervals per unit or per model.", whLog:"Hours Log", whLogDesc:"Browse and delete work hours log entries by unit. Remove test or erroneous records.", cleanup:"Data Cleanup", cleanupDesc:"Scan all CSV files for errors, duplicates, and bad data. Fix with one click." },
     bg: { serviceTitle:"СЕРВИЗ", goBack:"← Назад", workHours:"Работни часове", workHoursDesc:"Преглед на работните часове по мотокар и модел.", maintenance:"Поддръжка", maintDesc:"Въведи смазване, смяна на масло, хидравлично и филтри по единица.", fleetMgmt:"Управление на флота", fleetMgmtDesc:"Добавяне или премахване на мотокари и батерии от регистъра.", intervals:"Сервизни интервали", intervalsDesc:"Преглед на статуса и редактиране на интервали по единица или модел." }
 };
 function getLang() { return localStorage.getItem('fleetLang')||'en'; }

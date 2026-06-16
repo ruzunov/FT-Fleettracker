@@ -607,6 +607,7 @@ def service_intervals():
 
     return render_template('service_intervals.html', units=units, bulk=bulk)
 
+
 # ── Work Hours Log ────────────────────────────────────────────────────────────
 WH_CSV    = 'forklift_work_hours.csv'
 WH_FIELDS = [
@@ -692,6 +693,249 @@ def work_hours_log():
         total=len(all_rows)
     )
 
+
+# ── Data Cleanup Wizard ───────────────────────────────────────────────────────
+@app.route('/data_cleanup', methods=['GET', 'POST'])
+def data_cleanup():
+    from collections import defaultdict
+
+    WH_CSV  = 'forklift_work_hours.csv'
+    ISS_CSV = 'issues.csv'
+    RES_CSV = 'resolved_issues.csv'
+    FL_CSV  = 'fleet_registry.csv'
+
+    WH_FIELDS = [
+        'Model','Number','WorkHours','DateEntered',
+        'Greasing','GreasingDate','GreasingWorkHours','GreasingInterval',
+        'OilChange','OilChangeDate','OilChangeWorkHours','OilChangeInterval',
+        'HydraulicChange','HydraulicChangeDate','HydraulicChangeWorkHours','HydraulicChangeInterval',
+        'FilterChange','FilterChangeDate','FilterChangeWorkHours','FilterChangeInterval'
+    ]
+    ISS_FIELDS = ['Model','Number','Issue','Description','DateTime','Comments']
+    RES_FIELDS = ['Model','Number','Issue','Description','DateTime','Comments','Resolved','ResolutionTime']
+
+    def save_csv(path, rows, fields):
+        with open(path, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
+            w.writeheader()
+            w.writerows(rows)
+
+    if request.method == 'POST':
+        username = request.form.get('username','').strip().lower()
+        pin      = request.form.get('pin','').strip()
+        if not check_fleet_pin(username, pin):
+            flash('Incorrect username or PIN.', 'error')
+            return redirect(url_for('data_cleanup'))
+
+        fix = request.form.get('fix')
+
+        if fix == 'bad_intervals':
+            rows = safe_read_csv(WH_CSV)
+            fixed = 0
+            for r in rows:
+                toyota = {'GreasingInterval':'500','OilChangeInterval':'3000',
+                          'HydraulicChangeInterval':'2000','FilterChangeInterval':'1000'}
+                still  = {'GreasingInterval':'500','OilChangeInterval':'10000',
+                          'HydraulicChangeInterval':'6000','FilterChangeInterval':'1000'}
+                defs = toyota if r.get('Model') == 'Toyota' else still
+                for field in list(defs.keys()):
+                    try: float(r.get(field,''))
+                    except:
+                        r[field] = defs[field]
+                        fixed += 1
+            save_csv(WH_CSV, rows, WH_FIELDS)
+            flash(f'Fixed {fixed} malformed interval value(s).', 'success')
+
+        elif fix == 'duplicate_wh':
+            rows = safe_read_csv(WH_CSV)
+            seen = set()
+            kept = []
+            removed = 0
+            for r in rows:
+                key = (r.get('Model',''), r.get('Number',''), r.get('WorkHours',''), r.get('DateEntered','')[:10])
+                if key in seen:
+                    removed += 1
+                else:
+                    seen.add(key)
+                    kept.append(r)
+            save_csv(WH_CSV, kept, WH_FIELDS)
+            flash(f'Removed {removed} duplicate work hours row(s).', 'success')
+
+        elif fix == 'low_wh':
+            rows = safe_read_csv(WH_CSV)
+            unit_count = defaultdict(int)
+            kept = []
+            removed = 0
+            for r in rows:
+                k = (r.get('Model',''), r.get('Number',''))
+                unit_count[k] += 1
+                try: wh_val = float(r.get('WorkHours', 0) or 0)
+                except: wh_val = 0
+                if unit_count[k] > 1 and wh_val < 5:
+                    removed += 1
+                else:
+                    kept.append(r)
+            save_csv(WH_CSV, kept, WH_FIELDS)
+            flash(f'Removed {removed} suspiciously low work hours row(s).', 'success')
+
+        elif fix == 'empty_issues':
+            rows = safe_read_csv(ISS_CSV)
+            kept = [r for r in rows if r.get('Issue','').strip() and r.get('Number','').strip()]
+            removed = len(rows) - len(kept)
+            save_csv(ISS_CSV, kept, ISS_FIELDS)
+            flash(f'Removed {removed} empty issue row(s).', 'success')
+
+        elif fix == 'resolved_nulls':
+            rows = safe_read_csv(RES_CSV)
+            fixed = 0
+            for r in rows:
+                if not (r.get('Resolved') or '').strip():
+                    r['Resolved'] = r.get('DateTime','') or 'Unknown'
+                    fixed += 1
+                if r.get('ResolutionTime') is None:
+                    r['ResolutionTime'] = ''
+                    fixed += 1
+            save_csv(RES_CSV, rows, RES_FIELDS)
+            flash(f'Patched {fixed} null field(s) in resolved issues.', 'success')
+
+        elif fix == 'add_missing_fleet':
+            wh_rows  = safe_read_csv(WH_CSV)
+            fl_rows  = safe_read_csv(FL_CSV)
+            wh_units = set((r.get('Model',''), r.get('Number','')) for r in wh_rows)
+            added = 0
+            for r in fl_rows:
+                k = (r.get('Model',''), r.get('Number',''))
+                if k not in wh_units:
+                    g_int = '500'
+                    o_int = '3000' if k[0] == 'Toyota' else '10000'
+                    h_int = '2000' if k[0] == 'Toyota' else '6000'
+                    wh_rows.append({
+                        'Model': k[0], 'Number': k[1],
+                        'WorkHours': '0', 'DateEntered': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        'Greasing': 'No', 'GreasingDate': '', 'GreasingWorkHours': '0', 'GreasingInterval': g_int,
+                        'OilChange': 'No', 'OilChangeDate': '', 'OilChangeWorkHours': '0', 'OilChangeInterval': o_int,
+                        'HydraulicChange': 'No', 'HydraulicChangeDate': '', 'HydraulicChangeWorkHours': '0', 'HydraulicChangeInterval': h_int,
+                        'FilterChange': 'No', 'FilterChangeDate': '', 'FilterChangeWorkHours': '0', 'FilterChangeInterval': '1000',
+                    })
+                    added += 1
+            save_csv(WH_CSV, wh_rows, WH_FIELDS)
+            flash(f'Added {added} missing unit(s) to work hours log.', 'success')
+
+        return redirect(url_for('data_cleanup'))
+
+    # ── GET: scan all CSVs ────────────────────────────────────────────────────
+    wh_rows  = safe_read_csv(WH_CSV)
+    iss_rows = safe_read_csv(ISS_CSV)
+    res_rows = safe_read_csv(RES_CSV)
+    fl_rows  = safe_read_csv(FL_CSV)
+
+    issues = []
+
+    # 1. Malformed intervals
+    bad_int = []
+    for i, r in enumerate(wh_rows):
+        for field in ['GreasingInterval','OilChangeInterval','HydraulicChangeInterval','FilterChangeInterval']:
+            v = r.get(field,'')
+            try: float(v)
+            except: bad_int.append(f"Row {i}: {r.get('Model','')} {r.get('Number','')} - {field} = '{v}'")
+    if bad_int:
+        issues.append({'id':'bad_intervals','severity':'error',
+            'title': str(len(bad_int)) + ' malformed interval value(s)',
+            'desc': 'Interval fields contain non-numeric text (e.g. "1000Still"). These break progress bar calculations.',
+            'details': bad_int,
+            'fix_label': 'Fix: replace with model-default values'})
+
+    # 2. Duplicate WH entries
+    seen_wh = {}
+    dupe_wh = []
+    for i, r in enumerate(wh_rows):
+        key = (r.get('Model',''), r.get('Number',''), r.get('WorkHours',''), r.get('DateEntered','')[:10])
+        if key in seen_wh:
+            dupe_wh.append(f"Rows {seen_wh[key]} & {i}: {r.get('Model','')} {r.get('Number','')} - {r.get('WorkHours','')}h on {r.get('DateEntered','')[:10]}")
+        else:
+            seen_wh[key] = i
+    if dupe_wh:
+        issues.append({'id':'duplicate_wh','severity':'warning',
+            'title': str(len(dupe_wh)) + ' duplicate work hours entries',
+            'desc': 'Identical unit + hours + date appearing more than once. Likely double-submissions.',
+            'details': dupe_wh,
+            'fix_label': 'Fix: remove duplicates, keep first occurrence'})
+
+    # 3. Suspiciously low WH on non-first entries
+    unit_count = defaultdict(int)
+    low_wh = []
+    for i, r in enumerate(wh_rows):
+        k = (r.get('Model',''), r.get('Number',''))
+        unit_count[k] += 1
+        try: wh_val = float(r.get('WorkHours',0) or 0)
+        except: wh_val = 0
+        if unit_count[k] > 1 and wh_val < 5:
+            low_wh.append(f"Row {i}: {r.get('Model','')} {r.get('Number','')} - {r.get('WorkHours','')}h on {r.get('DateEntered','')}")
+    if low_wh:
+        issues.append({'id':'low_wh','severity':'warning',
+            'title': str(len(low_wh)) + ' suspiciously low work hours (likely test entries)',
+            'desc': 'Non-first entries with under 5 work hours. Likely test or accidental submissions that skew progress bars.',
+            'details': low_wh,
+            'fix_label': 'Fix: delete these rows'})
+
+    # 4. Empty issues
+    empty_iss = []
+    for i, r in enumerate(iss_rows):
+        if not r.get('Issue','').strip() or not r.get('Number','').strip():
+            empty_iss.append(f"Row {i}: {r.get('Model','')} {r.get('Number','')} - Issue='{r.get('Issue','')}'")
+    if empty_iss:
+        issues.append({'id':'empty_issues','severity':'error',
+            'title': str(len(empty_iss)) + ' open issue record(s) with empty required fields',
+            'desc': 'Open issues missing the Issue type or unit Number. Ghost records from test submissions.',
+            'details': empty_iss,
+            'fix_label': 'Fix: delete these rows'})
+
+    # 5. Resolved issues with null timestamps
+    null_res = []
+    for i, r in enumerate(res_rows):
+        if not (r.get('Resolved') or '').strip():
+            null_res.append(f"Row {i}: {r.get('Model','')} {r.get('Number','')} - {r.get('Issue','')} (DateTime='{r.get('DateTime','')}')")
+    if null_res:
+        issues.append({'id':'resolved_nulls','severity':'info',
+            'title': str(len(null_res)) + ' resolved issue(s) with missing resolution timestamp',
+            'desc': 'Resolved records with no resolution date. Usually early test data.',
+            'details': null_res[:20],
+            'fix_label': 'Fix: fill with original DateTime or mark as Unknown'})
+
+    # 6. Fleet units missing from WH log
+    fl_set  = set((r.get('Model',''), r.get('Number','')) for r in fl_rows)
+    wh_set  = set((r.get('Model',''), r.get('Number','')) for r in wh_rows)
+    missing = sorted(fl_set - wh_set, key=lambda x: (x[0], int(''.join(filter(str.isdigit, x[1])) or 0)))
+    if missing:
+        issues.append({'id':'add_missing_fleet','severity':'info',
+            'title': str(len(missing)) + ' fleet unit(s) with no work hours record',
+            'desc': 'Units in the fleet registry that have never had work hours logged. They are invisible on the maintenance page.',
+            'details': [m + ' ' + n for m,n in missing],
+            'fix_label': 'Fix: add zeroed placeholder entries'})
+
+    # 7. Impossible values - info only
+    impossible = []
+    unit_count2 = defaultdict(int)
+    for i, r in enumerate(wh_rows):
+        k = (r.get('Model',''), r.get('Number',''))
+        unit_count2[k] += 1
+        try:
+            wh_val = float(r.get('WorkHours',0) or 0)
+            gwh    = float(r.get('GreasingWorkHours',0) or 0)
+            if gwh > wh_val + 10 and unit_count2[k] > 1:
+                impossible.append(f"Row {i}: {r.get('Model','')} {r.get('Number','')} - WorkHours={wh_val}, GreasingWH={gwh}")
+        except: pass
+    if impossible:
+        issues.append({'id': None, 'severity':'info',
+            'title': str(len(impossible)) + ' row(s) where service hours exceed work hours',
+            'desc': 'GreasingWorkHours higher than WorkHours. Caused by hour-counter resets. Already handled by the max-hours fix — no action needed.',
+            'details': impossible[:10],
+            'fix_label': None})
+
+    total_fixable = sum(1 for x in issues if x.get('id'))
+    return render_template('data_cleanup.html', issues=issues, total_fixable=total_fixable)
+
+
 # Route to render the comment and resolve issue page (comment_issue.html)
 @app.route('/comment/<int:index>')
 def comment_issue_page(index):
@@ -750,8 +994,21 @@ def resolve_issue(index):
             'FilterChange', 'FilterChangeDate', 'FilterChangeWorkHours', 'FilterChangeInterval'
         ]
 
-        # Create a new entry with updated WorkHours and DateEntered, retaining all other fields from last_entry
-        new_entry = {field: last_entry.get(field, "No" if "Change" in field else "0") for field in fields}
+        # Create a new entry — fall back to model defaults if this unit has no prior WH record
+        if last_entry is None:
+            toyota = resolved_issue.get('Model') == 'Toyota'
+            last_entry = {
+                'Greasing': 'No', 'GreasingDate': '', 'GreasingWorkHours': '0',
+                'GreasingInterval': '500',
+                'OilChange': 'No', 'OilChangeDate': '', 'OilChangeWorkHours': '0',
+                'OilChangeInterval': '3000' if toyota else '10000',
+                'HydraulicChange': 'No', 'HydraulicChangeDate': '', 'HydraulicChangeWorkHours': '0',
+                'HydraulicChangeInterval': '2000' if toyota else '6000',
+                'FilterChange': 'No', 'FilterChangeDate': '', 'FilterChangeWorkHours': '0',
+                'FilterChangeInterval': '1000',
+            }
+        # last_entry is None if unit has no prior work hours entry (e.g. newly added unit)
+        new_entry = {field: (last_entry.get(field, "No" if "Change" in field else "0") if last_entry else ("No" if "Change" in field else "0")) for field in fields}
         new_entry.update({
             'Model': resolved_issue['Model'],
             'Number': resolved_issue['Number'],
@@ -1011,7 +1268,7 @@ def maintenance():
                 pass
         
         # Build new entry
-        new_entry = {field: last_entry.get(field, 'No' if 'Change' in field else '0') for field in fields}
+        new_entry = {field: (last_entry.get(field, 'No' if 'Change' in field else '0') if last_entry else ('No' if 'Change' in field else '0')) for field in fields}
         new_entry.update({
             'Model': model,
             'Number': number,
